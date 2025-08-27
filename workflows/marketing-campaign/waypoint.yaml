@@ -1,0 +1,67 @@
+inputs:
+  brand_guidelines:
+    fileType: md
+  company_context:
+    fileType: md
+  offering_details:
+    fileType: md
+  marketing_budget:
+    fileType: json
+
+waypoints:
+  advertising_strategy:
+    fileType: json
+  selected_channels:
+    fileType: json
+    ensemble_source: advertising_strategy
+  targeting_parameters:
+    fileType: json
+    ensemble_source: advertising_strategy
+  campaign_goal:
+    fileType: json
+    ensemble_source: advertising_strategy
+  budget_breakdown:
+    fileType: json
+    ensemble_source: advertising_strategy
+  schedule:
+    fileType: json
+    ensemble_source: advertising_strategy
+  analytics_tracking_plan:
+    fileType: json
+    ensemble_source: advertising_strategy
+  ad_creative:
+    fileType: json
+
+dependencies:
+  - to: advertising_strategy
+    from:
+      - company_context
+      - offering_details
+      - marketing_budget
+      - brand_guidelines
+  - to: selected_channels
+    from:
+      - advertising_strategy
+  - to: targeting_parameters
+    from:
+      - advertising_strategy
+  - to: campaign_goal
+    from:
+      - advertising_strategy
+  - to: budget_breakdown
+    from:
+      - advertising_strategy
+  - to: schedule
+    from:
+      - advertising_strategy
+  - to: analytics_tracking_plan
+    from:
+      - advertising_strategy
+  - to: ad_creative
+    from:
+      - offering_details
+      - campaign_goal
+      - schedule
+      - selected_channels
+
+validations: 

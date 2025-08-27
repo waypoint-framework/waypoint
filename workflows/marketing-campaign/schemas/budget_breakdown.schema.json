@@ -1,0 +1,381 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.waypoint.dev/budget_breakdown.schema.json",
+  "title": "Budget Breakdown Schema",
+  "description": "Comprehensive budget allocation and financial planning for marketing campaigns",
+  "type": "object",
+  "properties": {
+    "budget_overview": {
+      "type": "object",
+      "description": "Overall budget summary and currency information",
+      "properties": {
+        "total_budget": {
+          "type": "number",
+          "description": "Total campaign budget in currency units"
+        },
+        "currency": {
+          "type": "string",
+          "default": "USD",
+          "description": "Currency for all budget amounts"
+        },
+        "budget_period": {
+          "type": "string",
+          "description": "Budget period (e.g., 'Q1 2024', 'Annual 2024')"
+        },
+        "budget_type": {
+          "type": "string",
+          "enum": ["fixed", "flexible", "performance_based", "hybrid"],
+          "description": "Type of budget allocation"
+        },
+        "approval_status": {
+          "type": "string",
+          "enum": ["draft", "pending", "approved", "rejected", "under_review"],
+          "description": "Current approval status of the budget"
+        },
+        "last_updated": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the budget was last updated"
+        }
+      },
+      "required": ["total_budget", "currency", "budget_period"]
+    },
+    "channel_allocation": {
+      "type": "object",
+      "description": "Budget allocation across different marketing channels",
+      "properties": {
+        "primary_channels": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "channel_name": {"type": "string"},
+              "channel_type": {
+                "type": "string",
+                "enum": ["social_media", "search", "display", "video", "email", "affiliate", "influencer"]
+              },
+              "budget_amount": {"type": "number"},
+              "budget_percentage": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "priority": {
+                "type": "string",
+                "enum": ["primary", "secondary", "tertiary"]
+              },
+              "rationale": {"type": "string"},
+              "expected_roas": {"type": "number"},
+              "daily_budget_limit": {"type": "number"}
+            },
+            "required": ["channel_name", "budget_amount", "budget_percentage", "priority"]
+          },
+          "description": "Primary marketing channels with budget allocation"
+        },
+        "secondary_channels": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "channel_name": {"type": "string"},
+              "channel_type": {"type": "string"},
+              "budget_amount": {"type": "number"},
+              "budget_percentage": {"type": "number"},
+              "priority": {"type": "string"},
+              "rationale": {"type": "string"}
+            },
+            "required": ["channel_name", "budget_amount", "budget_percentage"]
+          },
+          "description": "Secondary channels with smaller budget allocations"
+        },
+        "channel_coordination_budget": {
+          "type": "number",
+          "description": "Budget reserved for cross-channel coordination and optimization"
+        }
+      },
+      "required": ["primary_channels"]
+    },
+    "phase_allocation": {
+      "type": "object",
+      "description": "Budget allocation across campaign phases",
+      "properties": {
+        "awareness_phase": {
+          "type": "object",
+          "properties": {
+            "budget_amount": {"type": "number"},
+            "budget_percentage": {"type": "number"},
+            "duration_weeks": {"type": "number"},
+            "key_activities": {"type": "array", "items": {"type": "string"}},
+            "expected_outcomes": {"type": "array", "items": {"type": "string"}}
+          },
+          "required": ["budget_amount", "budget_percentage", "duration_weeks"]
+        },
+        "consideration_phase": {
+          "type": "object",
+          "properties": {
+            "budget_amount": {"type": "number"},
+            "budget_percentage": {"type": "number"},
+            "duration_weeks": {"type": "number"},
+            "key_activities": {"type": "array", "items": {"type": "string"}},
+            "expected_outcomes": {"type": "array", "items": {"type": "string"}}
+          },
+          "required": ["budget_amount", "budget_percentage", "duration_weeks"]
+        },
+        "conversion_phase": {
+          "type": "object",
+          "properties": {
+            "budget_amount": {"type": "number"},
+            "budget_percentage": {"type": "number"},
+            "duration_weeks": {"type": "number"},
+            "key_activities": {"type": "array", "items": {"type": "string"}},
+            "expected_outcomes": {"type": "array", "items": {"type": "string"}}
+          },
+          "required": ["budget_amount", "budget_percentage", "duration_weeks"]
+        },
+        "retention_phase": {
+          "type": "object",
+          "properties": {
+            "budget_amount": {"type": "number"},
+            "budget_percentage": {"type": "number"},
+            "duration_weeks": {"type": "number"},
+            "key_activities": {"type": "array", "items": {"type": "string"}},
+            "expected_outcomes": {"type": "array", "items": {"type": "string"}}
+          },
+          "required": ["budget_amount", "budget_percentage", "duration_weeks"]
+        }
+      },
+      "required": ["awareness_phase", "consideration_phase", "conversion_phase"]
+    },
+    "creative_and_production": {
+      "type": "object",
+      "description": "Budget allocation for creative development and production",
+      "properties": {
+        "creative_development": {
+          "type": "object",
+          "properties": {
+            "design_and_copywriting": {"type": "number"},
+            "photography_and_videography": {"type": "number"},
+            "graphic_design": {"type": "number"},
+            "copywriting": {"type": "number"},
+            "creative_direction": {"type": "number"}
+          },
+          "description": "Creative development costs"
+        },
+        "production_costs": {
+          "type": "object",
+          "properties": {
+            "video_production": {"type": "number"},
+            "photo_shoots": {"type": "number"},
+            "audio_production": {"type": "number"},
+            "printing": {"type": "number"},
+            "other_production": {"type": "number"}
+          },
+          "description": "Production and execution costs"
+        },
+        "creative_optimization": {
+          "type": "object",
+          "properties": {
+            "a_b_testing": {"type": "number"},
+            "creative_refresh": {"type": "number"},
+            "performance_optimization": {"type": "number"}
+          },
+          "description": "Creative optimization and testing costs"
+        },
+        "total_creative_budget": {
+          "type": "number",
+          "description": "Total budget for creative and production"
+        }
+      },
+      "required": ["creative_development", "production_costs", "total_creative_budget"]
+    },
+    "operational_costs": {
+      "type": "object",
+      "description": "Operational and management costs",
+      "properties": {
+        "agency_fees": {
+          "type": "object",
+          "properties": {
+            "management_fee": {"type": "number"},
+            "performance_bonus": {"type": "number"},
+            "additional_services": {"type": "number"}
+          },
+          "description": "Agency and management fees"
+        },
+        "platform_fees": {
+          "type": "object",
+          "properties": {
+            "ad_platform_fees": {"type": "number"},
+            "creative_tools": {"type": "number"},
+            "analytics_tools": {"type": "number"},
+            "other_platforms": {"type": "number"}
+          },
+          "description": "Platform and tool fees"
+        },
+        "internal_costs": {
+          "type": "object",
+          "properties": {
+            "staff_time": {"type": "number"},
+            "overhead_allocation": {"type": "number"},
+            "training": {"type": "number"},
+            "other_internal": {"type": "number"}
+          },
+          "description": "Internal operational costs"
+        },
+        "total_operational_budget": {
+          "type": "number",
+          "description": "Total operational costs"
+        }
+      },
+      "required": ["agency_fees", "platform_fees", "total_operational_budget"]
+    },
+    "reserve_and_contingency": {
+      "type": "object",
+      "description": "Reserve budget and contingency planning",
+      "properties": {
+        "performance_reserve": {
+          "type": "number",
+          "description": "Budget reserved for performance optimization and scaling"
+        },
+        "contingency_fund": {
+          "type": "number",
+          "description": "Budget for unexpected costs or opportunities"
+        },
+        "seasonal_adjustments": {
+          "type": "number",
+          "description": "Budget for seasonal campaign adjustments"
+        },
+        "competitive_response": {
+          "type": "number",
+          "description": "Budget for competitive response campaigns"
+        },
+        "total_reserve": {
+          "type": "number",
+          "description": "Total reserve and contingency budget"
+        },
+        "reserve_rationale": {
+          "type": "string",
+          "description": "Explanation of reserve budget allocation"
+        }
+      },
+      "required": ["performance_reserve", "contingency_fund", "total_reserve"]
+    },
+    "budget_tracking": {
+      "type": "object",
+      "description": "Budget tracking and reporting structure",
+      "properties": {
+        "tracking_frequency": {
+          "type": "string",
+          "enum": ["daily", "weekly", "bi-weekly", "monthly"],
+          "description": "How often budget is tracked and reported"
+        },
+        "tracking_metrics": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Key metrics for budget tracking"
+        },
+        "alert_thresholds": {
+          "type": "object",
+          "properties": {
+            "spend_warning": {"type": "number"},
+            "spend_critical": {"type": "number"},
+            "performance_warning": {"type": "number"},
+            "performance_critical": {"type": "number"}
+          },
+          "description": "Thresholds for budget and performance alerts"
+        },
+        "reporting_stakeholders": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Stakeholders who receive budget reports"
+        }
+      },
+      "required": ["tracking_frequency", "tracking_metrics"]
+    },
+    "roi_and_performance_targets": {
+      "type": "object",
+      "description": "Return on investment and performance targets",
+      "properties": {
+        "overall_roas_target": {
+          "type": "number",
+          "description": "Target return on ad spend for the entire campaign"
+        },
+        "channel_roas_targets": {
+          "type": "object",
+          "additionalProperties": {"type": "number"},
+          "description": "ROAS targets by channel"
+        },
+        "phase_roas_targets": {
+          "type": "object",
+          "properties": {
+            "awareness": {"type": "number"},
+            "consideration": {"type": "number"},
+            "conversion": {"type": "number"},
+            "retention": {"type": "number"}
+          },
+          "description": "ROAS targets by campaign phase"
+        },
+        "cost_efficiency_targets": {
+          "type": "object",
+          "properties": {
+            "target_cpc": {"type": "number"},
+            "target_cpm": {"type": "number"},
+            "target_cpa": {"type": "number"},
+            "target_cpl": {"type": "number"}
+          },
+          "description": "Cost efficiency targets"
+        },
+        "performance_benchmarks": {
+          "type": "object",
+          "properties": {
+            "industry_averages": {"type": "object"},
+            "historical_performance": {"type": "object"},
+            "competitor_benchmarks": {"type": "object"}
+          },
+          "description": "Performance benchmarks for comparison"
+        }
+      },
+      "required": ["overall_roas_target", "cost_efficiency_targets"]
+    },
+    "budget_optimization": {
+      "type": "object",
+      "description": "Budget optimization strategies and rules",
+      "properties": {
+        "optimization_rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "rule_name": {"type": "string"},
+              "rule_description": {"type": "string"},
+              "activation_condition": {"type": "string"},
+              "action": {"type": "string"},
+              "budget_impact": {"type": "string"}
+            },
+            "required": ["rule_name", "rule_description", "action"]
+          },
+          "description": "Rules for budget optimization and reallocation"
+        },
+        "auto_optimization": {
+          "type": "boolean",
+          "description": "Whether automatic budget optimization is enabled"
+        },
+        "optimization_frequency": {
+          "type": "string",
+          "enum": ["daily", "weekly", "bi-weekly", "monthly"],
+          "description": "How often budget optimization occurs"
+        },
+        "reallocation_thresholds": {
+          "type": "object",
+          "properties": {
+            "performance_threshold": {"type": "number"},
+            "spend_threshold": {"type": "number"},
+            "time_threshold": {"type": "string"}
+          },
+          "description": "Thresholds for budget reallocation"
+        }
+      },
+      "required": ["optimization_rules", "auto_optimization"]
+    }
+  },
+  "required": ["budget_overview", "channel_allocation", "phase_allocation", "creative_and_production", "operational_costs", "reserve_and_contingency", "budget_tracking", "roi_and_performance_targets"]
+} 

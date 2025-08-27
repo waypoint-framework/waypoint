@@ -1,0 +1,456 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.waypoint.dev/ad_creative.schema.json",
+  "title": "Ad Creative Schema",
+  "description": "Comprehensive creative assets and messaging for marketing campaigns across all channels",
+  "type": "object",
+  "properties": {
+    "creative_overview": {
+      "type": "object",
+      "description": "Overall creative strategy and approach",
+      "properties": {
+        "creative_strategy": {
+          "type": "string",
+          "description": "High-level creative approach and philosophy"
+        },
+        "brand_guidelines": {
+          "type": "object",
+          "properties": {
+            "brand_voice": {"type": "string"},
+            "tone_of_voice": {"type": "string"},
+            "visual_style": {"type": "string"},
+            "brand_personality": {"type": "string"}
+          },
+          "description": "Brand guidelines to follow in creative execution"
+        },
+        "creative_objectives": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Specific objectives for the creative elements"
+        },
+        "target_audience": {
+          "type": "string",
+          "description": "Primary audience for the creative messaging"
+        },
+        "key_messages": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Core messages to communicate"
+        },
+        "unique_selling_proposition": {
+          "type": "string",
+          "description": "Primary differentiator to highlight"
+        }
+      },
+      "required": ["creative_strategy", "brand_guidelines", "creative_objectives", "key_messages"]
+    },
+    "visual_assets": {
+      "type": "object",
+      "description": "Visual creative elements and specifications",
+      "properties": {
+        "images": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "asset_id": {"type": "string"},
+              "asset_name": {"type": "string"},
+              "asset_type": {
+                "type": "string",
+                "enum": ["hero_image", "product_image", "lifestyle_image", "icon", "illustration", "infographic"]
+              },
+              "dimensions": {
+                "type": "object",
+                "properties": {
+                  "width": {"type": "number"},
+                  "height": {"type": "number"},
+                  "unit": {"type": "string", "default": "px"}
+                }
+              },
+              "file_format": {"type": "string"},
+              "file_size": {"type": "string"},
+              "color_scheme": {"type": "string"},
+              "usage_rights": {"type": "string"},
+              "source": {"type": "string"},
+              "alt_text": {"type": "string"},
+              "accessibility_features": {"type": "array", "items": {"type": "string"}}
+            },
+            "required": ["asset_id", "asset_name", "asset_type", "dimensions", "file_format"]
+          },
+          "description": "Static image assets"
+        },
+        "videos": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "asset_id": {"type": "string"},
+              "asset_name": {"type": "string"},
+              "asset_type": {
+                "type": "string",
+                "enum": ["product_demo", "testimonial", "brand_story", "tutorial", "advertisement"]
+              },
+              "duration": {"type": "string"},
+              "aspect_ratio": {"type": "string"},
+              "file_format": {"type": "string"},
+              "file_size": {"type": "string"},
+              "resolution": {"type": "string"},
+              "audio": {"type": "boolean"},
+              "subtitles": {"type": "boolean"},
+              "usage_rights": {"type": "string"},
+              "source": {"type": "string"}
+            },
+            "required": ["asset_id", "asset_name", "asset_type", "duration", "aspect_ratio", "file_format"]
+          },
+          "description": "Video assets"
+        },
+        "graphics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "asset_id": {"type": "string"},
+              "asset_name": {"type": "string"},
+              "asset_type": {
+                "type": "string",
+                "enum": ["logo", "banner", "social_media_graphic", "email_header", "print_ad"]
+              },
+              "dimensions": {
+                "type": "object",
+                "properties": {
+                  "width": {"type": "number"},
+                  "height": {"type": "number"},
+                  "unit": {"type": "string"}
+                }
+              },
+              "file_format": {"type": "string"},
+              "color_scheme": {"type": "string"},
+              "design_elements": {"type": "array", "items": {"type": "string"}}
+            },
+            "required": ["asset_id", "asset_name", "asset_type", "dimensions", "file_format"]
+          },
+          "description": "Graphic design elements"
+        }
+      },
+      "required": ["images", "videos", "graphics"]
+    },
+    "copy_and_messaging": {
+      "type": "object",
+      "description": "Text content and messaging strategy",
+      "properties": {
+        "headlines": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "headline_id": {"type": "string"},
+              "headline_text": {"type": "string"},
+              "headline_type": {
+                "type": "string",
+                "enum": ["main_headline", "subheadline", "call_to_action", "tagline"]
+              },
+              "character_limit": {"type": "number"},
+              "tone": {"type": "string"},
+              "target_audience": {"type": "string"},
+              "a_b_test_variant": {"type": "string"}
+            },
+            "required": ["headline_id", "headline_text", "headline_type"]
+          },
+          "description": "Headlines and main text elements"
+        },
+        "body_copy": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "copy_id": {"type": "string"},
+              "copy_text": {"type": "string"},
+              "copy_type": {
+                "type": "string",
+                "enum": ["description", "benefits", "features", "social_proof", "instructions"]
+              },
+              "character_limit": {"type": "number"},
+              "tone": {"type": "string"},
+              "target_audience": {"type": "string"}
+            },
+            "required": ["copy_id", "copy_text", "copy_type"]
+          },
+          "description": "Body copy and supporting text"
+        },
+        "calls_to_action": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "cta_id": {"type": "string"},
+              "cta_text": {"type": "string"},
+              "cta_type": {
+                "type": "string",
+                "enum": ["primary", "secondary", "tertiary"]
+              },
+              "action_type": {
+                "type": "string",
+                "enum": ["click", "call", "email", "form", "download", "purchase"]
+              },
+              "destination": {"type": "string"},
+              "urgency": {"type": "string"},
+              "character_limit": {"type": "number"}
+            },
+            "required": ["cta_id", "cta_text", "cta_type", "action_type"]
+          },
+          "description": "Call-to-action buttons and text"
+        },
+        "messaging_hierarchy": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "priority": {"type": "number"},
+              "message": {"type": "string"},
+              "placement": {"type": "string"},
+              "audience_segment": {"type": "string"}
+            },
+            "required": ["priority", "message", "placement"]
+          },
+          "description": "Priority order of key messages"
+        }
+      },
+      "required": ["headlines", "body_copy", "calls_to_action"]
+    },
+    "channel_specific_creative": {
+      "type": "object",
+      "description": "Creative variations for different marketing channels",
+      "properties": {
+        "social_media": {
+          "type": "object",
+          "properties": {
+            "platform_specific": {
+              "type": "object",
+              "properties": {
+                "instagram": {
+                  "type": "object",
+                  "properties": {
+                    "feed_posts": {"type": "array", "items": {"type": "string"}},
+                    "stories": {"type": "array", "items": {"type": "string"}},
+                    "reels": {"type": "array", "items": {"type": "string"}},
+                    "carousel_posts": {"type": "array", "items": {"type": "string"}}
+                  }
+                },
+                "facebook": {
+                  "type": "object",
+                  "properties": {
+                    "feed_posts": {"type": "array", "items": {"type": "string"}},
+                    "stories": {"type": "array", "items": {"type": "string"}},
+                    "video_ads": {"type": "array", "items": {"type": "string"}}
+                  }
+                },
+                "linkedin": {
+                  "type": "object",
+                  "properties": {
+                    "company_posts": {"type": "array", "items": {"type": "string"}},
+                    "sponsored_content": {"type": "array", "items": {"type": "string"}}
+                  }
+                }
+              }
+            },
+            "content_calendar": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "date": {"type": "string", "format": "date"},
+                  "platform": {"type": "string"},
+                  "content_type": {"type": "string"},
+                  "creative_assets": {"type": "array", "items": {"type": "string"}},
+                  "copy": {"type": "string"},
+                  "hashtags": {"type": "array", "items": {"type": "string"}}
+                }
+              }
+            }
+          }
+        },
+        "paid_advertising": {
+          "type": "object",
+          "properties": {
+            "google_ads": {
+              "type": "object",
+              "properties": {
+                "search_ads": {"type": "array", "items": {"type": "string"}},
+                "display_ads": {"type": "array", "items": {"type": "string"}},
+                "video_ads": {"type": "array", "items": {"type": "string"}},
+                "responsive_ads": {"type": "array", "items": {"type": "string"}}
+              }
+            },
+            "facebook_ads": {
+              "type": "object",
+              "properties": {
+                "image_ads": {"type": "array", "items": {"type": "string"}},
+                "video_ads": {"type": "array", "items": {"type": "string"}},
+                "carousel_ads": {"type": "array", "items": {"type": "string"}},
+                "collection_ads": {"type": "array", "items": {"type": "string"}}
+              }
+            },
+            "display_networks": {
+              "type": "object",
+              "properties": {
+                "banner_ads": {"type": "array", "items": {"type": "string"}},
+                "interactive_ads": {"type": "array", "items": {"type": "string"}},
+                "rich_media_ads": {"type": "array", "items": {"type": "string"}}
+              }
+            }
+          }
+        },
+        "email_marketing": {
+          "type": "object",
+          "properties": {
+            "email_templates": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "template_name": {"type": "string"},
+                  "email_type": {"type": "string"},
+                  "subject_line": {"type": "string"},
+                  "preheader_text": {"type": "string"},
+                  "header_image": {"type": "string"},
+                  "body_content": {"type": "string"},
+                  "footer_content": {"type": "string"}
+                }
+              }
+            },
+            "email_sequences": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "sequence_name": {"type": "string"},
+                  "trigger_event": {"type": "string"},
+                  "emails": {"type": "array", "items": {"type": "string"}},
+                  "timing": {"type": "string"}
+                }
+              }
+            }
+          }
+        }
+      },
+      "required": ["social_media", "paid_advertising", "email_marketing"]
+    },
+    "creative_testing": {
+      "type": "object",
+      "description": "A/B testing and optimization strategy for creative elements",
+      "properties": {
+        "test_plans": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "test_id": {"type": "string"},
+              "test_name": {"type": "string"},
+              "test_type": {
+                "type": "string",
+                "enum": ["headline", "image", "cta", "color", "layout", "copy"]
+              },
+              "test_variables": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "variable_name": {"type": "string"},
+                    "variable_type": {"type": "string"},
+                    "variants": {"type": "array", "items": {"type": "string"}}
+                  }
+                }
+              },
+              "success_metrics": {"type": "array", "items": {"type": "string"}},
+              "test_duration": {"type": "string"},
+              "sample_size": {"type": "number"},
+              "confidence_level": {"type": "number"}
+            },
+            "required": ["test_id", "test_name", "test_type", "test_variables", "success_metrics"]
+          }
+        },
+        "optimization_goals": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Goals for creative optimization"
+        },
+        "performance_tracking": {
+          "type": "object",
+          "properties": {
+            "creative_performance_metrics": {"type": "array", "items": {"type": "string"}},
+            "benchmark_data": {"type": "object"},
+            "optimization_thresholds": {"type": "object"}
+          }
+        }
+      },
+      "required": ["test_plans", "optimization_goals"]
+    },
+    "brand_compliance": {
+      "type": "object",
+      "description": "Brand compliance and approval requirements",
+      "properties": {
+        "brand_standards": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Brand standards to follow"
+        },
+        "approval_workflow": {
+          "type": "object",
+          "properties": {
+            "approval_stages": {"type": "array", "items": {"type": "string"}},
+            "approvers": {"type": "array", "items": {"type": "string"}},
+            "approval_criteria": {"type": "array", "items": {"type": "string"}},
+            "timeline": {"type": "string"}
+          }
+        },
+        "compliance_checklist": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "checklist_item": {"type": "string"},
+              "requirement": {"type": "string"},
+              "status": {"type": "string"},
+              "notes": {"type": "string"}
+            }
+          }
+        }
+      },
+      "required": ["brand_standards", "approval_workflow"]
+    },
+    "asset_management": {
+      "type": "object",
+      "description": "Creative asset organization and management",
+      "properties": {
+        "asset_library": {
+          "type": "object",
+          "properties": {
+            "organization_structure": {"type": "string"},
+            "naming_conventions": {"type": "string"},
+            "version_control": {"type": "string"},
+            "access_permissions": {"type": "array", "items": {"type": "string"}}
+          }
+        },
+        "delivery_specifications": {
+          "type": "object",
+          "properties": {
+            "file_formats": {"type": "array", "items": {"type": "string"}},
+            "resolution_requirements": {"type": "array", "items": {"type": "string"}},
+            "color_profiles": {"type": "array", "items": {"type": "string"}},
+            "delivery_methods": {"type": "array", "items": {"type": "string"}}
+          }
+        },
+        "asset_tracking": {
+          "type": "object",
+          "properties": {
+            "usage_tracking": {"type": "boolean"},
+            "performance_metrics": {"type": "array", "items": {"type": "string"}},
+            "asset_lifecycle": {"type": "string"}
+          }
+        }
+      },
+      "required": ["asset_library", "delivery_specifications"]
+    }
+  },
+  "required": ["creative_overview", "visual_assets", "copy_and_messaging", "channel_specific_creative", "creative_testing", "brand_compliance"]
+} 

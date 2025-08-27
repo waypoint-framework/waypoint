@@ -1,0 +1,449 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.waypoint.dev/analytics_tracking_plan.schema.json",
+  "title": "Analytics Tracking Plan Schema",
+  "description": "Comprehensive plan for tracking, measuring, and analyzing marketing campaign performance",
+  "type": "object",
+  "properties": {
+    "tracking_overview": {
+      "type": "object",
+      "description": "Overall tracking strategy and objectives",
+      "properties": {
+        "tracking_objective": {
+          "type": "string",
+          "description": "Primary objective of the tracking plan"
+        },
+        "tracking_strategy": {
+          "type": "string",
+          "description": "Overall approach to tracking and measurement"
+        },
+        "measurement_framework": {
+          "type": "string",
+          "enum": ["attribution", "multi_touch", "last_touch", "first_touch", "time_decay", "position_based"],
+          "description": "Framework for attributing conversions and measuring impact"
+        },
+        "tracking_scope": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "What aspects of the campaign will be tracked"
+        },
+        "data_quality_standards": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Standards for data quality and accuracy"
+        }
+      },
+      "required": ["tracking_objective", "tracking_strategy", "measurement_framework"]
+    },
+    "key_performance_indicators": {
+      "type": "object",
+      "description": "Primary and secondary KPIs for campaign measurement",
+      "properties": {
+        "primary_kpis": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kpi_name": {"type": "string"},
+              "kpi_category": {
+                "type": "string",
+                "enum": ["reach", "engagement", "conversion", "revenue", "efficiency", "brand"]
+              },
+              "definition": {"type": "string"},
+              "calculation_method": {"type": "string"},
+              "target_value": {"type": "number"},
+              "current_baseline": {"type": "number"},
+              "measurement_unit": {"type": "string"},
+              "tracking_frequency": {
+                "type": "string",
+                "enum": ["real_time", "hourly", "daily", "weekly", "monthly"]
+              },
+              "data_source": {"type": "string"},
+              "responsible_team": {"type": "string"}
+            },
+            "required": ["kpi_name", "kpi_category", "definition", "calculation_method", "target_value", "measurement_unit"]
+          },
+          "description": "Primary KPIs that directly measure campaign success"
+        },
+        "secondary_kpis": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kpi_name": {"type": "string"},
+              "kpi_category": {"type": "string"},
+              "definition": {"type": "string"},
+              "calculation_method": {"type": "string"},
+              "target_value": {"type": "number"},
+              "measurement_unit": {"type": "string"},
+              "tracking_frequency": {"type": "string"},
+              "data_source": {"type": "string"}
+            },
+            "required": ["kpi_name", "definition", "calculation_method", "measurement_unit"]
+          },
+          "description": "Secondary KPIs that provide additional insights"
+        },
+        "custom_metrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "metric_name": {"type": "string"},
+              "description": {"type": "string"},
+              "calculation_logic": {"type": "string"},
+              "business_relevance": {"type": "string"},
+              "implementation_notes": {"type": "string"}
+            },
+            "required": ["metric_name", "description", "calculation_logic"]
+          },
+          "description": "Custom metrics specific to business needs"
+        }
+      },
+      "required": ["primary_kpis", "secondary_kpis"]
+    },
+    "tracking_implementation": {
+      "type": "object",
+      "description": "Technical implementation of tracking systems",
+      "properties": {
+        "utm_parameters": {
+          "type": "object",
+          "properties": {
+            "utm_source": {
+              "type": "string",
+              "description": "Source parameter for campaign attribution"
+            },
+            "utm_medium": {
+              "type": "string",
+              "description": "Medium parameter for campaign attribution"
+            },
+            "utm_campaign": {
+              "type": "string",
+              "description": "Campaign parameter for campaign attribution"
+            },
+            "utm_term": {
+              "type": "string",
+              "description": "Term parameter for keyword tracking"
+            },
+            "utm_content": {
+              "type": "string",
+              "description": "Content parameter for A/B testing"
+            },
+            "custom_parameters": {
+              "type": "object",
+              "additionalProperties": {"type": "string"},
+              "description": "Custom UTM parameters for specific tracking needs"
+            }
+          },
+          "required": ["utm_source", "utm_medium", "utm_campaign"]
+        },
+        "tracking_pixels": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "pixel_name": {"type": "string"},
+              "pixel_type": {
+                "type": "string",
+                "enum": ["conversion", "retargeting", "analytics", "social_media", "advertising"]
+              },
+              "pixel_code": {"type": "string"},
+              "placement": {"type": "string"},
+              "tracking_events": {"type": "array", "items": {"type": "string"}},
+              "implementation_status": {
+                "type": "string",
+                "enum": ["pending", "implemented", "testing", "active", "inactive"]
+              }
+            },
+            "required": ["pixel_name", "pixel_type", "pixel_code", "placement"]
+          },
+          "description": "Tracking pixels and tags to implement"
+        },
+        "event_tracking": {
+          "type": "object",
+          "properties": {
+            "page_views": {
+              "type": "object",
+              "properties": {
+                "enabled": {"type": "boolean"},
+                "tracking_method": {"type": "string"},
+                "custom_dimensions": {"type": "array", "items": {"type": "string"}}
+              }
+            },
+            "user_interactions": {
+              "type": "object",
+              "properties": {
+                "clicks": {"type": "boolean"},
+                "form_submissions": {"type": "boolean"},
+                "video_views": {"type": "boolean"},
+                "downloads": {"type": "boolean"},
+                "scroll_depth": {"type": "boolean"}
+              }
+            },
+            "conversion_events": {
+              "type": "object",
+              "properties": {
+                "purchases": {"type": "boolean"},
+                "sign_ups": {"type": "boolean"},
+                "leads": {"type": "boolean"},
+                "appointments": {"type": "boolean"},
+                "custom_events": {"type": "array", "items": {"type": "string"}}
+              }
+            }
+          },
+          "description": "Events to track for user behavior analysis"
+        },
+        "cross_domain_tracking": {
+          "type": "object",
+          "properties": {
+            "enabled": {"type": "boolean"},
+            "domains": {"type": "array", "items": {"type": "string"}},
+            "tracking_method": {"type": "string"},
+            "implementation_notes": {"type": "string"}
+          },
+          "description": "Cross-domain tracking configuration"
+        }
+      },
+      "required": ["utm_parameters", "tracking_pixels", "event_tracking"]
+    },
+    "conversion_tracking": {
+      "type": "object",
+      "description": "Conversion tracking setup and goals",
+      "properties": {
+        "conversion_goals": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "goal_id": {"type": "string"},
+              "goal_name": {"type": "string"},
+              "goal_type": {
+                "type": "string",
+                "enum": ["purchase", "lead", "signup", "download", "engagement", "custom"]
+              },
+              "goal_value": {"type": "number"},
+              "conversion_window": {"type": "number"},
+              "attribution_model": {"type": "string"},
+              "tracking_method": {"type": "string"},
+              "implementation_status": {"type": "string"}
+            },
+            "required": ["goal_id", "goal_name", "goal_type", "goal_value"]
+          },
+          "description": "Conversion goals to track"
+        },
+        "funnel_tracking": {
+          "type": "object",
+          "properties": {
+            "funnel_stages": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "stage_name": {"type": "string"},
+                  "stage_order": {"type": "number"},
+                  "stage_type": {"type": "string"},
+                  "conversion_rate_target": {"type": "number"},
+                  "drop_off_analysis": {"type": "boolean"}
+                },
+                "required": ["stage_name", "stage_order", "stage_type"]
+              }
+            },
+            "funnel_optimization": {
+              "type": "object",
+              "properties": {
+                "enabled": {"type": "boolean"},
+                "optimization_goals": {"type": "array", "items": {"type": "string"}},
+                "testing_approach": {"type": "string"}
+              }
+            }
+          },
+          "description": "Conversion funnel tracking and optimization"
+        },
+        "attribution_setup": {
+          "type": "object",
+          "properties": {
+            "primary_model": {"type": "string"},
+            "secondary_models": {"type": "array", "items": {"type": "string"}},
+            "lookback_windows": {
+              "type": "object",
+              "properties": {
+                "click": {"type": "number"},
+                "impression": {"type": "number"},
+                "view": {"type": "number"}
+              }
+            },
+            "cross_channel_attribution": {"type": "boolean"}
+          },
+          "description": "Attribution model configuration"
+        }
+      },
+      "required": ["conversion_goals", "funnel_tracking"]
+    },
+    "data_collection": {
+      "type": "object",
+      "description": "Data collection methods and sources",
+      "properties": {
+        "data_sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "source_name": {"type": "string"},
+              "source_type": {
+                "type": "string",
+                "enum": ["first_party", "second_party", "third_party", "public", "partner"]
+              },
+              "data_quality": {
+                "type": "string",
+                "enum": ["high", "medium", "low"]
+              },
+              "collection_frequency": {"type": "string"},
+              "data_format": {"type": "string"},
+              "integration_method": {"type": "string"}
+            },
+            "required": ["source_name", "source_type", "data_quality"]
+          }
+        },
+        "data_validation": {
+          "type": "object",
+          "properties": {
+            "validation_rules": {"type": "array", "items": {"type": "string"}},
+            "quality_checks": {"type": "array", "items": {"type": "string"}},
+            "error_handling": {"type": "string"},
+            "data_cleansing": {"type": "boolean"}
+          }
+        },
+        "data_storage": {
+          "type": "object",
+          "properties": {
+            "storage_location": {"type": "string"},
+            "retention_policy": {"type": "string"},
+            "backup_frequency": {"type": "string"},
+            "security_measures": {"type": "array", "items": {"type": "string"}}
+          }
+        }
+      },
+      "required": ["data_sources", "data_validation"]
+    },
+    "reporting_and_analysis": {
+      "type": "object",
+      "description": "Reporting structure and analysis approach",
+      "properties": {
+        "reporting_schedule": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "report_name": {"type": "string"},
+              "report_type": {
+                "type": "string",
+                "enum": ["daily", "weekly", "monthly", "quarterly", "ad_hoc"]
+              },
+              "frequency": {"type": "string"},
+              "delivery_method": {"type": "string"},
+              "recipients": {"type": "array", "items": {"type": "string"}},
+              "automated": {"type": "boolean"}
+            },
+            "required": ["report_name", "report_type", "frequency", "recipients"]
+          }
+        },
+        "dashboard_configuration": {
+          "type": "object",
+          "properties": {
+            "dashboard_name": {"type": "string"},
+            "key_metrics": {"type": "array", "items": {"type": "string"}},
+            "visualization_types": {"type": "array", "items": {"type": "string"}},
+            "refresh_frequency": {"type": "string"},
+            "access_permissions": {"type": "array", "items": {"type": "string"}}
+          }
+        },
+        "analysis_framework": {
+          "type": "object",
+          "properties": {
+            "segmentation_analysis": {"type": "boolean"},
+            "trend_analysis": {"type": "boolean"},
+            "comparative_analysis": {"type": "boolean"},
+            "predictive_analysis": {"type": "boolean"},
+            "attribution_analysis": {"type": "boolean"}
+          }
+        }
+      },
+      "required": ["reporting_schedule", "dashboard_configuration"]
+    },
+    "privacy_and_compliance": {
+      "type": "object",
+      "description": "Privacy and compliance considerations",
+      "properties": {
+        "gdpr_compliance": {
+          "type": "object",
+          "properties": {
+            "enabled": {"type": "boolean"},
+            "consent_management": {"type": "boolean"},
+            "data_processing_basis": {"type": "string"},
+            "data_subject_rights": {"type": "boolean"},
+            "data_retention_policy": {"type": "string"}
+          }
+        },
+        "ccpa_compliance": {
+          "type": "object",
+          "properties": {
+            "enabled": {"type": "boolean"},
+            "opt_out_mechanism": {"type": "boolean"},
+            "data_disclosure": {"type": "boolean"},
+            "verification_process": {"type": "string"}
+          }
+        },
+        "cookie_consent": {
+          "type": "object",
+          "properties": {
+            "consent_banner": {"type": "boolean"},
+            "cookie_categories": {"type": "array", "items": {"type": "string"}},
+            "consent_storage": {"type": "string"},
+            "consent_renewal": {"type": "string"}
+          }
+        },
+        "data_governance": {
+          "type": "object",
+          "properties": {
+            "data_classification": {"type": "string"},
+            "access_controls": {"type": "array", "items": {"type": "string"}},
+            "audit_logging": {"type": "boolean"},
+            "incident_response": {"type": "string"}
+          }
+        }
+      },
+      "required": ["gdpr_compliance", "ccpa_compliance", "cookie_consent"]
+    },
+    "implementation_timeline": {
+      "type": "object",
+      "description": "Timeline for implementing tracking systems",
+      "properties": {
+        "implementation_phases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "phase_name": {"type": "string"},
+              "start_date": {"type": "string", "format": "date"},
+              "end_date": {"type": "string", "format": "date"},
+              "deliverables": {"type": "array", "items": {"type": "string"}},
+              "dependencies": {"type": "array", "items": {"type": "string"}},
+              "responsible_team": {"type": "string"}
+            },
+            "required": ["phase_name", "start_date", "end_date", "deliverables"]
+          }
+        },
+        "testing_and_validation": {
+          "type": "object",
+          "properties": {
+            "testing_approach": {"type": "string"},
+            "validation_criteria": {"type": "array", "items": {"type": "string"}},
+            "qa_process": {"type": "string"},
+            "go_live_criteria": {"type": "array", "items": {"type": "string"}}
+          }
+        }
+      },
+      "required": ["implementation_phases", "testing_and_validation"]
+    }
+  },
+  "required": ["tracking_overview", "key_performance_indicators", "tracking_implementation", "conversion_tracking", "data_collection", "reporting_and_analysis", "privacy_and_compliance"]
+} 

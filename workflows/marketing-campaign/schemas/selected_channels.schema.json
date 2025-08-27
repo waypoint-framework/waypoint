@@ -1,0 +1,276 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.waypoint.dev/selected_channels.schema.json",
+  "title": "Selected Channels Schema",
+  "description": "Detailed configuration for each selected marketing channel including targeting, bidding, and creative requirements",
+  "type": "object",
+  "properties": {
+    "channels": {
+      "type": "array",
+      "description": "List of selected marketing channels with detailed configuration",
+      "items": {
+        "type": "object",
+        "properties": {
+          "channel_id": {
+            "type": "string",
+            "description": "Unique identifier for the channel"
+          },
+          "channel_name": {
+            "type": "string",
+            "description": "Name of the marketing channel (e.g., Instagram, Facebook, Google Ads)"
+          },
+          "channel_type": {
+            "type": "string",
+            "enum": ["social_media", "search", "display", "video", "email", "affiliate", "influencer"],
+            "description": "Category of the marketing channel"
+          },
+          "priority": {
+            "type": "string",
+            "enum": ["primary", "secondary", "tertiary"],
+            "description": "Priority level in the overall campaign strategy"
+          },
+          "budget_allocation": {
+            "type": "object",
+            "properties": {
+              "percentage": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100,
+                "description": "Percentage of total budget allocated to this channel"
+              },
+              "absolute_amount": {
+                "type": "number",
+                "description": "Absolute budget amount in currency units"
+              },
+              "daily_limit": {
+                "type": "number",
+                "description": "Maximum daily spend for this channel"
+              }
+            },
+            "required": ["percentage", "absolute_amount"]
+          },
+          "targeting": {
+            "type": "object",
+            "properties": {
+              "audience_segments": {
+                "type": "array",
+                "items": {"type": "string"},
+                "description": "Specific audience segments to target on this channel"
+              },
+              "custom_audiences": {
+                "type": "array",
+                "items": {"type": "string"},
+                "description": "Custom audience lists (lookalikes, retargeting, etc.)"
+              },
+              "exclusions": {
+                "type": "array",
+                "items": {"type": "string"},
+                "description": "Audience segments to exclude from targeting"
+              },
+              "placement_targeting": {
+                "type": "object",
+                "properties": {
+                  "inclusions": {"type": "array", "items": {"type": "string"}},
+                  "exclusions": {"type": "array", "items": {"type": "string"}}
+                },
+                "description": "Specific placements or content to target/exclude"
+              }
+            },
+            "required": ["audience_segments"]
+          },
+          "bidding_strategy": {
+            "type": "object",
+            "properties": {
+              "bid_type": {
+                "type": "string",
+                "enum": ["CPC", "CPM", "CPA", "CPL", "CPV", "Manual", "Auto"],
+                "description": "Primary bidding strategy for this channel"
+              },
+              "bid_amount": {
+                "type": "number",
+                "description": "Initial bid amount in currency units"
+              },
+              "bid_optimization": {
+                "type": "string",
+                "enum": ["conversions", "clicks", "impressions", "reach", "brand_awareness"],
+                "description": "What the bidding algorithm should optimize for"
+              },
+              "bid_adjustments": {
+                "type": "object",
+                "properties": {
+                  "demographics": {"type": "object", "additionalProperties": {"type": "number"}},
+                  "locations": {"type": "object", "additionalProperties": {"type": "number"}},
+                  "devices": {"type": "object", "additionalProperties": {"type": "number"}},
+                  "time_of_day": {"type": "object", "additionalProperties": {"type": "number"}}
+                },
+                "description": "Bid adjustments for different targeting criteria"
+              }
+            },
+            "required": ["bid_type", "bid_amount"]
+          },
+          "ad_formats": {
+            "type": "array",
+            "description": "Types of ads to run on this channel",
+            "items": {
+              "type": "object",
+              "properties": {
+                "format_name": {"type": "string"},
+                "priority": {"type": "string", "enum": ["high", "medium", "low"]},
+                "budget_split": {"type": "number"},
+                "creative_requirements": {"type": "array", "items": {"type": "string"}}
+              },
+              "required": ["format_name", "priority"]
+            }
+          },
+          "creative_requirements": {
+            "type": "object",
+            "properties": {
+              "image_specs": {
+                "type": "object",
+                "properties": {
+                  "dimensions": {"type": "array", "items": {"type": "string"}},
+                  "file_formats": {"type": "array", "items": {"type": "string"}},
+                  "file_size_limits": {"type": "array", "items": {"type": "string"}}
+                },
+                "description": "Technical specifications for images"
+              },
+              "video_specs": {
+                "type": "object",
+                "properties": {
+                  "duration": {"type": "string"},
+                  "aspect_ratios": {"type": "array", "items": {"type": "string"}},
+                  "file_formats": {"type": "array", "items": {"type": "string"}}
+                },
+                "description": "Technical specifications for videos"
+              },
+              "text_requirements": {
+                "type": "object",
+                "properties": {
+                  "headline_length": {"type": "string"},
+                  "description_length": {"type": "string"},
+                  "cta_requirements": {"type": "array", "items": {"type": "string"}}
+                },
+                "description": "Text content requirements"
+              }
+            }
+          },
+          "performance_targets": {
+            "type": "object",
+            "properties": {
+              "ctr_target": {
+                "type": "number",
+                "description": "Target click-through rate"
+              },
+              "cpc_target": {
+                "type": "number",
+                "description": "Target cost per click"
+              },
+              "conversion_rate_target": {
+                "type": "number",
+                "description": "Target conversion rate"
+              },
+              "roas_target": {
+                "type": "number",
+                "description": "Target return on ad spend"
+              }
+            },
+            "description": "Performance benchmarks for this channel"
+          },
+          "optimization_settings": {
+            "type": "object",
+            "properties": {
+              "auto_optimization": {
+                "type": "boolean",
+                "description": "Whether to enable automatic optimization"
+              },
+              "optimization_frequency": {
+                "type": "string",
+                "enum": ["daily", "weekly", "bi-weekly", "monthly"],
+                "description": "How often to review and optimize performance"
+              },
+              "pause_thresholds": {
+                "type": "object",
+                "properties": {
+                  "ctr_minimum": {"type": "number"},
+                  "cpc_maximum": {"type": "number"},
+                  "conversion_rate_minimum": {"type": "number"}
+                },
+                "description": "Performance thresholds that trigger campaign pausing"
+              }
+            }
+          },
+          "rationale": {
+            "type": "string",
+            "description": "Explanation of why this channel was selected and how it fits the strategy"
+          },
+          "risks": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "Potential risks or challenges with this channel"
+          },
+          "mitigation_strategies": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "Strategies to address identified risks"
+          }
+        },
+        "required": ["channel_id", "channel_name", "channel_type", "priority", "budget_allocation", "targeting", "bidding_strategy", "ad_formats"]
+      }
+    },
+    "channel_coordination": {
+      "type": "object",
+      "description": "How channels work together and avoid conflicts",
+      "properties": {
+        "cross_channel_strategy": {
+          "type": "string",
+          "description": "Overall approach to coordinating multiple channels"
+        },
+        "frequency_capping": {
+          "type": "object",
+          "properties": {
+            "total_impressions_per_user": {"type": "number"},
+            "impressions_per_channel": {"type": "object", "additionalProperties": {"type": "number"}},
+            "time_window": {"type": "string"}
+          },
+          "description": "Frequency limits across channels to prevent ad fatigue"
+        },
+        "attribution_rules": {
+          "type": "string",
+          "enum": ["first_touch", "last_touch", "linear", "time_decay", "position_based"],
+          "description": "How conversions are attributed across channels"
+        }
+      }
+    },
+    "implementation_timeline": {
+      "type": "object",
+      "properties": {
+        "setup_phase": {
+          "type": "object",
+          "properties": {
+            "start_date": {"type": "string", "format": "date"},
+            "end_date": {"type": "string", "format": "date"},
+            "tasks": {"type": "array", "items": {"type": "string"}}
+          }
+        },
+        "launch_phase": {
+          "type": "object",
+          "properties": {
+            "start_date": {"type": "string", "format": "date"},
+            "end_date": {"type": "string", "format": "date"},
+            "tasks": {"type": "array", "items": {"type": "string"}}
+          }
+        },
+        "optimization_phase": {
+          "type": "object",
+          "properties": {
+            "start_date": {"type": "string", "format": "date"},
+            "end_date": {"type": "string", "format": "date"},
+            "tasks": {"type": "array", "items": {"type": "string"}}
+          }
+        }
+      },
+      "description": "Timeline for implementing each channel"
+    }
+  },
+  "required": ["channels", "channel_coordination"]
+} 

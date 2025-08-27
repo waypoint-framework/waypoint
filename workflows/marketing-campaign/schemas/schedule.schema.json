@@ -1,0 +1,496 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.waypoint.dev/schedule.schema.json",
+  "title": "Schedule Schema",
+  "description": "Comprehensive campaign timeline, scheduling, and execution planning",
+  "type": "object",
+  "properties": {
+    "campaign_overview": {
+      "type": "object",
+      "description": "Overall campaign timeline and duration",
+      "properties": {
+        "campaign_name": {
+          "type": "string",
+          "description": "Name of the marketing campaign"
+        },
+        "campaign_id": {
+          "type": "string",
+          "description": "Unique identifier for the campaign"
+        },
+        "start_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Campaign start date (YYYY-MM-DD)"
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Campaign end date (YYYY-MM-DD)"
+        },
+        "total_duration": {
+          "type": "object",
+          "properties": {
+            "weeks": {"type": "number"},
+            "months": {"type": "number"},
+            "quarters": {"type": "number"}
+          },
+          "description": "Total campaign duration in different time units"
+        },
+        "campaign_status": {
+          "type": "string",
+          "enum": ["planning", "setup", "active", "paused", "completed", "cancelled"],
+          "description": "Current status of the campaign"
+        },
+        "last_updated": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the schedule was last updated"
+        }
+      },
+      "required": ["campaign_name", "campaign_id", "start_date", "end_date", "campaign_status"]
+    },
+    "campaign_phases": {
+      "type": "array",
+      "description": "Detailed breakdown of campaign phases",
+      "items": {
+        "type": "object",
+        "properties": {
+          "phase_id": {
+            "type": "string",
+            "description": "Unique identifier for the phase"
+          },
+          "phase_name": {
+            "type": "string",
+            "enum": ["awareness", "consideration", "conversion", "retention", "evaluation"],
+            "description": "Name of the campaign phase"
+          },
+          "phase_order": {
+            "type": "number",
+            "description": "Sequential order of the phase"
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date",
+            "description": "Phase start date"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date",
+            "description": "Phase end date"
+          },
+          "duration_weeks": {
+            "type": "number",
+            "description": "Duration of the phase in weeks"
+          },
+          "phase_objectives": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "Specific objectives for this phase"
+          },
+          "key_activities": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "Main activities during this phase"
+          },
+          "success_metrics": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "Metrics to measure phase success"
+          },
+          "budget_allocation": {
+            "type": "number",
+            "description": "Percentage of total budget allocated to this phase"
+          },
+          "team_responsibilities": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "Team members responsible for this phase"
+          }
+        },
+        "required": ["phase_id", "phase_name", "phase_order", "start_date", "end_date", "duration_weeks", "phase_objectives"]
+      }
+    },
+    "detailed_timeline": {
+      "type": "object",
+      "description": "Week-by-week and day-by-day campaign timeline",
+      "properties": {
+        "weekly_breakdown": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "week_number": {"type": "number"},
+              "start_date": {"type": "string", "format": "date"},
+              "end_date": {"type": "string", "format": "date"},
+              "phase": {"type": "string"},
+              "key_activities": {"type": "array", "items": {"type": "string"}},
+              "deliverables": {"type": "array", "items": {"type": "string"}},
+              "milestones": {"type": "array", "items": {"type": "string"}},
+              "budget_spend": {"type": "number"},
+              "team_focus": {"type": "array", "items": {"type": "string"}}
+            },
+            "required": ["week_number", "start_date", "end_date", "phase"]
+          },
+          "description": "Week-by-week campaign breakdown"
+        },
+        "daily_schedule": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "date": {"type": "string", "format": "date"},
+              "day_of_week": {"type": "string"},
+              "phase": {"type": "string"},
+              "activities": {"type": "array", "items": {"type": "string"}},
+              "deadlines": {"type": "array", "items": {"type": "string"}},
+              "team_meetings": {"type": "array", "items": {"type": "string"}},
+              "performance_reviews": {"type": "array", "items": {"type": "string"}}
+            },
+            "required": ["date", "day_of_week", "phase"]
+          },
+          "description": "Daily campaign activities and schedule"
+        }
+      },
+      "required": ["weekly_breakdown"]
+    },
+    "key_milestones": {
+      "type": "array",
+      "description": "Critical milestones and deadlines",
+      "items": {
+        "type": "object",
+        "properties": {
+          "milestone_id": {
+            "type": "string",
+            "description": "Unique identifier for the milestone"
+          },
+          "milestone_name": {
+            "type": "string",
+            "description": "Name of the milestone"
+          },
+          "milestone_type": {
+            "type": "string",
+            "enum": ["creative", "launch", "optimization", "review", "completion"],
+            "description": "Type of milestone"
+          },
+          "target_date": {
+            "type": "string",
+            "format": "date",
+            "description": "Target completion date"
+          },
+          "actual_date": {
+            "type": "string",
+            "format": "date",
+            "description": "Actual completion date (if completed)"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["pending", "in_progress", "completed", "delayed", "cancelled"],
+            "description": "Current status of the milestone"
+          },
+          "description": {
+            "type": "string",
+            "description": "Detailed description of the milestone"
+          },
+          "dependencies": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "Other milestones or activities this depends on"
+          },
+          "responsible_party": {
+            "type": "string",
+            "description": "Person or team responsible for this milestone"
+          },
+          "success_criteria": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "Criteria for successful milestone completion"
+          },
+          "impact_on_timeline": {
+            "type": "string",
+            "enum": ["low", "medium", "high", "critical"],
+            "description": "Impact on overall timeline if delayed"
+          }
+        },
+        "required": ["milestone_id", "milestone_name", "target_date", "status", "description", "responsible_party"]
+      }
+    },
+    "channel_schedules": {
+      "type": "object",
+      "description": "Scheduling for different marketing channels",
+      "properties": {
+        "social_media": {
+          "type": "object",
+          "properties": {
+            "posting_frequency": {
+              "type": "string",
+              "enum": ["daily", "multiple_daily", "weekly", "bi-weekly", "monthly"]
+            },
+            "posting_schedule": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "day_of_week": {"type": "string"},
+                  "times": {"type": "array", "items": {"type": "string"}},
+                  "content_type": {"type": "array", "items": {"type": "string"}}
+                }
+              }
+            },
+            "content_calendar": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "date": {"type": "string", "format": "date"},
+                  "content_theme": {"type": "string"},
+                  "platforms": {"type": "array", "items": {"type": "string"}},
+                  "creative_assets": {"type": "array", "items": {"type": "string"}}
+                }
+              }
+            }
+          }
+        },
+        "paid_advertising": {
+          "type": "object",
+          "properties": {
+            "campaign_launch_dates": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "channel": {"type": "string"},
+                  "launch_date": {"type": "string", "format": "date"},
+                  "end_date": {"type": "string", "format": "date"},
+                  "budget_allocation": {"type": "number"}
+                }
+              }
+            },
+            "ad_refresh_schedule": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "refresh_date": {"type": "string", "format": "date"},
+                  "reason": {"type": "string"},
+                  "new_creative_elements": {"type": "array", "items": {"type": "string"}}
+                }
+              }
+            }
+          }
+        },
+        "email_marketing": {
+          "type": "object",
+          "properties": {
+            "send_schedule": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "email_type": {"type": "string"},
+                  "send_date": {"type": "string", "format": "date"},
+                  "send_time": {"type": "string"},
+                  "audience_segment": {"type": "string"}
+                }
+              }
+            },
+            "automation_triggers": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "trigger_event": {"type": "string"},
+                  "delay_hours": {"type": "number"},
+                  "email_sequence": {"type": "array", "items": {"type": "string"}}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "seasonal_and_event_timing": {
+      "type": "object",
+      "description": "Seasonal factors and event-based scheduling",
+      "properties": {
+        "seasonal_campaigns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "season_name": {"type": "string"},
+              "start_date": {"type": "string", "format": "date"},
+              "end_date": {"type": "string", "format": "date"},
+              "campaign_focus": {"type": "string"},
+              "budget_multiplier": {"type": "number"},
+              "creative_themes": {"type": "array", "items": {"type": "string"}}
+            }
+          }
+        },
+        "holiday_campaigns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "holiday_name": {"type": "string"},
+              "holiday_date": {"type": "string", "format": "date"},
+              "campaign_duration": {"type": "string"},
+              "special_offers": {"type": "array", "items": {"type": "string"}},
+              "creative_elements": {"type": "array", "items": {"type": "string"}}
+            }
+          }
+        },
+        "industry_events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "event_name": {"type": "string"},
+              "event_date": {"type": "string", "format": "date"},
+              "event_type": {"type": "string"},
+              "campaign_integration": {"type": "string"},
+              "budget_allocation": {"type": "number"}
+            }
+          }
+        }
+      }
+    },
+    "optimization_schedule": {
+      "type": "object",
+      "description": "Timeline for campaign optimization and testing",
+      "properties": {
+        "performance_reviews": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "review_date": {"type": "string", "format": "date"},
+              "review_type": {
+                "type": "string",
+                "enum": ["daily", "weekly", "bi-weekly", "monthly", "quarterly"]
+              },
+              "metrics_reviewed": {"type": "array", "items": {"type": "string"}},
+              "optimization_decisions": {"type": "array", "items": {"type": "string"}},
+              "responsible_team": {"type": "string"}
+            },
+            "required": ["review_date", "review_type", "metrics_reviewed"]
+          }
+        },
+        "a_b_testing_schedule": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "test_name": {"type": "string"},
+              "start_date": {"type": "string", "format": "date"},
+              "end_date": {"type": "string", "format": "date"},
+              "test_variables": {"type": "array", "items": {"type": "string"}},
+              "success_metrics": {"type": "array", "items": {"type": "string"}},
+              "sample_size": {"type": "number"},
+              "confidence_level": {"type": "number"}
+            },
+            "required": ["test_name", "start_date", "end_date", "test_variables"]
+          }
+        },
+        "optimization_milestones": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "milestone_name": {"type": "string"},
+              "target_date": {"type": "string", "format": "date"},
+              "optimization_type": {"type": "string"},
+              "expected_impact": {"type": "string"},
+              "implementation_plan": {"type": "string"}
+            },
+            "required": ["milestone_name", "target_date", "optimization_type"]
+          }
+        }
+      },
+      "required": ["performance_reviews", "a_b_testing_schedule"]
+    },
+    "resource_allocation": {
+      "type": "object",
+      "description": "Team and resource scheduling",
+      "properties": {
+        "team_schedule": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "team_member": {"type": "string"},
+              "role": {"type": "string"},
+              "availability": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "start_date": {"type": "string", "format": "date"},
+                    "end_date": {"type": "string", "format": "date"},
+                    "hours_per_week": {"type": "number"},
+                    "focus_areas": {"type": "array", "items": {"type": "string"}}
+                  }
+                }
+              }
+            },
+            "required": ["team_member", "role"]
+          }
+        },
+        "external_resources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "resource_name": {"type": "string"},
+              "resource_type": {"type": "string"},
+              "engagement_period": {
+                "type": "object",
+                "properties": {
+                  "start_date": {"type": "string", "format": "date"},
+                  "end_date": {"type": "string", "format": "date"}
+                }
+              },
+              "deliverables": {"type": "array", "items": {"type": "string"}},
+              "cost": {"type": "number"}
+            },
+            "required": ["resource_name", "resource_type", "engagement_period"]
+          }
+        }
+      }
+    },
+    "communication_schedule": {
+      "type": "object",
+      "description": "Internal and external communication timeline",
+      "properties": {
+        "stakeholder_updates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "update_date": {"type": "string", "format": "date"},
+              "update_type": {"type": "string"},
+              "stakeholders": {"type": "array", "items": {"type": "string"}},
+              "content_focus": {"type": "string"},
+              "delivery_method": {"type": "string"}
+            },
+            "required": ["update_date", "update_type", "stakeholders"]
+          }
+        },
+        "team_meetings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "meeting_date": {"type": "string", "format": "date"},
+              "meeting_time": {"type": "string"},
+              "meeting_type": {"type": "string"},
+              "agenda": {"type": "array", "items": {"type": "string"}},
+              "attendees": {"type": "array", "items": {"type": "string"}}
+            },
+            "required": ["meeting_date", "meeting_time", "meeting_type"]
+          }
+        }
+      }
+    }
+  },
+  "required": ["campaign_overview", "campaign_phases", "key_milestones", "optimization_schedule"]
+} 

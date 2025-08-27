@@ -1,0 +1,354 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.waypoint.dev/advertising_strategy.schema.json",
+  "title": "Advertising Strategy Schema",
+  "description": "Comprehensive advertising strategy that serves as the foundation for all marketing campaign decisions",
+  "type": "object",
+  "properties": {
+    "selected_channels": {
+      "type": "array",
+      "description": "Marketing channels selected for the campaign based on company context and budget",
+      "items": {
+        "type": "object",
+        "properties": {
+          "channel_name": {
+            "type": "string",
+            "description": "Name of the advertising channel (e.g., Instagram, Facebook, Google Ads, LinkedIn)"
+          },
+          "bidding_strategy": {
+            "type": "object",
+            "description": "Bidding strategy for different ad types on this channel",
+            "additionalProperties": {
+              "type": "string",
+              "enum": ["CPC", "CPM", "CPA", "CPL", "CPV", "Manual", "Auto"]
+            }
+          },
+          "budget_allocation": {
+            "type": "number",
+            "description": "Percentage of total budget allocated to this channel (0-100)"
+          },
+          "priority": {
+            "type": "string",
+            "enum": ["primary", "secondary", "tertiary"],
+            "description": "Priority level of this channel in the overall strategy"
+          },
+          "rationale": {
+            "type": "string",
+            "description": "Why this channel was selected for the target audience"
+          }
+        },
+        "required": ["channel_name", "bidding_strategy", "budget_allocation", "priority"]
+      }
+    },
+    "targeting_parameters": {
+      "type": "object",
+      "description": "Detailed audience targeting parameters for the campaign",
+      "properties": {
+        "demographics": {
+          "type": "object",
+          "properties": {
+            "age_range": {
+              "type": "string",
+              "description": "Target age range (e.g., '18-35', '25-54', '35+')"
+            },
+            "gender": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["male", "female", "non-binary", "all"]
+              },
+              "description": "Target gender demographics"
+            },
+            "income_level": {
+              "type": "string",
+              "enum": ["low", "middle", "high", "luxury"],
+              "description": "Target income bracket"
+            },
+            "education": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "Target education levels"
+            }
+          }
+        },
+        "geographic": {
+          "type": "object",
+          "properties": {
+            "locations": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "Target locations (countries, cities, regions)"
+            },
+            "radius_targeting": {
+              "type": "object",
+              "properties": {
+                "center": {"type": "string"},
+                "radius_miles": {"type": "number"}
+              },
+              "description": "Geographic radius targeting parameters"
+            }
+          }
+        },
+        "psychographic": {
+          "type": "object",
+          "properties": {
+            "interests": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "Target interests and hobbies"
+            },
+            "lifestyle": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "Lifestyle characteristics"
+            },
+            "values": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "Core values and beliefs"
+            }
+          }
+        },
+        "behavioral": {
+          "type": "object",
+          "properties": {
+            "purchase_behavior": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "Online shopping patterns and preferences"
+            },
+            "device_usage": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "Preferred devices and platforms"
+            },
+            "online_activity": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "Online behavior patterns"
+            }
+          }
+        }
+      },
+      "required": ["demographics", "geographic", "psychographic"]
+    },
+    "campaign_goal": {
+      "type": "object",
+      "description": "Primary objective and success metrics for the campaign",
+      "properties": {
+        "primary_objective": {
+          "type": "string",
+          "enum": ["awareness", "consideration", "conversion", "retention", "brand_lift"],
+          "description": "Main campaign objective"
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed description of the campaign goal"
+        },
+        "success_metrics": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "KPIs to measure campaign success"
+        },
+        "target_audience_size": {
+          "type": "number",
+          "description": "Estimated reachable audience size"
+        },
+        "conversion_target": {
+          "type": "object",
+          "properties": {
+            "metric": {"type": "string"},
+            "target_value": {"type": "number"},
+            "current_baseline": {"type": "number"}
+          },
+          "description": "Specific conversion targets and baselines"
+        }
+      },
+      "required": ["primary_objective", "description", "success_metrics"]
+    },
+    "budget_breakdown": {
+      "type": "object",
+      "description": "Detailed budget allocation across channels and campaign elements",
+      "properties": {
+        "total_budget": {
+          "type": "number",
+          "description": "Total campaign budget in currency units"
+        },
+        "currency": {
+          "type": "string",
+          "default": "USD",
+          "description": "Currency for budget amounts"
+        },
+        "per_channel": {
+          "type": "object",
+          "additionalProperties": {"type": "number"},
+          "description": "Budget allocation per channel"
+        },
+        "per_phase": {
+          "type": "object",
+          "properties": {
+            "awareness": {"type": "number"},
+            "consideration": {"type": "number"},
+            "conversion": {"type": "number"}
+          },
+          "description": "Budget allocation per campaign phase"
+        },
+        "reserve_budget": {
+          "type": "number",
+          "description": "Reserve budget for optimization and unexpected opportunities"
+        },
+        "daily_budget_cap": {
+          "type": "number",
+          "description": "Maximum daily spend limit"
+        }
+      },
+      "required": ["total_budget", "currency", "per_channel"]
+    },
+    "schedule": {
+      "type": "object",
+      "description": "Campaign timeline and frequency settings",
+      "properties": {
+        "start_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Campaign start date (YYYY-MM-DD)"
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Campaign end date (YYYY-MM-DD)"
+        },
+        "duration_weeks": {
+          "type": "number",
+          "description": "Campaign duration in weeks"
+        },
+        "frequency": {
+          "type": "string",
+          "enum": ["daily", "weekly", "bi-weekly", "monthly", "custom"],
+          "description": "How often ads are shown"
+        },
+        "peak_periods": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "period": {"type": "string"},
+              "budget_multiplier": {"type": "number"},
+              "rationale": {"type": "string"}
+            }
+          },
+          "description": "High-activity periods with increased budget allocation"
+        },
+        "blackout_dates": {
+          "type": "array",
+          "items": {"type": "string", "format": "date"},
+          "description": "Dates when ads should not run"
+        }
+      },
+      "required": ["start_date", "end_date", "frequency"]
+    },
+    "analytics_tracking_plan": {
+      "type": "object",
+      "description": "Measurement and tracking setup for campaign performance",
+      "properties": {
+        "utm_setup": {
+          "type": "string",
+          "enum": ["configured", "pending", "not_required"],
+          "description": "UTM parameter configuration status"
+        },
+        "tracking_pixels": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Tracking pixels and tags to implement"
+        },
+        "conversion_tracking": {
+          "type": "object",
+          "properties": {
+            "primary_goal": {"type": "string"},
+            "secondary_goals": {"type": "array", "items": {"type": "string"}},
+            "funnel_stages": {"type": "array", "items": {"type": "string"}}
+          },
+          "description": "Conversion tracking setup and goals"
+        },
+        "kpis": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Key performance indicators to track"
+        },
+        "reporting_frequency": {
+          "type": "string",
+          "enum": ["daily", "weekly", "bi-weekly", "monthly"],
+          "description": "How often performance reports are generated"
+        },
+        "attribution_model": {
+          "type": "string",
+          "enum": ["first_click", "last_click", "linear", "time_decay", "position_based"],
+          "description": "Attribution model for conversion credit"
+        }
+      },
+      "required": ["utm_setup", "kpis", "conversion_tracking"]
+    },
+    "creative_guidelines": {
+      "type": "object",
+      "description": "Creative direction and brand compliance requirements",
+      "properties": {
+        "brand_voice": {
+          "type": "string",
+          "description": "Tone and personality for campaign messaging"
+        },
+        "visual_style": {
+          "type": "object",
+          "properties": {
+            "color_palette": {"type": "array", "items": {"type": "string"}},
+            "typography": {"type": "array", "items": {"type": "string"}},
+            "imagery_style": {"type": "string"}
+          },
+          "description": "Visual design requirements"
+        },
+        "messaging_hierarchy": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Priority order of key messages"
+        },
+        "cta_guidelines": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Call-to-action requirements and examples"
+        }
+      }
+    },
+    "optimization_strategy": {
+      "type": "object",
+      "description": "How the campaign will be optimized and improved over time",
+      "properties": {
+        "optimization_frequency": {
+          "type": "string",
+          "enum": ["daily", "weekly", "bi-weekly", "monthly"],
+          "description": "How often optimizations are made"
+        },
+        "test_plans": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "test_type": {"type": "string"},
+              "variables": {"type": "array", "items": {"type": "string"}},
+              "success_metrics": {"type": "array", "items": {"type": "string"}}
+            }
+          },
+          "description": "A/B testing and optimization plans"
+        },
+        "performance_thresholds": {
+          "type": "object",
+          "properties": {
+            "minimum_ctr": {"type": "number"},
+            "maximum_cpc": {"type": "number"},
+            "minimum_conversion_rate": {"type": "number"}
+          },
+          "description": "Performance benchmarks for optimization decisions"
+        }
+      }
+    }
+  },
+  "required": ["selected_channels", "targeting_parameters", "campaign_goal", "budget_breakdown", "schedule", "analytics_tracking_plan"]
+} 

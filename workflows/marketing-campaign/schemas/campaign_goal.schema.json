@@ -1,0 +1,346 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.waypoint.dev/campaign_goal.schema.json",
+  "title": "Campaign Goal Schema",
+  "description": "Comprehensive campaign objectives, success metrics, and performance targets",
+  "type": "object",
+  "properties": {
+    "primary_objective": {
+      "type": "object",
+      "description": "Main campaign objective and category",
+      "properties": {
+        "objective_type": {
+          "type": "string",
+          "enum": ["awareness", "consideration", "conversion", "retention", "brand_lift", "engagement", "traffic", "sales"],
+          "description": "Primary campaign objective category"
+        },
+        "objective_name": {
+          "type": "string",
+          "description": "Human-readable name for the objective"
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed description of what the campaign aims to achieve"
+        },
+        "priority": {
+          "type": "string",
+          "enum": ["critical", "high", "medium", "low"],
+          "description": "Priority level of this objective"
+        },
+        "business_impact": {
+          "type": "string",
+          "description": "How achieving this objective impacts the business"
+        }
+      },
+      "required": ["objective_type", "objective_name", "description", "priority"]
+    },
+    "secondary_objectives": {
+      "type": "array",
+      "description": "Additional objectives that support the primary goal",
+      "items": {
+        "type": "object",
+        "properties": {
+          "objective_type": {
+            "type": "string",
+            "enum": ["awareness", "consideration", "conversion", "retention", "brand_lift", "engagement", "traffic", "sales"]
+          },
+          "objective_name": {"type": "string"},
+          "description": {"type": "string"},
+          "priority": {
+            "type": "string",
+            "enum": ["high", "medium", "low"]
+          }
+        },
+        "required": ["objective_type", "objective_name", "description"]
+      }
+    },
+    "success_metrics": {
+      "type": "object",
+      "description": "Key performance indicators and success criteria",
+      "properties": {
+        "primary_kpis": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "metric_name": {"type": "string"},
+              "metric_type": {
+                "type": "string",
+                "enum": ["reach", "engagement", "conversion", "revenue", "brand", "efficiency"]
+              },
+              "target_value": {"type": "number"},
+              "current_baseline": {"type": "number"},
+              "measurement_unit": {"type": "string"},
+              "description": {"type": "string"}
+            },
+            "required": ["metric_name", "metric_type", "target_value", "measurement_unit"]
+          },
+          "description": "Primary key performance indicators"
+        },
+        "secondary_kpis": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "metric_name": {"type": "string"},
+              "metric_type": {"type": "string"},
+              "target_value": {"type": "number"},
+              "current_baseline": {"type": "number"},
+              "measurement_unit": {"type": "string"},
+              "description": {"type": "string"}
+            },
+            "required": ["metric_name", "target_value", "measurement_unit"]
+          },
+          "description": "Secondary performance indicators"
+        },
+        "conversion_funnel": {
+          "type": "object",
+          "properties": {
+            "funnel_stages": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "stage_name": {"type": "string"},
+                  "stage_order": {"type": "number"},
+                  "target_conversion_rate": {"type": "number"},
+                  "current_conversion_rate": {"type": "number"}
+                },
+                "required": ["stage_name", "stage_order", "target_conversion_rate"]
+              }
+            },
+            "overall_conversion_target": {"type": "number"},
+            "funnel_optimization_goals": {"type": "array", "items": {"type": "string"}}
+          },
+          "description": "Conversion funnel stages and targets"
+        }
+      },
+      "required": ["primary_kpis", "conversion_funnel"]
+    },
+    "target_audience": {
+      "type": "object",
+      "description": "Audience characteristics and size for goal achievement",
+      "properties": {
+        "audience_size": {
+          "type": "object",
+          "properties": {
+            "estimated_reach": {"type": "number"},
+            "target_impressions": {"type": "number"},
+            "target_clicks": {"type": "number"},
+            "target_conversions": {"type": "number"}
+          },
+          "description": "Target audience size and reach goals"
+        },
+        "audience_characteristics": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Key characteristics of the target audience"
+        },
+        "audience_quality_indicators": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Indicators of audience quality and relevance"
+        }
+      },
+      "required": ["audience_size", "audience_characteristics"]
+    },
+    "timeline_and_milestones": {
+      "type": "object",
+      "description": "Campaign timeline and key milestones",
+      "properties": {
+        "campaign_duration": {
+          "type": "object",
+          "properties": {
+            "start_date": {"type": "string", "format": "date"},
+            "end_date": {"type": "string", "format": "date"},
+            "total_weeks": {"type": "number"}
+          },
+          "required": ["start_date", "end_date"]
+        },
+        "key_milestones": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "milestone_name": {"type": "string"},
+              "target_date": {"type": "string", "format": "date"},
+              "description": {"type": "string"},
+              "success_criteria": {"type": "array", "items": {"type": "string"}}
+            },
+            "required": ["milestone_name", "target_date", "description"]
+          }
+        },
+        "phase_objectives": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "phase_name": {"type": "string"},
+              "phase_duration_weeks": {"type": "number"},
+              "phase_objectives": {"type": "array", "items": {"type": "string"}},
+              "phase_metrics": {"type": "array", "items": {"type": "string"}}
+            },
+            "required": ["phase_name", "phase_duration_weeks", "phase_objectives"]
+          }
+        }
+      },
+      "required": ["campaign_duration", "key_milestones"]
+    },
+    "budget_and_roi": {
+      "type": "object",
+      "description": "Budget allocation and return on investment targets",
+      "properties": {
+        "budget_allocation": {
+          "type": "object",
+          "properties": {
+            "total_budget": {"type": "number"},
+            "currency": {"type": "string", "default": "USD"},
+            "budget_by_phase": {"type": "object", "additionalProperties": {"type": "number"}},
+            "budget_by_channel": {"type": "object", "additionalProperties": {"type": "number"}}
+          },
+          "required": ["total_budget", "currency"]
+        },
+        "roi_targets": {
+          "type": "object",
+          "properties": {
+            "target_roas": {"type": "number"},
+            "target_cpa": {"type": "number"},
+            "target_cpl": {"type": "number"},
+            "target_cpc": {"type": "number"},
+            "target_cpm": {"type": "number"}
+          },
+          "description": "Return on investment targets"
+        },
+        "cost_efficiency_goals": {
+          "type": "object",
+          "properties": {
+            "maximum_cpc": {"type": "number"},
+            "maximum_cpm": {"type": "number"},
+            "maximum_cpa": {"type": "number"},
+            "efficiency_optimization": {"type": "boolean"}
+          },
+          "description": "Cost efficiency targets and optimization settings"
+        }
+      },
+      "required": ["budget_allocation", "roi_targets"]
+    },
+    "competitive_analysis": {
+      "type": "object",
+      "description": "Competitive landscape and positioning",
+      "properties": {
+        "competitors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "competitor_name": {"type": "string"},
+              "market_position": {"type": "string"},
+              "key_differentiators": {"type": "array", "items": {"type": "string"}},
+              "threat_level": {
+                "type": "string",
+                "enum": ["low", "medium", "high", "critical"]
+              }
+            },
+            "required": ["competitor_name", "market_position"]
+          }
+        },
+        "market_positioning": {
+          "type": "string",
+          "description": "How the campaign positions the brand in the market"
+        },
+        "competitive_advantages": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Key advantages over competitors"
+        }
+      }
+    },
+    "risk_assessment": {
+      "type": "object",
+      "description": "Potential risks and mitigation strategies",
+      "properties": {
+        "identified_risks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "risk_name": {"type": "string"},
+              "risk_category": {
+                "type": "string",
+                "enum": ["market", "technical", "creative", "budget", "timing", "compliance"]
+              },
+              "probability": {
+                "type": "string",
+                "enum": ["low", "medium", "high", "critical"]
+              },
+              "impact": {
+                "type": "string",
+                "enum": ["low", "medium", "high", "critical"]
+              },
+              "description": {"type": "string"}
+            },
+            "required": ["risk_name", "risk_category", "probability", "impact"]
+          }
+        },
+        "mitigation_strategies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "risk_name": {"type": "string"},
+              "strategy": {"type": "string"},
+              "responsible_party": {"type": "string"},
+              "timeline": {"type": "string"}
+            },
+            "required": ["risk_name", "strategy"]
+          }
+        },
+        "contingency_plans": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "scenario": {"type": "string"},
+              "response_plan": {"type": "string"},
+              "activation_triggers": {"type": "array", "items": {"type": "string"}}
+            },
+            "required": ["scenario", "response_plan"]
+          }
+        }
+      },
+      "required": ["identified_risks", "mitigation_strategies"]
+    },
+    "success_criteria": {
+      "type": "object",
+      "description": "Clear criteria for determining campaign success",
+      "properties": {
+        "minimum_success_thresholds": {
+          "type": "object",
+          "properties": {
+            "impressions": {"type": "number"},
+            "clicks": {"type": "number"},
+            "conversions": {"type": "number"},
+            "revenue": {"type": "number"},
+            "engagement_rate": {"type": "number"}
+          },
+          "description": "Minimum thresholds for campaign success"
+        },
+        "success_definition": {
+          "type": "string",
+          "description": "Clear definition of what constitutes campaign success"
+        },
+        "measurement_methodology": {
+          "type": "string",
+          "description": "How success will be measured and evaluated"
+        },
+        "evaluation_frequency": {
+          "type": "string",
+          "enum": ["daily", "weekly", "bi-weekly", "monthly", "quarterly"],
+          "description": "How often success metrics will be evaluated"
+        }
+      },
+      "required": ["minimum_success_thresholds", "success_definition"]
+    }
+  },
+  "required": ["primary_objective", "success_metrics", "target_audience", "timeline_and_milestones", "budget_and_roi", "success_criteria"]
+} 
