@@ -1,0 +1,204 @@
+{
+  "audience_segments": [
+    {
+      "segment_id": "music_retailers_001",
+      "segment_name": "Music Retailers",
+      "priority": "primary",
+      "estimated_size": 15000,
+      "demographics": {
+        "age_ranges": ["35-54", "45-64"],
+        "gender": ["male", "female"],
+        "income_levels": ["middle", "upper_middle"],
+        "education_levels": ["bachelors", "trade_school"],
+        "occupation": ["Store Owner", "Store Manager", "Buyer", "Category Manager"],
+        "marital_status": ["married", "single"],
+        "parental_status": ["parent", "non_parent"]
+      },
+      "geographic_targeting": {
+        "countries": ["US", "CA", "UK", "DE", "AU"],
+        "regions": ["California", "New York", "Texas", "Florida", "Illinois"],
+        "cities": ["Anaheim", "Los Angeles", "New York", "Chicago", "Miami"],
+        "zip_codes": ["92802", "90001", "10001", "60601", "33101"],
+        "radius_targeting": [
+          {
+            "center": "Anaheim, CA",
+            "radius_miles": 100
+          }
+        ]
+      },
+      "psychographic_targeting": {
+        "interests": ["Musical Instruments", "Music Education", "Retail Management", "Business Development"],
+        "lifestyle": ["Professional", "Business-focused", "Industry-connected", "Community-oriented"],
+        "values": ["Quality", "Customer Service", "Business Growth", "Industry Innovation"],
+        "personality_traits": ["Analytical", "Customer-focused", "Business-minded", "Detail-oriented"],
+        "attitudes": ["Innovation-seeking", "Quality-focused", "Customer-centric", "Growth-oriented"]
+      },
+      "behavioral_targeting": {
+        "purchase_behavior": ["frequent_buyer", "high_value_customer", "decision_maker"],
+        "online_behavior": ["research_focused", "industry_news_reader", "professional_networker"],
+        "device_usage": ["desktop", "mobile", "tablet"],
+        "content_consumption": ["Industry publications", "Trade magazines", "Business blogs", "Product reviews"],
+        "brand_affinity": ["NAMM", "Music Industry Brands", "Professional Associations", "Trade Publications"]
+      },
+      "custom_audiences": {
+        "lookalike_audiences": ["Previous NAMM attendees", "Music industry professionals", "Retail decision makers"],
+        "retargeting_lists": ["Website visitors", "Email subscribers", "Social media followers"],
+        "email_lists": ["NAMM member database", "Previous exhibitor contacts", "Industry newsletter subscribers"],
+        "website_visitors": ["Product page visitors", "Registration page visitors", "Blog readers"],
+        "app_users": ["NAMM mobile app users", "Industry app users"]
+      },
+      "seasonal_factors": {
+        "peak_seasons": ["Q4 (Holiday planning)", "Q1 (New year planning)", "Q2 (Summer preparation)"],
+        "seasonal_interests": ["Holiday inventory planning", "New product launches", "Summer programs"],
+        "holiday_preferences": ["Christmas", "New Year", "Back to School", "Summer"]
+      },
+      "exclusions": {
+        "demographic_exclusions": ["Students", "Entry-level employees", "Non-decision makers"],
+        "geographic_exclusions": ["Remote locations", "Non-serviceable areas"],
+        "behavioral_exclusions": ["Non-industry professionals", "General consumers", "Competitor loyalists"],
+        "audience_exclusions": ["Competitor employees", "Non-industry contacts", "Spam accounts"]
+      },
+      "targeting_rationale": "Primary decision-makers for music product purchases with high business impact potential",
+      "estimated_performance": {
+        "expected_ctr": 2.5,
+        "expected_cpc": 2.75,
+        "expected_conversion_rate": 3.0,
+        "confidence_level": "high"
+      }
+    },
+    {
+      "segment_id": "pro_audio_engineers_001",
+      "segment_name": "Pro Audio Engineers",
+      "priority": "primary",
+      "estimated_size": 25000,
+      "demographics": {
+        "age_ranges": ["25-44", "35-54"],
+        "gender": ["male", "female"],
+        "income_levels": ["middle", "upper_middle", "high"],
+        "education_levels": ["bachelors", "masters", "trade_school"],
+        "occupation": ["Audio Engineer", "Sound Designer", "Recording Engineer", "Live Sound Engineer"],
+        "marital_status": ["single", "married"],
+        "parental_status": ["non_parent", "parent"]
+      },
+      "geographic_targeting": {
+        "countries": ["US", "CA", "UK", "DE", "JP", "AU"],
+        "regions": ["California", "New York", "Tennessee", "Florida", "Texas"],
+        "cities": ["Los Angeles", "New York", "Nashville", "Miami", "Austin"],
+        "radius_targeting": [
+          {
+            "center": "Anaheim, CA",
+            "radius_miles": 150
+          }
+        ]
+      },
+      "psychographic_targeting": {
+        "interests": ["Pro Audio", "Recording Technology", "Live Sound", "Music Production", "Audio Engineering"],
+        "lifestyle": ["Creative", "Technology-focused", "Professional", "Industry-connected"],
+        "values": ["Innovation", "Quality", "Technical Excellence", "Creative Expression"],
+        "personality_traits": ["Technical", "Creative", "Detail-oriented", "Innovation-seeking"],
+        "attitudes": ["Technology-forward", "Quality-focused", "Innovation-seeking", "Professional development"]
+      },
+      "behavioral_targeting": {
+        "purchase_behavior": ["early_adopter", "technology_focused", "quality_seeker"],
+        "online_behavior": ["tech_savvy", "early_adopter", "professional_networker"],
+        "device_usage": ["desktop", "mobile", "tablet"],
+        "content_consumption": ["Technical blogs", "Product reviews", "Industry forums", "Technology news"],
+        "brand_affinity": ["Pro Audio Brands", "Technology Companies", "Professional Associations", "Industry Publications"]
+      },
+      "custom_audiences": {
+        "lookalike_audiences": ["Audio professionals", "Technology early adopters", "Creative professionals"],
+        "retargeting_lists": ["Technology website visitors", "Audio equipment researchers", "Professional networkers"],
+        "email_lists": ["Audio industry newsletters", "Technology publications", "Professional associations"],
+        "website_visitors": ["Audio equipment pages", "Technology reviews", "Professional development"],
+        "app_users": ["Audio apps", "Professional tools", "Industry apps"]
+      },
+      "targeting_rationale": "Technology-savvy professionals with high influence on audio equipment purchasing decisions",
+      "estimated_performance": {
+        "expected_ctr": 2.0,
+        "expected_cpc": 3.25,
+        "expected_conversion_rate": 2.5,
+        "confidence_level": "high"
+      }
+    }
+  ],
+  "cross_channel_targeting": {
+    "channel_specific_targeting": {
+      "google_ads": {
+        "audience_segments": ["High-intent searchers", "Product researchers", "Industry professionals"],
+        "custom_parameters": {
+          "search_intent": "high",
+          "keyword_match": "exact",
+          "quality_score": "high"
+        },
+        "exclusions": ["Low-quality traffic", "Non-converting keywords"]
+      },
+      "linkedin": {
+        "audience_segments": ["Senior professionals", "Decision makers", "Industry executives"],
+        "custom_parameters": {
+          "seniority_level": "senior",
+          "company_size": "medium_large",
+          "industry_focus": "music_technology"
+        },
+        "exclusions": ["Entry-level professionals", "Non-industry contacts"]
+      },
+      "facebook_instagram": {
+        "audience_segments": ["Music enthusiasts", "Industry professionals", "Creative professionals"],
+        "custom_parameters": {
+          "interest_affinity": "high",
+          "engagement_level": "active",
+          "content_consumption": "frequent"
+        },
+        "exclusions": ["General consumers", "Non-music interests"]
+      }
+    },
+    "frequency_capping": {
+      "impressions_per_user": 15,
+      "impressions_per_day": 3,
+      "impressions_per_week": 7,
+      "impressions_per_month": 20
+    },
+    "sequential_targeting": {
+      "enabled": true,
+      "sequence_order": ["Awareness", "Consideration", "Conversion"],
+      "timing_rules": {
+        "awareness_duration": "7 days",
+        "consideration_duration": "14 days",
+        "conversion_duration": "7 days"
+      }
+    }
+  },
+  "targeting_optimization": {
+    "auto_optimization": true,
+    "optimization_goals": ["conversions", "roas", "audience_quality"],
+    "test_plans": [
+      {
+        "test_name": "Audience Segment Performance",
+        "test_type": "A/B Testing",
+        "variables": ["Demographics", "Interests", "Behaviors"],
+        "success_metrics": ["Conversion rate", "CPC", "ROAS"]
+      },
+      {
+        "test_name": "Geographic Performance",
+        "test_type": "Geographic Testing",
+        "variables": ["Countries", "Regions", "Cities"],
+        "success_metrics": ["Conversion rate", "Cost efficiency", "Audience quality"]
+      }
+    ],
+    "performance_thresholds": {
+      "minimum_impressions": 1000,
+      "minimum_clicks": 50,
+      "maximum_cpc": 4.00,
+      "minimum_conversion_rate": 1.5
+    }
+  },
+  "compliance_and_privacy": {
+    "gdpr_compliance": true,
+    "ccpa_compliance": true,
+    "data_sources": ["first_party", "second_party", "third_party"],
+    "consent_requirements": ["Marketing consent", "Data processing consent", "Cookie consent"],
+    "data_retention": {
+      "retention_period": "24 months",
+      "deletion_policy": "Automatic deletion after retention period"
+    }
+  }
+} 

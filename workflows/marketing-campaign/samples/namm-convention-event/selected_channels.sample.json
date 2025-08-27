@@ -1,0 +1,324 @@
+{
+  "channels": [
+    {
+      "channel_id": "google_ads_001",
+      "channel_name": "Google Ads",
+      "channel_type": "search",
+      "priority": "primary",
+      "budget_allocation": {
+        "percentage": 35,
+        "absolute_amount": 280000,
+        "daily_limit": 5250
+      },
+      "targeting": {
+        "audience_segments": ["Music Industry Professionals", "Pro Audio Engineers", "Music Retailers", "Event Planners"],
+        "custom_audiences": ["Previous NAMM attendees", "Industry decision makers", "High-value prospects"],
+        "exclusions": ["Students", "General consumers", "Non-industry professionals"],
+        "placement_targeting": {
+          "inclusions": ["Music industry websites", "Pro audio publications", "Trade magazines"],
+          "exclusions": ["Entertainment news", "General music blogs", "Consumer sites"]
+        }
+      },
+      "bidding_strategy": {
+        "bid_type": "CPC",
+        "bid_amount": 2.50,
+        "bid_optimization": "conversions",
+        "bid_adjustments": {
+          "demographics": {
+            "25-34": 1.2,
+            "35-44": 1.3,
+            "45-54": 1.4,
+            "55-65": 1.1
+          },
+          "locations": {
+            "United States": 1.0,
+            "Canada": 1.1,
+            "United Kingdom": 1.2,
+            "Germany": 1.1
+          },
+          "devices": {
+            "desktop": 1.0,
+            "mobile": 0.9,
+            "tablet": 1.0
+          }
+        }
+      },
+      "ad_formats": [
+        {
+          "format_name": "Search Ads",
+          "priority": "high",
+          "budget_split": 60,
+          "creative_requirements": ["Compelling headlines", "Relevant descriptions", "Strong CTAs"]
+        },
+        {
+          "format_name": "Display Ads",
+          "priority": "medium",
+          "budget_split": 25,
+          "creative_requirements": ["Visual appeal", "Brand consistency", "Clear messaging"]
+        },
+        {
+          "format_name": "Video Ads",
+          "priority": "medium",
+          "budget_split": 15,
+          "creative_requirements": ["Professional quality", "Engaging content", "Call-to-action"]
+        }
+      ],
+      "creative_requirements": {
+        "image_specs": {
+          "dimensions": ["300x250", "728x90", "160x600", "320x50"],
+          "file_formats": ["PNG", "JPG"],
+          "file_size_limits": ["150KB", "300KB"]
+        },
+        "video_specs": {
+          "duration": "15-30 seconds",
+          "aspect_ratios": ["16:9", "1:1"],
+          "file_formats": ["MP4", "MOV"]
+        },
+        "text_requirements": {
+          "headline_length": "30 characters",
+          "description_length": "90 characters",
+          "cta_requirements": ["Action-oriented", "Urgency-driven", "Clear value proposition"]
+        }
+      },
+      "performance_targets": {
+        "ctr_target": 2.0,
+        "cpc_target": 2.50,
+        "conversion_rate_target": 2.5,
+        "roas_target": 4.5
+      },
+      "optimization_settings": {
+        "auto_optimization": true,
+        "optimization_frequency": "daily",
+        "pause_thresholds": {
+          "ctr_minimum": 1.0,
+          "cpc_maximum": 4.00,
+          "conversion_rate_minimum": 1.5
+        }
+      },
+      "rationale": "High intent audience actively searching for music industry events and products",
+      "risks": ["High competition for keywords", "Seasonal fluctuations", "Ad fatigue"],
+      "mitigation_strategies": ["Continuous keyword research", "Creative rotation", "Audience expansion"]
+    },
+    {
+      "channel_id": "linkedin_001",
+      "channel_name": "LinkedIn",
+      "channel_type": "social_media",
+      "priority": "primary",
+      "budget_allocation": {
+        "percentage": 25,
+        "absolute_amount": 200000,
+        "daily_limit": 3750
+      },
+      "targeting": {
+        "audience_segments": ["Industry executives", "Business owners", "Senior managers", "Decision makers"],
+        "custom_audiences": ["NAMM member companies", "Previous exhibitors", "Industry influencers"],
+        "exclusions": ["Entry-level professionals", "Students", "Non-industry contacts"],
+        "placement_targeting": {
+          "inclusions": ["LinkedIn feed", "LinkedIn groups", "LinkedIn articles"],
+          "exclusions": ["LinkedIn jobs", "LinkedIn learning"]
+        }
+      },
+      "bidding_strategy": {
+        "bid_type": "CPM",
+        "bid_amount": 15.00,
+        "bid_optimization": "conversions",
+        "bid_adjustments": {
+          "demographics": {
+            "Senior level": 1.3,
+            "Director level": 1.4,
+            "C-level": 1.5
+          },
+          "locations": {
+            "United States": 1.0,
+            "International": 1.2
+          },
+          "company_size": {
+            "50-200 employees": 1.1,
+            "200-1000 employees": 1.2,
+            "1000+ employees": 1.3
+          }
+        }
+      },
+      "ad_formats": [
+        {
+          "format_name": "Sponsored Content",
+          "priority": "high",
+          "budget_split": 50,
+          "creative_requirements": ["Professional imagery", "Industry insights", "Clear value proposition"]
+        },
+        {
+          "format_name": "Message Ads",
+          "priority": "medium",
+          "budget_split": 30,
+          "creative_requirements": ["Personalized messaging", "Direct CTA", "Professional tone"]
+        },
+        {
+          "format_name": "Video Ads",
+          "priority": "medium",
+          "budget_split": 20,
+          "creative_requirements": ["Professional quality", "Industry relevance", "Engaging content"]
+        }
+      ],
+      "creative_requirements": {
+        "image_specs": {
+          "dimensions": ["1200x627", "1200x1200"],
+          "file_formats": ["PNG", "JPG"],
+          "file_size_limits": ["5MB"]
+        },
+        "video_specs": {
+          "duration": "3-30 seconds",
+          "aspect_ratios": ["16:9", "1:1"],
+          "file_formats": ["MP4"]
+        },
+        "text_requirements": {
+          "headline_length": "150 characters",
+          "description_length": "600 characters",
+          "cta_requirements": ["Professional", "Action-oriented", "Industry-specific"]
+        }
+      },
+      "performance_targets": {
+        "ctr_target": 1.5,
+        "cpc_target": 3.50,
+        "conversion_rate_target": 2.0,
+        "roas_target": 3.2
+      },
+      "optimization_settings": {
+        "auto_optimization": true,
+        "optimization_frequency": "weekly",
+        "pause_thresholds": {
+          "ctr_minimum": 0.8,
+          "cpc_maximum": 5.00,
+          "conversion_rate_minimum": 1.0
+        }
+      },
+      "rationale": "Professional B2B audience with high decision-making authority in music industry",
+      "risks": ["Higher cost per click", "Smaller audience size", "Professional skepticism"],
+      "mitigation_strategies": ["Targeted messaging", "Professional content", "Social proof"]
+    },
+    {
+      "channel_id": "facebook_instagram_001",
+      "channel_name": "Facebook/Instagram",
+      "channel_type": "social_media",
+      "priority": "primary",
+      "budget_allocation": {
+        "percentage": 20,
+        "absolute_amount": 160000,
+        "daily_limit": 3000
+      },
+      "targeting": {
+        "audience_segments": ["Music professionals", "Audio engineers", "Musicians", "Industry enthusiasts"],
+        "custom_audiences": ["NAMM followers", "Music industry pages", "Event attendees"],
+        "exclusions": ["General consumers", "Non-music interests", "Competitor audiences"],
+        "placement_targeting": {
+          "inclusions": ["Facebook feed", "Instagram feed", "Instagram stories", "Facebook groups"],
+          "exclusions": ["Facebook marketplace", "Instagram explore"]
+        }
+      },
+      "bidding_strategy": {
+        "bid_type": "CPC",
+        "bid_amount": 1.80,
+        "bid_optimization": "conversions",
+        "bid_adjustments": {
+          "demographics": {
+            "25-34": 1.0,
+            "35-44": 1.1,
+            "45-54": 1.2,
+            "55-65": 1.0
+          },
+          "locations": {
+            "United States": 1.0,
+            "Canada": 1.1,
+            "United Kingdom": 1.1
+          },
+          "interests": {
+            "Music Industry": 1.2,
+            "Pro Audio": 1.3,
+            "Musical Instruments": 1.1
+          }
+        }
+      },
+      "ad_formats": [
+        {
+          "format_name": "Feed Ads",
+          "priority": "high",
+          "budget_split": 40,
+          "creative_requirements": ["Visual appeal", "Engaging content", "Clear messaging"]
+        },
+        {
+          "format_name": "Story Ads",
+          "priority": "medium",
+          "budget_split": 30,
+          "creative_requirements": ["Vertical format", "Interactive elements", "Quick engagement"]
+        },
+        {
+          "format_name": "Video Ads",
+          "priority": "medium",
+          "budget_split": 30,
+          "creative_requirements": ["First 3 seconds", "Captions", "Mobile-optimized"]
+        }
+      ],
+      "creative_requirements": {
+        "image_specs": {
+          "dimensions": ["1080x1080", "1080x1920", "1200x628"],
+          "file_formats": ["PNG", "JPG"],
+          "file_size_limits": ["30MB"]
+        },
+        "video_specs": {
+          "duration": "1-60 seconds",
+          "aspect_ratios": ["1:1", "9:16", "16:9"],
+          "file_formats": ["MP4", "MOV"]
+        },
+        "text_requirements": {
+          "headline_length": "40 characters",
+          "description_length": "125 characters",
+          "cta_requirements": ["Engaging", "Action-oriented", "Social-friendly"]
+        }
+      },
+      "performance_targets": {
+        "ctr_target": 2.5,
+        "cpc_target": 1.80,
+        "conversion_rate_target": 1.8,
+        "roas_target": 3.2
+      },
+      "optimization_settings": {
+        "auto_optimization": true,
+        "optimization_frequency": "daily",
+        "pause_thresholds": {
+          "ctr_minimum": 1.5,
+          "cpc_maximum": 2.50,
+          "conversion_rate_minimum": 1.0
+        }
+      },
+      "rationale": "Broad reach to music enthusiasts and industry professionals with engaging content",
+      "risks": ["Ad fatigue", "Algorithm changes", "Content saturation"],
+      "mitigation_strategies": ["Creative rotation", "Audience segmentation", "Engaging content"]
+    }
+  ],
+  "channel_coordination": {
+    "cross_channel_strategy": "Unified messaging across all channels with channel-specific creative adaptations",
+    "frequency_capping": {
+      "impressions_per_user": 15,
+      "impressions_per_day": 3,
+      "impressions_per_week": 7,
+      "impressions_per_month": 20
+    },
+    "attribution_rules": "data_driven"
+  },
+  "implementation_timeline": {
+    "setup_phase": {
+      "start_date": "2023-10-15",
+      "end_date": "2023-10-22",
+      "tasks": ["Account setup", "Creative development", "Audience configuration"]
+    },
+    "launch_phase": {
+      "start_date": "2023-10-23",
+      "end_date": "2023-10-30",
+      "tasks": ["Campaign launch", "Initial optimization", "Performance monitoring"]
+    },
+    "optimization_phase": {
+      "start_date": "2023-10-31",
+      "end_date": "2024-01-28",
+      "tasks": ["Continuous optimization", "Creative testing", "Performance analysis"]
+    }
+  }
+} 

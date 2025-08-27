@@ -1,0 +1,651 @@
+{
+  "campaign_overview": {
+    "campaign_name": "NAMM Show 2024 Marketing Campaign",
+    "campaign_id": "NAMM2024_MKTG_001",
+    "start_date": "2023-10-15",
+    "end_date": "2024-01-28",
+    "total_duration": {
+      "weeks": 14,
+      "months": 3.5,
+      "quarters": 1.2
+    },
+    "campaign_status": "active",
+    "last_updated": "2023-10-15T10:00:00Z"
+  },
+  "campaign_phases": [
+    {
+      "phase_id": "phase_001",
+      "phase_name": "awareness",
+      "phase_order": 1,
+      "start_date": "2023-10-15",
+      "end_date": "2023-12-09",
+      "duration_weeks": 8,
+      "phase_objectives": [
+        "Build brand awareness for NAMM Show 2024",
+        "Generate interest in the event",
+        "Establish campaign presence across all channels"
+      ],
+      "key_activities": [
+        "Brand awareness campaigns",
+        "Industry education content",
+        "Thought leadership positioning",
+        "Social media community building"
+      ],
+      "success_metrics": [
+        "Brand awareness lift",
+        "Social media engagement",
+        "Website traffic growth",
+        "Community building"
+      ],
+      "budget_allocation": 40,
+      "team_responsibilities": [
+        "Marketing Director",
+        "Social Media Manager",
+        "Content Manager",
+        "Digital Marketing Manager"
+      ]
+    },
+    {
+      "phase_id": "phase_002",
+      "phase_name": "consideration",
+      "phase_order": 2,
+      "start_date": "2023-12-10",
+      "end_date": "2024-01-21",
+      "duration_weeks": 6,
+      "phase_objectives": [
+        "Drive consideration for attendance",
+        "Build interest in specific event features",
+        "Generate leads and email sign-ups"
+      ],
+      "key_activities": [
+        "Product showcase campaigns",
+        "Educational content",
+        "Social proof and testimonials",
+        "Lead generation campaigns"
+      ],
+      "success_metrics": [
+        "Lead generation",
+        "Email sign-ups",
+        "Content engagement",
+        "Website conversions"
+      ],
+      "budget_allocation": 30,
+      "team_responsibilities": [
+        "Marketing Manager",
+        "Content Manager",
+        "Email Marketing Specialist",
+        "Digital Marketing Manager"
+      ]
+    },
+    {
+      "phase_id": "phase_003",
+      "phase_name": "conversion",
+      "phase_order": 3,
+      "start_date": "2024-01-22",
+      "end_date": "2024-01-28",
+      "duration_weeks": 1,
+      "phase_objectives": [
+        "Drive final registrations",
+        "Secure last-minute exhibitors",
+        "Achieve attendance targets"
+      ],
+      "key_activities": [
+        "Final registration push",
+        "Urgency messaging",
+        "Last-minute promotions",
+        "Exhibitor final calls"
+      ],
+      "success_metrics": [
+        "Final registrations",
+        "Exhibitor commitments",
+        "Revenue generation",
+        "Goal achievement"
+      ],
+      "budget_allocation": 20,
+      "team_responsibilities": [
+        "Marketing Director",
+        "Event Director",
+        "Sales Team",
+        "Marketing Manager"
+      ]
+    }
+  ],
+  "detailed_timeline": {
+    "weekly_breakdown": [
+      {
+        "week_number": 1,
+        "start_date": "2023-10-15",
+        "end_date": "2023-10-21",
+        "phase": "awareness",
+        "key_activities": [
+          "Campaign launch across all channels",
+          "Initial creative deployment",
+          "Performance baseline establishment"
+        ],
+        "deliverables": [
+          "Campaign launch report",
+          "Initial performance metrics",
+          "Creative performance analysis"
+        ],
+        "milestones": ["Campaign Launch"],
+        "budget_spend": 62500,
+        "team_focus": ["Campaign setup", "Performance monitoring", "Creative optimization"]
+      },
+      {
+        "week_number": 2,
+        "start_date": "2023-10-22",
+        "end_date": "2023-10-28",
+        "phase": "awareness",
+        "key_activities": [
+          "Performance optimization",
+          "Creative A/B testing",
+          "Audience refinement"
+        ],
+        "deliverables": [
+          "Week 1 performance report",
+          "Optimization recommendations",
+          "Creative test results"
+        ],
+        "milestones": ["First optimization cycle"],
+        "budget_spend": 62500,
+        "team_focus": ["Performance optimization", "Creative testing", "Audience analysis"]
+      },
+      {
+        "week_number": 3,
+        "start_date": "2023-10-29",
+        "end_date": "2023-11-04",
+        "phase": "awareness",
+        "key_activities": [
+          "Brand awareness campaigns",
+          "Industry education content",
+          "Social media community building"
+        ],
+        "deliverables": [
+          "Brand awareness metrics",
+          "Content performance report",
+          "Community engagement analysis"
+        ],
+        "milestones": ["Brand awareness building"],
+        "budget_spend": 62500,
+        "team_focus": ["Content creation", "Community management", "Brand messaging"]
+      }
+    ]
+  },
+  "key_milestones": [
+    {
+      "milestone_id": "milestone_001",
+      "milestone_name": "Campaign Launch",
+      "milestone_type": "launch",
+      "target_date": "2023-10-15",
+      "status": "completed",
+      "description": "Full campaign launch across all channels and platforms",
+      "dependencies": ["Creative approval", "Platform setup", "Tracking implementation"],
+      "responsible_party": "Marketing Director",
+      "success_criteria": [
+        "All campaigns active",
+        "Tracking implemented",
+        "Initial performance baseline established"
+      ],
+      "impact_on_timeline": "critical"
+    },
+    {
+      "milestone_id": "milestone_002",
+      "milestone_name": "Early Registration Phase",
+      "milestone_type": "conversion",
+      "target_date": "2023-11-15",
+      "status": "in_progress",
+      "description": "Early bird registration period begins with promotional pricing",
+      "dependencies": ["Registration system setup", "Pricing approval", "Promotional materials"],
+      "responsible_party": "Event Director",
+      "success_criteria": [
+        "Early bird pricing active",
+        "Registration momentum building",
+        "Exhibitor interest increasing"
+      ],
+      "impact_on_timeline": "high"
+    },
+    {
+      "milestone_id": "milestone_003",
+      "milestone_name": "Holiday Campaign",
+      "milestone_type": "creative",
+      "target_date": "2023-12-01",
+      "status": "pending",
+      "description": "Holiday-themed campaign activation with seasonal messaging",
+      "dependencies": ["Holiday creative development", "Seasonal messaging approval", "Campaign scheduling"],
+      "responsible_party": "Creative Director",
+      "success_criteria": [
+        "Holiday messaging active",
+        "Gift certificate promotions",
+        "Seasonal engagement increase"
+      ],
+      "impact_on_timeline": "medium"
+    },
+    {
+      "milestone_id": "milestone_004",
+      "milestone_name": "Final Push Phase",
+      "milestone_type": "conversion",
+      "target_date": "2024-01-01",
+      "status": "pending",
+      "description": "Final registration push with urgency messaging and countdown campaigns",
+      "dependencies": ["Urgency creative development", "Countdown campaign setup", "Final messaging approval"],
+      "responsible_party": "Marketing Manager",
+      "success_criteria": [
+        "Urgency messaging active",
+        "Final countdown campaigns",
+        "Last-minute registrations"
+      ],
+      "impact_on_timeline": "high"
+    },
+    {
+      "milestone_id": "milestone_005",
+      "milestone_name": "Event Start",
+      "milestone_type": "completion",
+      "target_date": "2024-01-25",
+      "status": "pending",
+      "description": "NAMM Show 2024 begins with all marketing goals achieved",
+      "dependencies": ["All campaign phases completed", "Target goals achieved", "Event preparation complete"],
+      "responsible_party": "Event Director",
+      "success_criteria": [
+        "Target attendance achieved",
+        "Exhibitor goals met",
+        "Event success metrics tracked"
+      ],
+      "impact_on_timeline": "critical"
+    }
+  ],
+  "channel_schedules": {
+    "social_media": {
+      "posting_frequency": "daily",
+      "posting_schedule": [
+        {
+          "day_of_week": "Monday",
+          "times": ["9:00 AM", "2:00 PM", "6:00 PM"],
+          "content_type": ["Industry news", "Educational content", "Community engagement"]
+        },
+        {
+          "day_of_week": "Tuesday",
+          "times": ["9:00 AM", "3:00 PM", "7:00 PM"],
+          "content_type": ["Product highlights", "Expert insights", "Behind-the-scenes"]
+        },
+        {
+          "day_of_week": "Wednesday",
+          "times": ["9:00 AM", "2:00 PM", "6:00 PM"],
+          "content_type": ["Midweek motivation", "Industry trends", "Interactive content"]
+        },
+        {
+          "day_of_week": "Thursday",
+          "times": ["9:00 AM", "3:00 PM", "7:00 PM"],
+          "content_type": ["Throwback Thursday", "Expert interviews", "Community highlights"]
+        },
+        {
+          "day_of_week": "Friday",
+          "times": ["9:00 AM", "2:00 PM", "5:00 PM"],
+          "content_type": ["Weekend planning", "Fun facts", "Engagement posts"]
+        },
+        {
+          "day_of_week": "Saturday",
+          "times": ["10:00 AM", "3:00 PM"],
+          "content_type": ["Weekend content", "Community engagement", "Relaxed tone"]
+        },
+        {
+          "day_of_week": "Sunday",
+          "times": ["11:00 AM", "4:00 PM"],
+          "content_type": ["Sunday inspiration", "Week ahead preview", "Community building"]
+        }
+      ],
+      "content_calendar": [
+        {
+          "date": "2023-10-15",
+          "content_theme": "Campaign Launch",
+          "platforms": ["Instagram", "Facebook", "LinkedIn", "Twitter"],
+          "creative_assets": ["Launch video", "Campaign graphics", "Brand messaging"]
+        },
+        {
+          "date": "2023-11-15",
+          "content_theme": "Early Registration",
+          "platforms": ["Instagram", "Facebook", "LinkedIn", "Twitter"],
+          "creative_assets": ["Registration graphics", "Early bird messaging", "Value propositions"]
+        },
+        {
+          "date": "2023-12-01",
+          "content_theme": "Holiday Campaign",
+          "platforms": ["Instagram", "Facebook", "LinkedIn", "Twitter"],
+          "creative_assets": ["Holiday graphics", "Gift certificate promotions", "Seasonal messaging"]
+        }
+      ]
+    },
+    "paid_advertising": {
+      "campaign_launch_dates": [
+        {
+          "channel": "Google Ads",
+          "launch_date": "2023-10-15",
+          "end_date": "2024-01-28",
+          "budget_allocation": 800000
+        },
+        {
+          "channel": "LinkedIn",
+          "launch_date": "2023-10-15",
+          "end_date": "2024-01-28",
+          "budget_allocation": 500000
+        },
+        {
+          "channel": "Facebook/Instagram",
+          "launch_date": "2023-10-15",
+          "end_date": "2024-01-28",
+          "budget_allocation": 400000
+        }
+      ],
+      "ad_refresh_schedule": [
+        {
+          "refresh_date": "2023-11-15",
+          "reason": "Early registration phase",
+          "new_creative_elements": ["Registration-focused messaging", "Early bird pricing", "Urgency elements"]
+        },
+        {
+          "refresh_date": "2023-12-01",
+          "reason": "Holiday campaign",
+          "new_creative_elements": ["Holiday-themed creative", "Gift certificate promotions", "Seasonal messaging"]
+        },
+        {
+          "refresh_date": "2024-01-01",
+          "reason": "Final push phase",
+          "new_creative_elements": ["Urgency messaging", "Countdown campaigns", "Final call-to-action"]
+        }
+      ]
+    },
+    "email_marketing": {
+      "send_schedule": [
+        {
+          "email_type": "Campaign Launch",
+          "send_date": "2023-10-15",
+          "send_time": "10:00 AM",
+          "audience_segment": "All subscribers"
+        },
+        {
+          "email_type": "Early Registration",
+          "send_date": "2023-11-15",
+          "send_time": "9:00 AM",
+          "audience_segment": "Active subscribers"
+        },
+        {
+          "email_type": "Holiday Promotion",
+          "send_date": "2023-12-01",
+          "send_time": "10:00 AM",
+          "audience_segment": "All subscribers"
+        },
+        {
+          "email_type": "Final Countdown",
+          "send_date": "2024-01-01",
+          "send_time": "9:00 AM",
+          "audience_segment": "Non-registered subscribers"
+        }
+      ],
+      "automation_triggers": [
+        {
+          "trigger_event": "Website visit",
+          "delay_hours": 24,
+          "email_sequence": ["Welcome email", "Event information", "Registration reminder"]
+        },
+        {
+          "trigger_event": "Email open",
+          "delay_hours": 48,
+          "email_sequence": ["Follow-up content", "Registration CTA", "Social proof"]
+        },
+        {
+          "trigger_event": "Registration abandonment",
+          "delay_hours": 2,
+          "email_sequence": ["Abandonment email", "Urgency messaging", "Final reminder"]
+        }
+      ]
+    }
+  },
+  "seasonal_and_event_timing": {
+    "seasonal_campaigns": [
+      {
+        "season_name": "Fall Planning",
+        "start_date": "2023-10-15",
+        "end_date": "2023-11-30",
+        "campaign_focus": "Industry planning and preparation",
+        "budget_multiplier": 1.0,
+        "creative_themes": ["Planning ahead", "Industry preparation", "Strategic thinking"]
+      },
+      {
+        "season_name": "Holiday Season",
+        "start_date": "2023-12-01",
+        "end_date": "2023-12-31",
+        "campaign_focus": "Holiday promotions and gift certificates",
+        "budget_multiplier": 1.3,
+        "creative_themes": ["Holiday spirit", "Gift giving", "Year-end planning"]
+      },
+      {
+        "season_name": "New Year Push",
+        "start_date": "2024-01-01",
+        "end_date": "2024-01-28",
+        "campaign_focus": "Final registration push and urgency",
+        "budget_multiplier": 1.5,
+        "creative_themes": ["New year goals", "Final opportunity", "Urgency messaging"]
+      }
+    ],
+    "holiday_campaigns": [
+      {
+        "holiday_name": "Thanksgiving",
+        "holiday_date": "2023-11-23",
+        "campaign_duration": "1 week",
+        "special_offers": ["Gratitude messaging", "Family discounts", "Thank you promotions"],
+        "creative_elements": ["Thanksgiving themes", "Family imagery", "Gratitude messaging"]
+      },
+      {
+        "holiday_name": "Christmas",
+        "holiday_date": "2023-12-25",
+        "campaign_duration": "2 weeks",
+        "special_offers": ["Gift certificates", "Holiday discounts", "Seasonal promotions"],
+        "creative_elements": ["Christmas themes", "Gift imagery", "Holiday spirit"]
+      },
+      {
+        "holiday_name": "New Year",
+        "holiday_date": "2024-01-01",
+        "campaign_duration": "1 week",
+        "special_offers": ["New year resolutions", "Fresh start messaging", "Goal setting"],
+        "creative_elements": ["New year themes", "Fresh start imagery", "Goal-oriented messaging"]
+      }
+    ],
+    "industry_events": [
+      {
+        "event_name": "Summer NAMM",
+        "event_date": "2023-07-13",
+        "event_type": "Regional trade show",
+        "campaign_integration": "Cross-promotion and audience building",
+        "budget_allocation": 50000
+      },
+      {
+        "event_name": "AES Convention",
+        "event_date": "2023-10-25",
+        "event_type": "Audio engineering convention",
+        "campaign_integration": "Targeted messaging to audio professionals",
+        "budget_allocation": 30000
+      }
+    ]
+  },
+  "optimization_schedule": {
+    "performance_reviews": [
+      {
+        "review_date": "2023-10-22",
+        "review_type": "weekly",
+        "metrics_reviewed": [
+          "Campaign performance",
+          "Creative effectiveness",
+          "Audience response"
+        ],
+        "optimization_decisions": [
+          "Creative optimization",
+          "Audience refinement",
+          "Budget reallocation"
+        ],
+        "responsible_team": "Marketing Team"
+      },
+      {
+        "review_date": "2023-11-05",
+        "review_type": "bi-weekly",
+        "metrics_reviewed": [
+          "Phase performance",
+          "Goal achievement",
+          "ROI analysis"
+        ],
+        "optimization_decisions": [
+          "Phase adjustments",
+          "Strategy refinement",
+          "Resource reallocation"
+        ],
+        "responsible_team": "Marketing Leadership"
+      }
+    ],
+    "a_b_testing_schedule": [
+      {
+        "test_name": "Creative Performance Test",
+        "start_date": "2023-10-15",
+        "end_date": "2023-10-29",
+        "test_variables": ["Headlines", "Images", "CTAs"],
+        "success_metrics": ["CTR", "Conversion rate", "ROAS"],
+        "sample_size": 10000,
+        "confidence_level": 95
+      },
+      {
+        "test_name": "Audience Performance Test",
+        "start_date": "2023-10-30",
+        "end_date": "2023-11-13",
+        "test_variables": ["Demographics", "Interests", "Behaviors"],
+        "success_metrics": ["CPC", "Conversion rate", "Audience quality"],
+        "sample_size": 15000,
+        "confidence_level": 95
+      }
+    ],
+    "optimization_milestones": [
+      {
+        "milestone_name": "First Optimization Cycle",
+        "target_date": "2023-10-22",
+        "optimization_type": "Creative and audience optimization",
+        "expected_impact": "Improved performance and efficiency",
+        "implementation_plan": "Weekly review and adjustment cycle"
+      },
+      {
+        "milestone_name": "Phase Transition Optimization",
+        "target_date": "2023-12-10",
+        "optimization_type": "Strategy and messaging optimization",
+        "expected_impact": "Enhanced consideration phase performance",
+        "implementation_plan": "Phase-specific strategy implementation"
+      }
+    ]
+  },
+  "resource_allocation": {
+    "team_schedule": [
+      {
+        "team_member": "Marketing Director",
+        "role": "Campaign Strategy and Leadership",
+        "availability": [
+          {
+            "start_date": "2023-10-15",
+            "end_date": "2024-01-28",
+            "hours_per_week": 40,
+            "focus_areas": ["Strategy development", "Performance oversight", "Team leadership"]
+          }
+        ]
+      },
+      {
+        "team_member": "Digital Marketing Manager",
+        "role": "Paid Advertising and Performance",
+        "availability": [
+          {
+            "start_date": "2023-10-15",
+            "end_date": "2024-01-28",
+            "hours_per_week": 40,
+            "focus_areas": ["Campaign management", "Performance optimization", "Budget management"]
+          }
+        ]
+      },
+      {
+        "team_member": "Content Manager",
+        "role": "Content Strategy and Creation",
+        "availability": [
+          {
+            "start_date": "2023-10-15",
+            "end_date": "2024-01-28",
+            "hours_per_week": 40,
+            "focus_areas": ["Content creation", "Content strategy", "Content optimization"]
+          }
+        ]
+      }
+    ],
+    "external_resources": [
+      {
+        "resource_name": "Creative Agency",
+        "resource_type": "Creative Development",
+        "engagement_period": {
+          "start_date": "2023-10-01",
+          "end_date": "2024-01-28"
+        },
+        "deliverables": [
+          "Campaign creative",
+          "Video production",
+          "Graphic design"
+        ],
+        "cost": 200000
+      },
+      {
+        "resource_name": "Digital Marketing Consultant",
+        "resource_type": "Strategy and Optimization",
+        "engagement_period": {
+          "start_date": "2023-10-15",
+          "end_date": "2024-01-28"
+        },
+        "deliverables": [
+          "Strategy consultation",
+          "Performance analysis",
+          "Optimization recommendations"
+        ],
+        "cost": 50000
+      }
+    ]
+  },
+  "communication_schedule": {
+    "stakeholder_updates": [
+      {
+        "update_date": "2023-10-22",
+        "update_type": "Weekly Performance Report",
+        "stakeholders": ["Executive Team", "Marketing Team", "Event Team"],
+        "content_focus": "Campaign performance and optimization",
+        "delivery_method": "Email and presentation"
+      },
+      {
+        "update_date": "2023-11-05",
+        "update_type": "Bi-weekly Strategy Review",
+        "stakeholders": ["Marketing Leadership", "Event Director", "Finance Team"],
+        "content_focus": "Strategy performance and adjustments",
+        "delivery_method": "Presentation and discussion"
+      }
+    ],
+    "team_meetings": [
+      {
+        "meeting_date": "2023-10-20",
+        "meeting_time": "10:00 AM",
+        "meeting_type": "Weekly Campaign Review",
+        "agenda": [
+          "Performance review",
+          "Optimization planning",
+          "Next week priorities"
+        ],
+        "attendees": ["Marketing Team", "Digital Marketing Manager", "Content Manager"]
+      },
+      {
+        "meeting_date": "2023-11-03",
+        "meeting_time": "2:00 PM",
+        "meeting_type": "Phase Transition Planning",
+        "agenda": [
+          "Phase 1 results",
+          "Phase 2 planning",
+          "Resource allocation"
+        ],
+        "attendees": ["Marketing Leadership", "Event Team", "Creative Team"]
+      }
+    ]
+  }
+} 

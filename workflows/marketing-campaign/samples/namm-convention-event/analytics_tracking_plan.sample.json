@@ -1,0 +1,571 @@
+{
+  "tracking_overview": {
+    "tracking_objective": "Comprehensive measurement of NAMM Show 2024 marketing campaign performance across all channels and touchpoints",
+    "tracking_strategy": "Multi-touch attribution with real-time performance monitoring and automated optimization",
+    "measurement_framework": "data_driven",
+    "tracking_scope": [
+      "Campaign performance across all channels",
+      "User journey and conversion funnel",
+      "Audience behavior and engagement",
+      "ROI and business impact",
+      "Brand lift and awareness"
+    ],
+    "data_quality_standards": [
+      "Real-time data collection",
+      "Cross-platform data consistency",
+      "Privacy-compliant tracking",
+      "Automated data validation",
+      "Regular data quality audits"
+    ]
+  },
+  "key_performance_indicators": {
+    "primary_kpis": [
+      {
+        "kpi_name": "Registration Conversions",
+        "kpi_category": "conversion",
+        "definition": "Total registrations for NAMM Show 2024",
+        "calculation_method": "Count of completed registrations",
+        "target_value": 115000,
+        "current_baseline": 85000,
+        "measurement_unit": "registrations",
+        "tracking_frequency": "real_time",
+        "data_source": "Website analytics and CRM",
+        "responsible_team": "Marketing Analytics Team"
+      },
+      {
+        "kpi_name": "Cost Per Registration",
+        "kpi_category": "efficiency",
+        "definition": "Average cost to acquire one registration",
+        "calculation_method": "Total campaign spend / Total registrations",
+        "target_value": 21.74,
+        "current_baseline": 29.41,
+        "measurement_unit": "USD",
+        "tracking_frequency": "daily",
+        "data_source": "Ad platforms and CRM",
+        "responsible_team": "Digital Marketing Manager"
+      },
+      {
+        "kpi_name": "Return on Ad Spend",
+        "kpi_category": "roi",
+        "definition": "Revenue generated per dollar spent on advertising",
+        "calculation_method": "Total revenue / Total ad spend",
+        "target_value": 4.0,
+        "current_baseline": 3.2,
+        "measurement_unit": "ratio",
+        "tracking_frequency": "daily",
+        "data_source": "Ad platforms and CRM",
+        "responsible_team": "Marketing Analytics Team"
+      },
+      {
+        "kpi_name": "Website Conversion Rate",
+        "kpi_category": "conversion",
+        "definition": "Percentage of website visitors who complete registration",
+        "calculation_method": "Registrations / Website visitors",
+        "target_value": 2.5,
+        "current_baseline": 1.8,
+        "measurement_unit": "percentage",
+        "tracking_frequency": "daily",
+        "data_source": "Google Analytics",
+        "responsible_team": "Digital Marketing Manager"
+      },
+      {
+        "kpi_name": "Email Open Rate",
+        "kpi_category": "engagement",
+        "definition": "Percentage of emails opened by recipients",
+        "calculation_method": "Emails opened / Emails delivered",
+        "target_value": 25.0,
+        "current_baseline": 22.0,
+        "measurement_unit": "percentage",
+        "tracking_frequency": "daily",
+        "data_source": "Email marketing platform",
+        "responsible_team": "Email Marketing Specialist"
+      }
+    ],
+    "secondary_kpis": [
+      {
+        "kpi_name": "Social Media Engagement Rate",
+        "kpi_category": "engagement",
+        "definition": "Engagement rate across all social media platforms",
+        "calculation_method": "Total engagements / Total followers",
+        "target_value": 3.5,
+        "measurement_unit": "percentage",
+        "tracking_frequency": "daily",
+        "data_source": "Social media platforms"
+      },
+      {
+        "kpi_name": "Brand Awareness Lift",
+        "kpi_category": "brand",
+        "definition": "Increase in brand awareness during campaign",
+        "calculation_method": "Post-campaign awareness - Pre-campaign awareness",
+        "target_value": 15.0,
+        "measurement_unit": "percentage",
+        "tracking_frequency": "weekly",
+        "data_source": "Brand lift studies"
+      },
+      {
+        "kpi_name": "App Downloads",
+        "kpi_category": "conversion",
+        "definition": "Number of NAMM mobile app downloads",
+        "calculation_method": "Count of app store downloads",
+        "target_value": 15000,
+        "measurement_unit": "downloads",
+        "tracking_frequency": "daily",
+        "data_source": "App store analytics"
+      }
+    ],
+    "custom_metrics": [
+      {
+        "metric_name": "Industry Influence Score",
+        "description": "Measure of campaign impact on industry professionals",
+        "calculation_logic": "Weighted combination of social media mentions, industry publication coverage, and influencer engagement",
+        "business_relevance": "Indicates campaign effectiveness in reaching and influencing target industry audience",
+        "implementation_notes": "Requires integration with social listening tools and media monitoring services"
+      },
+      {
+        "metric_name": "Exhibitor Commitment Rate",
+        "description": "Rate of exhibitor commitments relative to campaign reach",
+        "calculation_logic": "Exhibitor sign-ups / Campaign impressions to exhibitor audience",
+        "business_relevance": "Measures campaign effectiveness in driving exhibitor participation",
+        "implementation_notes": "Requires exhibitor audience segmentation and tracking"
+      }
+    ]
+  },
+  "tracking_implementation": {
+    "utm_parameters": {
+      "utm_source": "namm_show_2024",
+      "utm_medium": "paid_social",
+      "utm_campaign": "registration_drive",
+      "utm_term": "music_industry_event",
+      "utm_content": "early_bird_pricing",
+      "custom_parameters": {
+        "utm_audience": "music_retailers",
+        "utm_phase": "awareness",
+        "utm_channel": "linkedin"
+      }
+    },
+    "tracking_pixels": [
+      {
+        "pixel_name": "Google Analytics 4",
+        "pixel_type": "analytics",
+        "pixel_code": "G-XXXXXXXXXX",
+        "placement": "All website pages",
+        "tracking_events": [
+          "Page views",
+          "User engagement",
+          "Conversion events",
+          "E-commerce tracking"
+        ],
+        "implementation_status": "active"
+      },
+      {
+        "pixel_name": "Facebook Pixel",
+        "pixel_type": "social_media",
+        "pixel_code": "FB_PIXEL_ID",
+        "placement": "All website pages",
+        "tracking_events": [
+          "Page views",
+          "Lead generation",
+          "Registration completion",
+          "App downloads"
+        ],
+        "implementation_status": "active"
+      },
+      {
+        "pixel_name": "LinkedIn Insight Tag",
+        "pixel_type": "social_media",
+        "pixel_code": "LINKEDIN_PIXEL_ID",
+        "placement": "All website pages",
+        "tracking_events": [
+          "Page views",
+          "Lead generation",
+          "Registration completion"
+        ],
+        "implementation_status": "active"
+      },
+      {
+        "pixel_name": "Google Ads Conversion Tracking",
+        "pixel_type": "conversion",
+        "pixel_code": "GOOGLE_ADS_CONVERSION_ID",
+        "placement": "Registration confirmation page",
+        "tracking_events": [
+          "Registration completion",
+          "Email sign-up",
+          "App download"
+        ],
+        "implementation_status": "active"
+      }
+    ],
+    "event_tracking": {
+      "page_views": {
+        "enabled": true,
+        "tracking_method": "Google Analytics 4",
+        "custom_dimensions": [
+          "User type",
+          "Campaign source",
+          "Page category",
+          "User journey stage"
+        ]
+      },
+      "user_interactions": {
+        "clicks": true,
+        "form_submissions": true,
+        "video_views": true,
+        "downloads": true,
+        "scroll_depth": true
+      },
+      "conversion_events": {
+        "purchases": false,
+        "sign_ups": true,
+        "leads": true,
+        "appointments": false,
+        "custom_events": [
+          "Registration started",
+          "Registration completed",
+          "Email subscription",
+          "App download",
+          "Social media engagement"
+        ]
+      }
+    },
+    "cross_domain_tracking": {
+      "enabled": true,
+      "domains": [
+        "namm.org",
+        "nammshow.com",
+        "nammmobile.com"
+      ],
+      "tracking_method": "Google Analytics 4 cross-domain tracking",
+      "implementation_notes": "Ensures consistent user journey tracking across all NAMM domains"
+    }
+  },
+  "conversion_tracking": {
+    "conversion_goals": [
+      {
+        "goal_id": "goal_001",
+        "goal_name": "Registration Completion",
+        "goal_type": "signup",
+        "goal_value": 100.00,
+        "conversion_window": 30,
+        "attribution_model": "data_driven",
+        "tracking_method": "Website form submission",
+        "implementation_status": "active"
+      },
+      {
+        "goal_id": "goal_002",
+        "goal_name": "Email Subscription",
+        "goal_type": "lead",
+        "goal_value": 25.00,
+        "conversion_window": 7,
+        "attribution_model": "last_touch",
+        "tracking_method": "Email signup form",
+        "implementation_status": "active"
+      },
+      {
+        "goal_id": "goal_003",
+        "goal_name": "App Download",
+        "goal_type": "download",
+        "goal_value": 50.00,
+        "conversion_window": 14,
+        "attribution_model": "last_touch",
+        "tracking_method": "App store redirect",
+        "implementation_status": "active"
+      },
+      {
+        "goal_id": "goal_004",
+        "goal_name": "Exhibitor Interest",
+        "goal_type": "lead",
+        "goal_value": 200.00,
+        "conversion_window": 30,
+        "attribution_model": "data_driven",
+        "tracking_method": "Exhibitor inquiry form",
+        "implementation_status": "active"
+      }
+    ],
+    "funnel_tracking": {
+      "funnel_stages": [
+        {
+          "stage_name": "Website Visit",
+          "stage_order": 1,
+          "stage_type": "awareness",
+          "target_conversion_rate": 100,
+          "drop_off_analysis": true
+        },
+        {
+          "stage_name": "Registration Page View",
+          "stage_order": 2,
+          "stage_type": "interest",
+          "target_conversion_rate": 25,
+          "drop_off_analysis": true
+        },
+        {
+          "stage_name": "Registration Form Start",
+          "stage_order": 3,
+          "stage_type": "consideration",
+          "target_conversion_rate": 15,
+          "drop_off_analysis": true
+        },
+        {
+          "stage_name": "Registration Completion",
+          "stage_order": 4,
+          "stage_type": "conversion",
+          "target_conversion_rate": 2.5,
+          "drop_off_analysis": true
+        }
+      ],
+      "funnel_optimization": {
+        "enabled": true,
+        "optimization_goals": [
+          "Reduce drop-off between stages",
+          "Improve form completion rate",
+          "Optimize user experience"
+        ],
+        "testing_approach": "A/B testing of funnel elements"
+      }
+    },
+    "attribution_setup": {
+      "primary_model": "data_driven",
+      "secondary_models": [
+        "last_touch",
+        "first_touch",
+        "linear",
+        "time_decay"
+      ],
+      "lookback_windows": {
+        "click": 30,
+        "impression": 1,
+        "view": 1
+      },
+      "cross_channel_attribution": true
+    }
+  },
+  "data_collection": {
+    "data_sources": [
+      {
+        "source_name": "Google Analytics 4",
+        "source_type": "first_party",
+        "data_quality": "high",
+        "collection_frequency": "real_time",
+        "data_format": "JSON",
+        "integration_method": "JavaScript tracking code"
+      },
+      {
+        "source_name": "Facebook Ads",
+        "source_type": "third_party",
+        "data_quality": "high",
+        "collection_frequency": "real_time",
+        "data_format": "API",
+        "integration_method": "Facebook Pixel and Conversions API"
+      },
+      {
+        "source_name": "LinkedIn Ads",
+        "source_type": "third_party",
+        "data_quality": "high",
+        "collection_frequency": "real_time",
+        "data_format": "API",
+        "integration_method": "LinkedIn Insight Tag"
+      },
+      {
+        "source_name": "Google Ads",
+        "source_type": "third_party",
+        "data_quality": "high",
+        "collection_frequency": "real_time",
+        "data_format": "API",
+        "integration_method": "Google Ads Conversion Tracking"
+      },
+      {
+        "source_name": "Email Marketing Platform",
+        "source_type": "first_party",
+        "data_quality": "high",
+        "collection_frequency": "real_time",
+        "data_format": "API",
+        "integration_method": "Direct API integration"
+      }
+    ],
+    "data_validation": {
+      "validation_rules": [
+        "Data completeness checks",
+        "Data format validation",
+        "Cross-platform consistency verification",
+        "Anomaly detection"
+      ],
+      "quality_checks": [
+        "Duplicate data removal",
+        "Data freshness verification",
+        "Source attribution validation",
+        "Conversion tracking verification"
+      ],
+      "error_handling": "Automated error logging and alerting",
+      "data_cleansing": true
+    },
+    "data_storage": {
+      "storage_location": "Google BigQuery",
+      "retention_policy": "24 months for campaign data, 12 months for user behavior data",
+      "backup_frequency": "Daily automated backups",
+      "security_measures": [
+        "Data encryption at rest and in transit",
+        "Access control and authentication",
+        "Regular security audits",
+        "GDPR and CCPA compliance"
+      ]
+    }
+  },
+  "reporting_and_analysis": {
+    "reporting_schedule": [
+      {
+        "report_name": "Daily Performance Dashboard",
+        "report_type": "daily",
+        "frequency": "Daily",
+        "delivery_method": "Automated dashboard",
+        "recipients": ["Marketing Team", "Digital Marketing Manager"],
+        "automated": true
+      },
+      {
+        "report_name": "Weekly Performance Report",
+        "report_type": "weekly",
+        "frequency": "Weekly",
+        "delivery_method": "Email and presentation",
+        "recipients": ["Marketing Leadership", "Event Team"],
+        "automated": true
+      },
+      {
+        "report_name": "Monthly Strategy Review",
+        "report_type": "monthly",
+        "frequency": "Monthly",
+        "delivery_method": "Presentation and discussion",
+        "recipients": ["Executive Team", "Marketing Leadership"],
+        "automated": false
+      },
+      {
+        "report_name": "Campaign Performance Summary",
+        "report_type": "ad_hoc",
+        "frequency": "As needed",
+        "delivery_method": "Custom report",
+        "recipients": ["Stakeholders", "External partners"],
+        "automated": false
+      }
+    ],
+    "dashboard_configuration": {
+      "dashboard_name": "NAMM Show 2024 Marketing Dashboard",
+      "key_metrics": [
+        "Registration conversions",
+        "Cost per registration",
+        "ROAS by channel",
+        "Website conversion rate",
+        "Email performance metrics"
+      ],
+      "visualization_types": [
+        "Real-time charts",
+        "Performance tables",
+        "Funnel visualizations",
+        "Geographic maps",
+        "Trend analysis"
+      ],
+      "refresh_frequency": "Real-time",
+      "access_permissions": [
+        "Marketing Team",
+        "Event Team",
+        "Executive Team",
+        "External Agencies"
+      ]
+    },
+    "analysis_framework": {
+      "segmentation_analysis": true,
+      "trend_analysis": true,
+      "comparative_analysis": true,
+      "predictive_analysis": true,
+      "attribution_analysis": true
+    }
+  },
+  "privacy_and_compliance": {
+    "gdpr_compliance": {
+      "enabled": true,
+      "consent_management": true,
+      "data_processing_basis": "Legitimate interest and consent",
+      "data_subject_rights": true,
+      "data_retention_policy": "24 months maximum retention"
+    },
+    "ccpa_compliance": {
+      "enabled": true,
+      "opt_out_mechanism": true,
+      "data_disclosure": true,
+      "verification_process": "Automated verification system"
+    },
+    "cookie_consent": {
+      "consent_banner": true,
+      "cookie_categories": [
+        "Essential",
+        "Analytics",
+        "Marketing",
+        "Preferences"
+      ],
+      "consent_storage": "Local storage with encryption",
+      "consent_renewal": "Annual renewal required"
+    },
+    "data_governance": {
+      "data_classification": "Marketing campaign data - Medium sensitivity",
+      "access_controls": [
+        "Role-based access control",
+        "Multi-factor authentication",
+        "Regular access reviews"
+      ],
+      "audit_logging": true,
+      "incident_response": "24-hour response time with automated alerting"
+    }
+  },
+  "implementation_timeline": {
+    "implementation_phases": [
+      {
+        "phase_name": "Setup and Configuration",
+        "start_date": "2023-10-01",
+        "end_date": "2023-10-14",
+        "deliverables": [
+          "Tracking code implementation",
+          "Conversion goal setup",
+          "UTM parameter configuration"
+        ],
+        "dependencies": ["Website development completion", "Ad platform setup"],
+        "responsible_team": "Technical Implementation Team"
+      },
+      {
+        "phase_name": "Testing and Validation",
+        "start_date": "2023-10-15",
+        "end_date": "2023-10-21",
+        "deliverables": [
+          "Tracking validation report",
+          "Data quality assessment",
+          "Performance baseline establishment"
+        ],
+        "dependencies": ["Setup completion", "Campaign launch"],
+        "responsible_team": "Marketing Analytics Team"
+      },
+      {
+        "phase_name": "Optimization and Scaling",
+        "start_date": "2023-10-22",
+        "end_date": "2024-01-28",
+        "deliverables": [
+          "Continuous optimization",
+          "Performance reporting",
+          "ROI analysis"
+        ],
+        "dependencies": ["Testing completion", "Campaign performance data"],
+        "responsible_team": "Marketing Analytics Team"
+      }
+    ],
+    "testing_and_validation": {
+      "testing_approach": "Comprehensive testing across all tracking elements",
+      "validation_criteria": [
+        "All tracking pixels firing correctly",
+        "Conversion goals recording properly",
+        "Data flowing to all platforms",
+        "Cross-platform attribution working"
+      ],
+      "qa_process": "Automated testing with manual validation",
+      "go_live_criteria": [
+        "100% tracking implementation",
+        "Data quality validation passed",
+        "Performance baseline established",
+        "Stakeholder approval received"
+      ]
+    }
+  }
+} 

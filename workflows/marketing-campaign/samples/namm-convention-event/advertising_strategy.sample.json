@@ -1,0 +1,186 @@
+{
+  "selected_channels": [
+    {
+      "channel_name": "Google Ads",
+      "bidding_strategy": {
+        "search_campaigns": "CPC",
+        "display_campaigns": "CPM",
+        "video_campaigns": "CPV"
+      },
+      "budget_allocation": 35,
+      "priority": "primary",
+      "rationale": "High intent audience searching for music industry events and products"
+    },
+    {
+      "channel_name": "LinkedIn",
+      "bidding_strategy": {
+        "sponsored_content": "CPM",
+        "message_ads": "CPC",
+        "video_ads": "CPV"
+      },
+      "budget_allocation": 25,
+      "priority": "primary",
+      "rationale": "Professional B2B audience in music industry and related fields"
+    },
+    {
+      "channel_name": "Facebook/Instagram",
+      "bidding_strategy": {
+        "feed_ads": "CPC",
+        "story_ads": "CPM",
+        "video_ads": "CPV"
+      },
+      "budget_allocation": 20,
+      "priority": "primary",
+      "rationale": "Broad reach to music enthusiasts and industry professionals"
+    },
+    {
+      "channel_name": "YouTube",
+      "bidding_strategy": {
+        "skippable_ads": "CPV",
+        "non_skippable_ads": "CPM",
+        "bumper_ads": "CPM"
+      },
+      "budget_allocation": 15,
+      "priority": "secondary",
+      "rationale": "Video content consumption by music professionals and enthusiasts"
+    },
+    {
+      "channel_name": "Industry Publications",
+      "bidding_strategy": {
+        "display_ads": "CPM",
+        "sponsored_content": "CPC"
+      },
+      "budget_allocation": 5,
+      "priority": "secondary",
+      "rationale": "Direct access to music industry decision-makers"
+    }
+  ],
+  "targeting_parameters": {
+    "demographics": {
+      "age_range": "25-65",
+      "gender": ["male", "female", "all"],
+      "income_level": "middle",
+      "education": ["bachelors", "masters", "trade_school"]
+    },
+    "geographic": {
+      "locations": ["United States", "Canada", "United Kingdom", "Germany", "Japan", "Australia"],
+      "radius_targeting": [
+        {
+          "center": "Anaheim, CA",
+          "radius_miles": 100
+        }
+      ]
+    },
+    "psychographic": {
+      "interests": ["Music Industry", "Pro Audio", "Musical Instruments", "Event Technology", "Music Education"],
+      "lifestyle": ["Professional", "Creative", "Technology-focused", "Industry-connected"],
+      "values": ["Innovation", "Quality", "Professional Development", "Community"]
+    },
+    "behavioral": {
+      "purchase_behavior": ["frequent_buyer", "high_value_customer"],
+      "online_behavior": ["early_adopter", "tech_savvy"],
+      "device_usage": ["desktop", "mobile", "tablet"]
+    }
+  },
+  "campaign_goal": {
+    "primary_objective": "conversion",
+    "description": "Drive registrations for NAMM Show 2024 and increase exhibitor commitments",
+    "success_metrics": ["Registration conversions", "Exhibitor sign-ups", "Website traffic", "Brand awareness"],
+    "target_audience_size": 500000,
+    "conversion_target": {
+      "metric": "Registration rate",
+      "target_value": 2.5,
+      "current_baseline": 1.8
+    }
+  },
+  "budget_breakdown": {
+    "total_budget": 800000,
+    "currency": "USD",
+    "per_channel": {
+      "Google Ads": 280000,
+      "LinkedIn": 200000,
+      "Facebook/Instagram": 160000,
+      "YouTube": 120000,
+      "Industry Publications": 40000
+    },
+    "per_phase": {
+      "awareness": 320000,
+      "consideration": 240000,
+      "conversion": 160000,
+      "retention": 80000
+    },
+    "reserve_budget": 80000,
+    "daily_budget_cap": 15000
+  },
+  "schedule": {
+    "start_date": "2023-10-15",
+    "end_date": "2024-01-28",
+    "duration_weeks": 14,
+    "frequency": "daily",
+    "peak_periods": [
+      {
+        "period": "Early Registration (Nov-Dec)",
+        "budget_multiplier": 1.5,
+        "rationale": "Critical period for driving early registrations"
+      },
+      {
+        "period": "Final Push (Jan)",
+        "budget_multiplier": 2.0,
+        "rationale": "Urgency messaging and final conversion push"
+      }
+    ],
+    "blackout_dates": ["2023-12-25", "2024-01-01"]
+  },
+  "analytics_tracking_plan": {
+    "utm_setup": "configured",
+    "tracking_pixels": ["Google Analytics", "Facebook Pixel", "LinkedIn Insight Tag", "YouTube Analytics"],
+    "conversion_tracking": {
+      "primary_goal": "Registration completion",
+      "secondary_goals": ["Website engagement", "Email sign-ups", "Social media engagement"],
+      "funnel_stages": ["Awareness", "Interest", "Consideration", "Registration"]
+    },
+    "kpis": ["CTR", "CPC", "Conversion rate", "ROAS", "Brand lift"],
+    "reporting_frequency": "daily",
+    "attribution_model": "data_driven"
+  },
+  "creative_guidelines": {
+    "brand_voice": "Professional yet inspiring, innovative and community-focused",
+    "visual_style": {
+      "color_palette": ["#1E3A8A", "#F97316", "#F59E0B", "#6B7280", "#FFFFFF"],
+      "typography": ["Inter", "Source Sans Pro", "Montserrat"],
+      "imagery_style": "High-quality, professional, showcasing music equipment and people"
+    },
+    "messaging_hierarchy": [
+      "Innovation and cutting-edge technology",
+      "Global music industry community",
+      "Professional development and education",
+      "Business opportunities and networking"
+    ],
+    "cta_guidelines": [
+      "Register Now - Early Bird Pricing",
+      "Secure Your Spot",
+      "Join the Global Music Community",
+      "Discover Innovation"
+    ]
+  },
+  "optimization_strategy": {
+    "optimization_frequency": "daily",
+    "test_plans": [
+      {
+        "test_type": "A/B Testing",
+        "variables": ["Headlines", "CTAs", "Images", "Landing pages"],
+        "success_metrics": ["CTR", "Conversion rate", "ROAS"]
+      },
+      {
+        "test_type": "Audience Testing",
+        "variables": ["Demographics", "Interests", "Behaviors"],
+        "success_metrics": ["CPC", "Conversion rate", "Audience quality"]
+      }
+    ],
+    "performance_thresholds": {
+      "minimum_ctr": 1.5,
+      "maximum_cpc": 3.00,
+      "minimum_conversion_rate": 2.0
+    }
+  }
+} 

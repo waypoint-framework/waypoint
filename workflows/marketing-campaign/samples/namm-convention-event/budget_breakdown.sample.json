@@ -1,0 +1,280 @@
+{
+  "budget_overview": {
+    "total_budget": 2500000,
+    "currency": "USD",
+    "budget_period": "Q4 2023 - Q1 2024",
+    "budget_type": "performance_based",
+    "approval_status": "approved",
+    "last_updated": "2023-10-15T10:00:00Z"
+  },
+  "channel_allocation": {
+    "primary_channels": [
+      {
+        "channel_name": "Digital Advertising",
+        "channel_type": "paid_advertising",
+        "budget_amount": 800000,
+        "budget_percentage": 32,
+        "priority": "primary",
+        "rationale": "High ROI and precise targeting for industry professionals",
+        "expected_roas": 4.5,
+        "daily_budget_limit": 15000
+      },
+      {
+        "channel_name": "Social Media Marketing",
+        "channel_type": "social_media",
+        "budget_amount": 500000,
+        "budget_percentage": 20,
+        "priority": "primary",
+        "rationale": "Strong engagement with music industry community",
+        "expected_roas": 3.2,
+        "daily_budget_limit": 8000
+      },
+      {
+        "channel_name": "Email Marketing",
+        "channel_type": "email",
+        "budget_amount": 300000,
+        "budget_percentage": 12,
+        "priority": "primary",
+        "rationale": "Direct communication with existing database",
+        "expected_roas": 6.8,
+        "daily_budget_limit": 5000
+      },
+      {
+        "channel_name": "Content Marketing",
+        "channel_type": "content",
+        "budget_amount": 400000,
+        "budget_percentage": 16,
+        "priority": "primary",
+        "rationale": "Thought leadership and SEO value",
+        "expected_roas": 2.5,
+        "daily_budget_limit": 6000
+      }
+    ],
+    "secondary_channels": [
+      {
+        "channel_name": "Print Advertising",
+        "channel_type": "print",
+        "budget_amount": 200000,
+        "budget_percentage": 8,
+        "priority": "secondary",
+        "rationale": "Industry publications and trade magazines"
+      },
+      {
+        "channel_name": "Event Marketing",
+        "channel_type": "events",
+        "budget_amount": 150000,
+        "budget_percentage": 6,
+        "priority": "secondary",
+        "rationale": "Industry events and trade shows"
+      },
+      {
+        "channel_name": "Public Relations",
+        "channel_type": "pr",
+        "budget_amount": 100000,
+        "budget_percentage": 4,
+        "priority": "secondary",
+        "rationale": "Media relations and press coverage"
+      }
+    ],
+    "channel_coordination_budget": 50000
+  },
+  "phase_allocation": {
+    "awareness_phase": {
+      "budget_amount": 1000000,
+      "budget_percentage": 40,
+      "duration_weeks": 8,
+      "key_activities": [
+        "Brand awareness campaigns",
+        "Industry education content",
+        "Thought leadership positioning"
+      ],
+      "expected_outcomes": [
+        "Increased brand recognition",
+        "Industry awareness building",
+        "Community engagement"
+      ]
+    },
+    "consideration_phase": {
+      "budget_amount": 750000,
+      "budget_percentage": 30,
+      "duration_weeks": 6,
+      "key_activities": [
+        "Product showcase campaigns",
+        "Educational content",
+        "Social proof and testimonials"
+      ],
+      "expected_outcomes": [
+        "Interest generation",
+        "Consideration building",
+        "Information seeking behavior"
+      ]
+    },
+    "conversion_phase": {
+      "budget_amount": 500000,
+      "budget_percentage": 20,
+      "duration_weeks": 4,
+      "key_activities": [
+        "Registration campaigns",
+        "Early bird promotions",
+        "Urgency messaging"
+      ],
+      "expected_outcomes": [
+        "Registration conversions",
+        "Ticket sales",
+        "Exhibitor commitments"
+      ]
+    },
+    "retention_phase": {
+      "budget_amount": 250000,
+      "budget_percentage": 10,
+      "duration_weeks": 2,
+      "key_activities": [
+        "Pre-event engagement",
+        "App download campaigns",
+        "Schedule optimization"
+      ],
+      "expected_outcomes": [
+        "Attendee engagement",
+        "App adoption",
+        "Event preparation"
+      ]
+    }
+  },
+  "creative_and_production": {
+    "creative_development": {
+      "design_and_copywriting": 80000,
+      "photography_and_videography": 120000,
+      "graphic_design": 60000,
+      "copywriting": 40000,
+      "creative_direction": 30000
+    },
+    "production_costs": {
+      "video_production": 150000,
+      "photo_shoots": 80000,
+      "audio_production": 40000,
+      "printing": 30000,
+      "other_production": 20000
+    },
+    "creative_optimization": {
+      "a_b_testing": 25000,
+      "creative_refresh": 20000,
+      "performance_optimization": 15000
+    },
+    "total_creative_budget": 650000
+  },
+  "operational_costs": {
+    "agency_fees": {
+      "management_fee": 150000,
+      "performance_bonus": 50000,
+      "additional_services": 25000
+    },
+    "platform_fees": {
+      "ad_platform_fees": 80000,
+      "creative_tools": 30000,
+      "analytics_tools": 20000,
+      "other_platforms": 15000
+    },
+    "internal_costs": {
+      "staff_time": 100000,
+      "overhead_allocation": 50000,
+      "training": 15000,
+      "other_internal": 10000
+    },
+    "total_operational_budget": 555000
+  },
+  "reserve_and_contingency": {
+    "performance_reserve": 150000,
+    "contingency_fund": 100000,
+    "seasonal_adjustments": 75000,
+    "competitive_response": 50000,
+    "total_reserve": 375000,
+    "reserve_rationale": "Budget for performance optimization, unexpected opportunities, and competitive response"
+  },
+  "budget_tracking": {
+    "tracking_frequency": "weekly",
+    "tracking_metrics": [
+      "Spend by channel",
+      "ROAS by channel",
+      "CPC/CPM trends",
+      "Conversion rates",
+      "Budget utilization"
+    ],
+    "alert_thresholds": {
+      "spend_warning": 0.8,
+      "spend_critical": 0.95,
+      "performance_warning": 0.7,
+      "performance_critical": 0.5
+    },
+    "reporting_stakeholders": [
+      "Marketing Director",
+      "Event Director",
+      "Finance Team",
+      "Executive Team"
+    ]
+  },
+  "roi_and_performance_targets": {
+    "overall_roas_target": 4.0,
+    "channel_roas_targets": {
+      "Digital Advertising": 4.5,
+      "Social Media Marketing": 3.2,
+      "Email Marketing": 6.8,
+      "Content Marketing": 2.5,
+      "Print Advertising": 2.0,
+      "Event Marketing": 3.5,
+      "Public Relations": 1.5
+    },
+    "phase_roas_targets": {
+      "awareness": 2.0,
+      "consideration": 3.5,
+      "conversion": 8.0,
+      "retention": 4.0
+    },
+    "cost_efficiency_targets": {
+      "target_cpc": 2.50,
+      "target_cpm": 15.00,
+      "target_cpa": 45.00,
+      "target_cpl": 25.00
+    },
+    "performance_benchmarks": {
+      "industry_averages": {
+        "average_roas": 3.2,
+        "average_cpc": 2.80,
+        "average_conversion_rate": 2.1
+      },
+      "historical_performance": {
+        "previous_campaign_roas": 3.8,
+        "previous_campaign_cpc": 2.65,
+        "previous_conversion_rate": 2.3
+      }
+    }
+  },
+  "budget_optimization": {
+    "optimization_rules": [
+      {
+        "rule_name": "Performance-based reallocation",
+        "rule_description": "Move budget from underperforming channels to high-performing ones",
+        "action": "Weekly budget reallocation based on ROAS performance",
+        "budget_impact": "Up to 20% reallocation per week"
+      },
+      {
+        "rule_name": "Seasonal adjustment",
+        "rule_description": "Increase budget during peak registration periods",
+        "action": "Boost budget by 30% during key registration weeks",
+        "budget_impact": "Temporary budget increase during peak periods"
+      },
+      {
+        "rule_name": "Competitive response",
+        "rule_description": "Increase budget when competitors launch campaigns",
+        "action": "Immediate budget boost for competitive response",
+        "budget_impact": "Up to 15% additional budget for competitive response"
+      }
+    ],
+    "auto_optimization": true,
+    "optimization_frequency": "weekly",
+    "reallocation_thresholds": {
+      "performance_threshold": 0.7,
+      "spend_threshold": 0.8,
+      "time_threshold": "7 days"
+    }
+  }
+} 
