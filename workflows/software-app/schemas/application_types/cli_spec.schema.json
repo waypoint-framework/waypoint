@@ -1,0 +1,434 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.waypoint.dev/application_types/cli_spec.schema.json",
+  "title": "CLI Specification Schema",
+  "description": "Schema for defining command-line interface specifications, capturing the full hierarchy of commands and options similar to what --help provides",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the CLI application"
+    },
+    "version": {
+      "type": "string",
+      "description": "Version of the CLI application"
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief description of what this CLI application does"
+    },
+    "usage": {
+      "type": "string",
+      "description": "Usage pattern or syntax overview"
+    },
+    "executable": {
+      "type": "string",
+      "description": "Name of the executable binary"
+    },
+    "globalOptions": {
+      "type": "array",
+      "description": "Global options available to all commands",
+      "items": {
+        "type": "object",
+        "properties": {
+          "names": {
+            "type": "array",
+            "description": "All variations of the option name (e.g., ['-h', '--help'])",
+            "items": {"type": "string"},
+            "minItems": 1
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of what this option does"
+          },
+          "type": {
+            "enum": ["boolean", "string", "integer", "float", "list", "choice"],
+            "description": "Type of value this option accepts"
+          },
+          "required": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether this option is required"
+          },
+          "defaultValue": {
+            "description": "Default value if not specified"
+          },
+          "choices": {
+            "type": "array",
+            "description": "Valid choices if type is 'choice'",
+            "items": {"type": "string"}
+          },
+          "valueRequired": {
+            "type": "boolean",
+            "default": true,
+            "description": "Whether this option requires a value"
+          },
+          "multipleValues": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether this option can be specified multiple times"
+          },
+          "environmentVariable": {
+            "type": "string",
+            "description": "Environment variable that can set this option"
+          },
+          "configFile": {
+            "type": "string",
+            "description": "Config file key that can set this option"
+          },
+          "validation": {
+            "type": "object",
+            "description": "Validation rules for the option value",
+            "properties": {
+              "pattern": {"type": "string", "description": "Regex pattern for validation"},
+              "minimum": {"type": "number", "description": "Minimum value for numeric types"},
+              "maximum": {"type": "number", "description": "Maximum value for numeric types"},
+              "minLength": {"type": "integer", "description": "Minimum length for string types"},
+              "maxLength": {"type": "integer", "description": "Maximum length for string types"}
+            }
+          },
+          "hidden": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether this option is hidden from help output"
+          },
+          "deprecated": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether this option is deprecated"
+          },
+          "deprecationMessage": {
+            "type": "string",
+            "description": "Message to show when deprecated option is used"
+          }
+        },
+        "required": ["names", "description", "type"]
+      }
+    },
+    "commands": {
+      "type": "array",
+      "description": "Available commands in the CLI",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Command name"
+          },
+          "aliases": {
+            "type": "array",
+            "description": "Alternative names for this command",
+            "items": {"type": "string"}
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of what this command does"
+          },
+          "usage": {
+            "type": "string",
+            "description": "Usage pattern for this specific command"
+          },
+          "longDescription": {
+            "type": "string",
+            "description": "Detailed description shown in command-specific help"
+          },
+          "examples": {
+            "type": "array",
+            "description": "Usage examples for this command",
+            "items": {
+              "type": "object",
+              "properties": {
+                "command": {"type": "string", "description": "Example command"},
+                "description": {"type": "string", "description": "What this example demonstrates"}
+              },
+              "required": ["command", "description"]
+            }
+          },
+          "arguments": {
+            "type": "array",
+            "description": "Positional arguments for this command",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {"type": "string", "description": "Argument name"},
+                "description": {"type": "string", "description": "Description of the argument"},
+                "type": {"enum": ["string", "integer", "float", "file", "directory", "url"]},
+                "required": {"type": "boolean", "default": true},
+                "multiple": {"type": "boolean", "default": false, "description": "Whether multiple values are accepted"},
+                "defaultValue": {"description": "Default value if not provided"},
+                "validation": {
+                  "type": "object",
+                  "properties": {
+                    "pattern": {"type": "string"},
+                    "exists": {"type": "boolean", "description": "For file/directory, whether it must exist"},
+                    "readable": {"type": "boolean", "description": "For file/directory, whether it must be readable"},
+                    "writable": {"type": "boolean", "description": "For file/directory, whether it must be writable"}
+                  }
+                }
+              },
+              "required": ["name", "description", "type"]
+            }
+          },
+          "options": {
+            "type": "array",
+            "description": "Command-specific options",
+            "items": {"$ref": "#/properties/globalOptions/items"}
+          },
+          "subcommands": {
+            "type": "array",
+            "description": "Nested subcommands",
+            "items": {"$ref": "#/properties/commands/items"}
+          },
+          "mutuallyExclusiveGroups": {
+            "type": "array",
+            "description": "Groups of options that cannot be used together",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {"type": "string", "description": "Name of the group"},
+                "options": {"type": "array", "items": {"type": "string"}, "description": "Option names in this group"},
+                "required": {"type": "boolean", "default": false, "description": "Whether exactly one option from this group is required"}
+              },
+              "required": ["options"]
+            }
+          },
+          "requiredGroups": {
+            "type": "array",
+            "description": "Groups where at least one option must be specified",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {"type": "string", "description": "Name of the group"},
+                "options": {"type": "array", "items": {"type": "string"}, "description": "Option names in this group"}
+              },
+              "required": ["options"]
+            }
+          },
+          "conditionalOptions": {
+            "type": "array",
+            "description": "Options that are only valid when certain conditions are met",
+            "items": {
+              "type": "object",
+              "properties": {
+                "option": {"type": "string", "description": "The conditional option"},
+                "condition": {"type": "string", "description": "Condition that must be true"},
+                "requiredOptions": {"type": "array", "items": {"type": "string"}, "description": "Options that must be present"},
+                "forbiddenOptions": {"type": "array", "items": {"type": "string"}, "description": "Options that cannot be present"}
+              },
+              "required": ["option", "condition"]
+            }
+          },
+          "exitCodes": {
+            "type": "array",
+            "description": "Possible exit codes for this command",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {"type": "integer", "description": "Exit code number"},
+                "description": {"type": "string", "description": "What this exit code means"}
+              },
+              "required": ["code", "description"]
+            }
+          },
+          "permissions": {
+            "type": "object",
+            "description": "Required permissions for this command",
+            "properties": {
+              "fileSystem": {"type": "array", "items": {"type": "string"}, "description": "Required file system permissions"},
+              "network": {"type": "boolean", "description": "Whether network access is required"},
+              "elevation": {"type": "boolean", "description": "Whether elevated privileges are required"},
+              "environment": {"type": "array", "items": {"type": "string"}, "description": "Required environment variables"}
+            }
+          },
+          "deprecated": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether this command is deprecated"
+          },
+          "deprecationMessage": {
+            "type": "string",
+            "description": "Message to show when deprecated command is used"
+          },
+          "replacement": {
+            "type": "string",
+            "description": "Recommended replacement for deprecated command"
+          },
+          "hidden": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether this command is hidden from help output"
+          },
+          "experimental": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether this command is experimental"
+          }
+        },
+        "required": ["name", "description"]
+      }
+    },
+    "configuration": {
+      "type": "object",
+      "description": "Configuration file and environment variable specifications",
+      "properties": {
+        "configFiles": {
+          "type": "array",
+          "description": "Supported configuration file formats and locations",
+          "items": {
+            "type": "object",
+            "properties": {
+              "format": {"enum": ["json", "yaml", "toml", "ini", "env"], "description": "Configuration file format"},
+              "locations": {"type": "array", "items": {"type": "string"}, "description": "Possible file locations"},
+              "schema": {"type": "string", "description": "JSON schema for validating config file"},
+              "priority": {"type": "integer", "description": "Priority order (lower numbers = higher priority)"}
+            },
+            "required": ["format", "locations"]
+          }
+        },
+        "environmentPrefix": {
+          "type": "string",
+          "description": "Common prefix for environment variables (e.g., 'MYAPP_')"
+        },
+        "defaultConfigFile": {
+          "type": "string",
+          "description": "Default configuration file name"
+        }
+      }
+    },
+    "output": {
+      "type": "object",
+      "description": "Output format specifications",
+      "properties": {
+        "formats": {
+          "type": "array",
+          "description": "Supported output formats",
+          "items": {"enum": ["text", "json", "yaml", "csv", "table", "xml"]}
+        },
+        "defaultFormat": {
+          "type": "string",
+          "description": "Default output format"
+        },
+        "colorSupport": {
+          "type": "boolean",
+          "description": "Whether colored output is supported"
+        },
+        "progressIndicators": {
+          "type": "boolean",
+          "description": "Whether progress indicators are shown"
+        },
+        "verbosityLevels": {
+          "type": "array",
+          "description": "Available verbosity levels",
+          "items": {
+            "type": "object",
+            "properties": {
+              "level": {"type": "string", "description": "Verbosity level name"},
+              "description": {"type": "string", "description": "What this level includes"}
+            }
+          }
+        }
+      }
+    },
+    "input": {
+      "type": "object",
+      "description": "Input handling specifications",
+      "properties": {
+        "stdin": {
+          "type": "boolean",
+          "description": "Whether stdin input is supported"
+        },
+        "piping": {
+          "type": "boolean",
+          "description": "Whether command can be used in pipes"
+        },
+        "interactiveMode": {
+          "type": "boolean",
+          "description": "Whether interactive mode is available"
+        },
+        "autoCompletion": {
+          "type": "object",
+          "description": "Shell auto-completion support",
+          "properties": {
+            "shells": {"type": "array", "items": {"type": "string"}, "description": "Supported shells"},
+            "commands": {"type": "boolean", "description": "Command name completion"},
+            "options": {"type": "boolean", "description": "Option name completion"},
+            "arguments": {"type": "boolean", "description": "Argument value completion"},
+            "custom": {"type": "boolean", "description": "Custom completion logic"}
+          }
+        }
+      }
+    },
+    "plugins": {
+      "type": "object",
+      "description": "Plugin system specification",
+      "properties": {
+        "supported": {
+          "type": "boolean",
+          "description": "Whether plugins are supported"
+        },
+        "discoveryMethods": {
+          "type": "array",
+          "description": "How plugins are discovered",
+          "items": {"enum": ["filesystem", "registry", "config", "environment"]}
+        },
+        "pluginFormat": {
+          "type": "string",
+          "description": "Expected plugin format (executable, script, etc.)"
+        },
+        "pluginInterface": {
+          "type": "string",
+          "description": "Interface plugins must implement"
+        }
+      }
+    },
+    "help": {
+      "type": "object",
+      "description": "Help system configuration",
+      "properties": {
+        "helpOption": {
+          "type": "array",
+          "description": "Option names for showing help",
+          "items": {"type": "string"},
+          "default": ["-h", "--help"]
+        },
+        "manPage": {
+          "type": "boolean",
+          "description": "Whether man page is available"
+        },
+        "onlineHelp": {
+          "type": "string",
+          "description": "URL for online documentation"
+        },
+        "helpFormat": {
+          "enum": ["plain", "markdown", "rst", "man"],
+          "description": "Format of help text"
+        }
+      }
+    },
+    "installation": {
+      "type": "object",
+      "description": "Installation and distribution information",
+      "properties": {
+        "packageManagers": {
+          "type": "array",
+          "description": "Supported package managers",
+          "items": {"enum": ["npm", "pip", "gem", "cargo", "go", "homebrew", "apt", "yum", "chocolatey", "scoop"]}
+        },
+        "downloadUrl": {
+          "type": "string",
+          "description": "Direct download URL"
+        },
+        "systemRequirements": {
+          "type": "object",
+          "properties": {
+            "operatingSystems": {"type": "array", "items": {"type": "string"}},
+            "architectures": {"type": "array", "items": {"type": "string"}},
+            "dependencies": {"type": "array", "items": {"type": "string"}},
+            "minimumVersion": {"type": "string", "description": "Minimum OS version required"}
+          }
+        }
+      }
+    }
+  },
+  "required": ["name", "description", "commands"]
+}

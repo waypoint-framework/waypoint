@@ -1,0 +1,82 @@
+inputs:
+  app_idea:
+    fileType: md
+
+waypoints:
+  user_domain:
+    fileType: json
+  business_domain:
+    fileType: json
+  application_type:
+    fileType: json
+  user_experience:
+    fileType: json
+  user_interface:
+    fileType: json
+  user_interface_flows:
+    ensemble_source: user_interface
+  full_user_interface:
+    fileType: json
+    ensemble_source: user_interface
+  cli_spec:
+    fileType: json
+    ensemble_source: full_user_interface
+  open_api_spec:
+    fileType: json
+    ensemble_source: full_user_interface  
+  site_map:
+    fileType: json
+    ensemble_source: full_user_interface
+  test_data_set:
+    fileType: json
+  feature_definition:
+    fileType: gherkin
+  test_step_implementation: 
+    fileType: code
+  architecture: 
+    fileType: json
+  bootstrapping_script: 
+    fileType: bash
+  cdk_code: # contemplated CloudFormation, but having L3 constructs is more conducive to gen AI than Config > Code
+    fileType: code
+
+
+dependencies:
+  - to: business_domain
+    from:
+      - app_idea
+      - user_domain
+  - to: application_type
+    from:
+      - app_idea
+      - user_domain
+      - business_domain
+  - to: user_experience
+    from:
+      - app_idea
+      - user_domain
+      - business_domain
+      - application_type
+  - to: user_interface
+    from:
+      - app_idea
+      - user_domain
+      - business_domain
+      - application_type
+      - user_experience
+  - to: architecture
+    from:
+      - app_idea
+      - application_type
+      - business_domain
+      - full_user_interface
+  - to: test_data_set
+    from:
+      - user_experience
+      - user_interface_flows
+      - architecture
+      # Would include full user interface, but opting for "user journey testing ONLY"
+
+validations: 
+
+

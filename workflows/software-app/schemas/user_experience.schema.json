@@ -1,0 +1,237 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.waypoint.dev/user_experience.schema.json",
+  "title": "User Experience Schema",
+  "description": "Interface-agnostic user journeys described in business language, focusing on what users accomplish rather than how they interact with specific interfaces",
+  "type": "object",
+  "properties": {
+    "features": {
+      "type": "array",
+      "description": "High-level features that deliver value to users",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": "string"},
+          "description": {"type": "string", "description": "Business value this feature provides"},
+          "userGoalsAddressed": {"type": "array", "items": {"type": "string"}, "description": "User goals from user domain this feature addresses"},
+          "businessGoalsAddressed": {"type": "array", "items": {"type": "string"}, "description": "Business goals this feature supports"},
+          "priority": {"enum": ["critical", "high", "medium", "low"]},
+          "scenarios": {
+            "type": "array",
+            "description": "Different usage scenarios for this feature",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {"type": "string"},
+                "title": {"type": "string"},
+                "description": {"type": "string"},
+                "userPersona": {"type": "string", "description": "Primary persona for this scenario"},
+                "context": {
+                  "type": "object",
+                  "description": "Situational context in business terms",
+                  "properties": {
+                    "userSituation": {"type": "string", "description": "What situation the user is in"},
+                    "userGoal": {"type": "string", "description": "What the user wants to accomplish"},
+                    "userEmotionalState": {"type": "string", "description": "User's emotional state or urgency"},
+                    "businessContext": {"type": "string", "description": "Business context or constraints"},
+                    "prerequisites": {"type": "array", "items": {"type": "string"}, "description": "What must be true before this scenario"},
+                    "assumptions": {"type": "array", "items": {"type": "string"}, "description": "Assumptions about user knowledge or state"}
+                  },
+                  "required": ["userSituation", "userGoal"]
+                },
+                "journey": {
+                  "type": "object",
+                  "description": "Step-by-step user journey in business language",
+                  "properties": {
+                    "given": {
+                      "type": "array",
+                      "description": "Preconditions - the state before the scenario begins",
+                      "items": {"type": "string"}
+                    },
+                    "when": {
+                      "type": "array",
+                      "description": "Actions - what the user does (in business terms, not interface terms)",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "step": {"type": "string", "description": "Business action the user takes"},
+                          "userIntent": {"type": "string", "description": "Why the user takes this action"},
+                          "expectedOutcome": {"type": "string", "description": "What the user expects to happen"},
+                          "businessValue": {"type": "string", "description": "Business value created by this step"},
+                          "decisionPoints": {"type": "array", "items": {"type": "string"}, "description": "Decisions user must make"},
+                          "potentialFriction": {"type": "array", "items": {"type": "string"}, "description": "Potential points of friction"}
+                        },
+                        "required": ["step", "userIntent", "expectedOutcome"]
+                      }
+                    },
+                    "then": {
+                      "type": "array",
+                      "description": "Outcomes - what the user achieves or receives",
+                      "items": {"type": "string"}
+                    }
+                  },
+                  "required": ["given", "when", "then"]
+                },
+                "successCriteria": {
+                  "type": "array",
+                  "description": "How we know the user succeeded in business terms",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "criterion": {"type": "string"},
+                      "measurable": {"type": "boolean", "description": "Whether this can be measured"},
+                      "metric": {"type": "string", "description": "How to measure success if measurable"}
+                    },
+                    "required": ["criterion"]
+                  }
+                },
+                "alternativeFlows": {
+                  "type": "array",
+                  "description": "Alternative paths through the scenario",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {"type": "string"},
+                      "condition": {"type": "string", "description": "When this alternative flow occurs"},
+                      "description": {"type": "string"},
+                      "steps": {"type": "array", "items": {"type": "string"}},
+                      "outcome": {"type": "string", "description": "How this alternative ends"}
+                    },
+                    "required": ["id", "condition", "steps", "outcome"]
+                  }
+                },
+                "errorFlows": {
+                  "type": "array",
+                  "description": "What happens when things go wrong",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {"type": "string"},
+                      "errorCondition": {"type": "string", "description": "What error occurs"},
+                      "userImpact": {"type": "string", "description": "How this affects the user"},
+                      "recoverySteps": {"type": "array", "items": {"type": "string"}, "description": "How user can recover"},
+                      "preventionStrategy": {"type": "string", "description": "How to prevent this error"},
+                      "fallbackOption": {"type": "string", "description": "Alternative way to achieve the goal"}
+                    },
+                    "required": ["id", "errorCondition", "userImpact"]
+                  }
+                },
+                "userEmotions": {
+                  "type": "object",
+                  "description": "User emotional journey through the scenario",
+                  "properties": {
+                    "initial": {"type": "string", "description": "How user feels at the start"},
+                    "during": {"type": "array", "items": {"type": "string"}, "description": "Emotional states during the journey"},
+                    "completion": {"type": "string", "description": "How user feels upon completion"},
+                    "painPoints": {"type": "array", "items": {"type": "string"}, "description": "Emotional friction points"},
+                    "delightMoments": {"type": "array", "items": {"type": "string"}, "description": "Moments of positive emotion"}
+                  }
+                },
+                "businessRules": {
+                  "type": "array",
+                  "description": "Business rules that govern this scenario",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "rule": {"type": "string", "description": "The business rule"},
+                      "rationale": {"type": "string", "description": "Why this rule exists"},
+                      "exceptions": {"type": "array", "items": {"type": "string"}, "description": "When this rule doesn't apply"}
+                    },
+                    "required": ["rule", "rationale"]
+                  }
+                },
+                "dependencies": {
+                  "type": "array",
+                  "description": "Other scenarios or features this depends on",
+                  "items": {"type": "string"}
+                }
+              },
+              "required": ["id", "title", "userPersona", "context", "journey", "successCriteria"]
+            }
+          },
+          "acceptanceCriteria": {
+            "type": "array",
+            "description": "High-level acceptance criteria for the entire feature",
+            "items": {
+              "type": "object",
+              "properties": {
+                "criterion": {"type": "string"},
+                "scenarios": {"type": "array", "items": {"type": "string"}, "description": "Scenarios that validate this criterion"},
+                "priority": {"enum": ["must_have", "should_have", "could_have", "wont_have"]}
+              },
+              "required": ["criterion", "priority"]
+            }
+          }
+        },
+        "required": ["id", "name", "description", "scenarios"]
+      }
+    },
+    "userFlows": {
+      "type": "array",
+      "description": "Cross-feature user flows that span multiple features",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": "string"},
+          "description": {"type": "string", "description": "End-to-end user journey across features"},
+          "userPersona": {"type": "string"},
+          "businessObjective": {"type": "string", "description": "Business goal this flow accomplishes"},
+          "touchpoints": {
+            "type": "array",
+            "description": "Key touchpoints in the user's journey",
+            "items": {
+              "type": "object",
+              "properties": {
+                "step": {"type": "string"},
+                "feature": {"type": "string", "description": "Feature involved in this step"},
+                "scenario": {"type": "string", "description": "Specific scenario from that feature"},
+                "userNeed": {"type": "string", "description": "What user needs at this point"},
+                "businessValue": {"type": "string", "description": "Business value created"},
+                "handoffs": {"type": "array", "items": {"type": "string"}, "description": "Handoffs to other systems or people"}
+              },
+              "required": ["step", "feature", "userNeed"]
+            }
+          },
+          "successMetrics": {"type": "array", "items": {"type": "string"}},
+          "completionTime": {"type": "string", "description": "Expected time to complete this flow"},
+          "complexity": {"enum": ["simple", "moderate", "complex"], "description": "Complexity from user perspective"}
+        },
+        "required": ["id", "name", "description", "userPersona", "businessObjective", "touchpoints"]
+      }
+    },
+    "valueStreams": {
+      "type": "array",
+      "description": "Value streams that map user activities to business outcomes",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": "string"},
+          "description": {"type": "string"},
+          "businessOutcome": {"type": "string", "description": "Business outcome this value stream delivers"},
+          "userOutcome": {"type": "string", "description": "Value delivered to the user"},
+          "stages": {
+            "type": "array",
+            "description": "Stages in the value stream",
+            "items": {
+              "type": "object",
+              "properties": {
+                "stage": {"type": "string"},
+                "activities": {"type": "array", "items": {"type": "string"}},
+                "features": {"type": "array", "items": {"type": "string"}, "description": "Features that support this stage"},
+                "valueAdd": {"type": "string", "description": "Value added in this stage"},
+                "waste": {"type": "array", "items": {"type": "string"}, "description": "Potential waste or inefficiency"},
+                "cycle_time": {"type": "string", "description": "Time spent in this stage"}
+              },
+              "required": ["stage", "activities"]
+            }
+          }
+        },
+        "required": ["id", "name", "businessOutcome", "userOutcome", "stages"]
+      }
+    }
+  },
+  "required": ["features"]
+}

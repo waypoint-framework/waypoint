@@ -1,0 +1,131 @@
+Generate a JSON object for an advertising strategy using the provided company context. Utilize the input parameters to create a detailed `ad_campaign` object tailored for the company. It should encompass various elements necessary to outline a comprehensive advertising framework.
+
+The input parameters include:
+- `company_context`: Details about the company's identity, mission, and unique value propositions.
+- `marketing_budget`: Total funding available for marketing activities.
+- `brand_guidelines`: Rules that dictate visual style, tone, and messaging.
+- `channel_catalog`: Available advertising channels and relevant information.
+- `campaign_catalog`: Existing campaign strategies or historical data. 
+
+{{company_context}}
+
+{{brand_guidelines}}
+
+# Marketing Budget
+```json
+{{marketing_budget}}
+```
+
+# Channel Catalog
+```json
+{{channel_catalog}}
+```
+# Campaign Catalog
+```json
+{{campaign_catalog}}
+```
+# Output Format
+
+The output should be a JSON object structured as follows:
+
+```json
+{
+  "selected_channels": [
+      {
+        "channel_name": "PlaceholderChannel1",
+        "bidding_strategy": {
+          "ad_type1": "PlaceholderBiddingStrategy",
+          "ad_type2": "PlaceholderBiddingStrategy"
+        }
+      },
+      {
+        "channel_name": "PlaceholderChannel2",
+        "bidding_strategy": {
+          "ad_type1": "PlaceholderBiddingStrategy",
+          "ad_type2": "PlaceholderBiddingStrategy"
+        }
+      }
+    ],
+    "targeting_parameters": {
+      "age_range": "18-35",
+      "locations": ["Location1", "Location2"],
+      "interests": ["Interest1", "Interest2"]
+    },
+    "goal": {
+      "description": "Increase brand awareness"
+    },
+    "budget_breakdown": {
+      "total": "X amount",
+      "per_channel": {
+        "Channel1": "Y amount",
+        "Channel2": "Z amount"
+      }
+    },
+    "schedule": {
+      "start_date": "YYYY-MM-DD",
+      "end_date": "YYYY-MM-DD",
+      "frequency": "daily"
+    },
+    "analytics_tracking_plan": {
+      "utm_setup": "Configured",
+      "kpis": ["KPI1", "KPI2"]
+    }
+  }
+}
+```
+
+# Examples
+
+## Example 1: Input Parameters
+
+- company_context: {"name": "EcoWear", "mission": "Sustainable clothing for all", "unique_value": "100% recycled materials"}
+- marketing_budget: 50000
+- brand_guidelines: {"tone": "Friendly and Informative", "primary_color": "#00FF00"}
+- channel_catalog: ["Instagram", "Facebook", "Google Ads"]
+- campaign_catalog: [{"strategy": "Seasonal promotions", "past_performance": "high engagement"}]
+
+## Example 1: JSON Output
+
+```json
+{
+    "selected_channels": [
+      {
+        "channel_name": "Instagram",
+        "bidding_strategy": {
+          "image_ads": "CPC",
+          "story_ads": "CPM"
+        }
+      }
+    ],
+    "targeting_parameters": {
+      "age_range": "18-35",
+      "locations": ["United States", "Canada"],
+      "interests": ["Eco-friendly products", "Fashion"]
+    },
+    "goal": {
+        "description": "Increase brand awareness"
+    },
+    "budget_breakdown": {
+      "total": 30000,
+      "per_channel": {
+        "Instagram": 20000
+      }
+    },
+    "schedule": {
+      "start_date": "2023-11-01",
+      "end_date": "2023-12-31",
+      "frequency": "weekly"
+    },
+    "analytics_tracking_plan": {
+      "utm_setup": "Configured for Instagram",
+      "kpis": ["Website traffic", "Social media engagement"]
+    }
+}
+```
+
+# Notes
+
+- Ensure the ad campaign is tailored based on the `company_context`, making optimal use of `marketing_budget`.
+- Each `selected_channel` should reflect an informed choice aligning with `channel_catalog`.
+- Consideration of `brand_guidelines` is essential in defining tone and style within `ad_campaign`.
+- Campaign strategies should be built or enhanced based on `campaign_catalog` historical performance.

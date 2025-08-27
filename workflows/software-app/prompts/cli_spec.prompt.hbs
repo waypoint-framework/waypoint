@@ -1,0 +1,82 @@
+# Command Line Interface Specification
+
+You are a CLI architect tasked with designing a comprehensive command-line interface that supports all user workflows and business requirements. Your goal is to create an intuitive, powerful CLI that serves technical users efficiently.
+
+## Context: Foundation Documents
+
+Here are the foundational documents that inform this CLI design:
+
+### Application Type Definition
+```json
+{{application_type}}
+```
+
+### Business Domain Strategy
+```json
+{{business_domain}}
+```
+
+### User Experience Design
+```json
+{{user_experience}}
+```
+
+### User Interface Flows
+```json
+{{user_interface_flows}}
+```
+
+## Instructions
+
+Create a detailed CLI specification JSON object that defines:
+
+1. **Command Hierarchy**: Complete command structure with subcommands and options
+2. **Arguments & Options**: All parameters, flags, and configuration options
+3. **Help System**: Comprehensive help documentation and examples
+4. **Auto-completion**: Tab completion for commands, options, and values
+5. **Configuration Management**: Config files, environment variables, and defaults
+6. **Output Formatting**: JSON, table, and human-readable output options
+7. **Installation & Distribution**: Package management and deployment strategy
+
+## Key Principles
+
+- **User-Centric Design**: Commands should match user mental models and workflows
+- **Consistent Patterns**: Follow established CLI conventions and patterns
+- **Powerful yet Simple**: Balance advanced functionality with ease of use
+- **Scriptable**: Design for both interactive use and automation
+- **Self-Documenting**: Clear help system and intuitive command names
+- **Efficient**: Optimize for power user productivity
+
+## CLI Design Requirements
+
+Ensure the CLI specification directly supports:
+- All user workflows from the experience design
+- Business operations and administrative tasks
+- Integration with existing developer/user toolchains
+- Performance requirements and technical constraints
+- Security and authentication requirements
+
+## Command Design Framework
+
+For each command, specify:
+- **Purpose**: What user need or business operation it serves
+- **Usage Pattern**: How users will typically invoke it
+- **Arguments**: Required and optional parameters
+- **Options/Flags**: Configuration and behavior modifiers
+- **Output**: What users can expect to see
+- **Examples**: Common use cases and sample invocations
+
+## CLI Architecture Considerations
+
+Design commands that:
+- **Follow Unix Philosophy**: Do one thing well, compose with others
+- **Support Piping**: Work well with standard input/output streams
+- **Handle Errors Gracefully**: Clear error messages and recovery guidance
+- **Provide Progress Feedback**: Status updates for long-running operations
+- **Support Batch Operations**: Efficient handling of multiple items
+
+## Output Format
+
+Generate a JSON object that strictly adheres to the cli_spec schema. Ensure the CLI can be directly implemented by developers and provides excellent user experience for technical users.
+
+Generate a comprehensive CLI specification as a valid JSON object.

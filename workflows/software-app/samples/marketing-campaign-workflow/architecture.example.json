@@ -1,0 +1,528 @@
+{
+  "architectureOverview": {
+    "architecturalStyle": "microservices",
+    "designPrinciples": [
+      "API-first design for maximum flexibility",
+      "Event-driven architecture for real-time responsiveness",
+      "Cloud-native design for scalability and cost efficiency",
+      "Security by design with zero-trust principles",
+      "Observability-first for operational excellence",
+      "Domain-driven design for business alignment"
+    ],
+    "qualityAttributes": [
+      "performance",
+      "scalability", 
+      "reliability",
+      "security",
+      "maintainability",
+      "usability"
+    ],
+    "constraints": [
+      "Bootstrap budget requiring cost-efficient solutions",
+      "6-month MVP timeline",
+      "Small team of 8 engineers",
+      "GDPR and CCPA compliance requirements",
+      "OpenAI API rate limits and costs",
+      "Social media platform API restrictions"
+    ],
+    "assumptions": [
+      "User base will grow 10x within 18 months",
+      "AI generation costs will decrease over time",
+      "Team will scale to 20+ engineers by year 2",
+      "Multi-region deployment needed by month 12",
+      "Real-time features are critical for user engagement"
+    ]
+  },
+  "systemContext": {
+    "systemBoundary": "CampaignAI platform including web frontend, mobile-responsive interface, backend services, AI generation, and third-party integrations. Excludes social media platforms, email providers, and payment processors.",
+    "users": [
+      {
+        "type": "Small Business Owners",
+        "description": "Primary users creating marketing campaigns without expertise",
+        "interactionMethods": ["web_browser", "mobile_browser"]
+      },
+      {
+        "type": "Marketing Managers", 
+        "description": "Professional marketers managing multiple campaigns",
+        "interactionMethods": ["web_browser", "api_integrations"]
+      },
+      {
+        "type": "Agency Directors",
+        "description": "Managing campaigns for multiple clients",
+        "interactionMethods": ["web_browser", "bulk_operations", "reporting_apis"]
+      },
+      {
+        "type": "System Administrators",
+        "description": "Platform operations and maintenance",
+        "interactionMethods": ["admin_dashboard", "cli_tools", "monitoring_systems"]
+      }
+    ],
+    "externalSystems": [
+      {
+        "name": "OpenAI API",
+        "type": "third_party_service",
+        "purpose": "AI content generation and brand voice analysis",
+        "interface": "REST API with rate limiting",
+        "reliability": "high",
+        "dataFlow": "bidirectional"
+      },
+      {
+        "name": "Facebook Marketing API",
+        "type": "third_party_service", 
+        "purpose": "Campaign publishing and performance data",
+        "interface": "Graph API with OAuth 2.0",
+        "reliability": "medium",
+        "dataFlow": "bidirectional"
+      },
+      {
+        "name": "Stripe Payment API",
+        "type": "third_party_service",
+        "purpose": "Subscription billing and payment processing",
+        "interface": "REST API with webhooks",
+        "reliability": "high",
+        "dataFlow": "bidirectional"
+      },
+      {
+        "name": "SendGrid Email API",
+        "type": "third_party_service",
+        "purpose": "Transactional emails and campaign delivery",
+        "interface": "REST API",
+        "reliability": "high", 
+        "dataFlow": "outbound"
+      },
+      {
+        "name": "AWS S3",
+        "type": "file_system",
+        "purpose": "Media storage for campaign assets",
+        "interface": "S3 API",
+        "reliability": "high",
+        "dataFlow": "bidirectional"
+      }
+    ]
+  },
+  "functionalArchitecture": {
+    "applicationLayer": {
+      "frontend": {
+        "framework": "React 18 with Next.js 14",
+        "language": "TypeScript",
+        "stateManagement": "Zustand with React Query for server state",
+        "styling": "Tailwind CSS with Headless UI components",
+        "buildTool": "Vite with TypeScript and ESLint",
+        "testingFramework": "Vitest + React Testing Library + Playwright",
+        "components": [
+          {
+            "name": "Campaign Creation Wizard",
+            "purpose": "Multi-step campaign setup with real-time validation",
+            "technology": "React Hook Form with Zod validation",
+            "dependencies": ["AI Generation Service", "Brand Voice API"]
+          },
+          {
+            "name": "Real-time Analytics Dashboard",
+            "purpose": "Live campaign performance monitoring",
+            "technology": "Chart.js with WebSocket connections",
+            "dependencies": ["Analytics Service", "WebSocket Gateway"]
+          },
+          {
+            "name": "Brand Voice Configuration",
+            "purpose": "AI training interface for brand consistency",
+            "technology": "React Dropzone with PDF parsing",
+            "dependencies": ["Document Processing Service", "Brand Voice AI"]
+          }
+        ]
+      },
+      "backend": {
+        "framework": "Node.js with Fastify",
+        "language": "TypeScript",
+        "runtime": "Node.js 20 LTS",
+        "apiStyle": "REST",
+        "authentication": "JWT with refresh tokens",
+        "authorization": "RBAC with permission-based access control",
+        "services": [
+          {
+            "name": "Campaign Service",
+            "purpose": "Campaign CRUD operations and lifecycle management",
+            "technology": "Fastify with Prisma ORM",
+            "endpoints": ["/campaigns", "/campaigns/:id", "/campaigns/:id/launch"],
+            "dependencies": ["PostgreSQL", "Redis", "Event Bus"]
+          },
+          {
+            "name": "AI Generation Service",
+            "purpose": "Content generation using OpenAI with brand voice",
+            "technology": "Python FastAPI with LangChain",
+            "endpoints": ["/generate/content", "/analyze/brand-voice"],
+            "dependencies": ["OpenAI API", "Vector Database", "Brand Voice Store"]
+          },
+          {
+            "name": "Analytics Service",
+            "purpose": "Campaign performance aggregation and reporting",
+            "technology": "Node.js with ClickHouse integration",
+            "endpoints": ["/analytics/:campaignId", "/analytics/aggregate"],
+            "dependencies": ["ClickHouse", "Social Media APIs", "Event Streaming"]
+          },
+          {
+            "name": "Integration Service", 
+            "purpose": "Third-party platform connections and data sync",
+            "technology": "Node.js with Bull Queue for job processing",
+            "endpoints": ["/integrations", "/integrations/:platform/sync"],
+            "dependencies": ["Redis Queue", "External APIs", "OAuth Store"]
+          },
+          {
+            "name": "Notification Service",
+            "purpose": "Real-time notifications and email delivery",
+            "technology": "Node.js with Socket.io and SendGrid",
+            "endpoints": ["/notifications", "/notifications/subscribe"],
+            "dependencies": ["WebSocket Gateway", "Email Service", "Push Notification"]
+          }
+        ]
+      }
+    },
+    "dataLayer": {
+      "primaryDatabase": {
+        "type": "relational",
+        "technology": "PostgreSQL 15",
+        "version": "15.4",
+        "purpose": "Transactional data including users, campaigns, and configurations",
+        "schema": "Prisma migrations with strict typing"
+      },
+      "additionalDatabases": [
+        {
+          "type": "key_value",
+          "technology": "Redis 7",
+          "version": "7.2",
+          "purpose": "Session storage, caching, and job queues",
+          "schema": "Schema-less with structured keys"
+        },
+        {
+          "type": "document",
+          "technology": "MongoDB Atlas",
+          "version": "7.0",
+          "purpose": "Campaign content, analytics events, and AI training data",
+          "schema": "Mongoose ODM with validation schemas"
+        },
+        {
+          "type": "time_series",
+          "technology": "ClickHouse",
+          "version": "23.8",
+          "purpose": "Analytics data and performance metrics",
+          "schema": "Columnar tables optimized for aggregations"
+        },
+        {
+          "type": "search",
+          "technology": "Pinecone Vector Database",
+          "version": "latest",
+          "purpose": "Brand voice embeddings and content similarity search",
+          "schema": "Vector embeddings with metadata"
+        }
+      ],
+      "caching": {
+        "technology": "Redis with Redis Insight",
+        "strategy": "cache_aside",
+        "layers": ["Application cache", "Database query cache", "CDN edge cache"],
+        "ttl": "User sessions: 8h, API responses: 5m, Static assets: 24h"
+      },
+      "dataProcessing": {
+        "etl": "Apache Airflow for data pipeline orchestration",
+        "streaming": "Apache Kafka for real-time event processing",
+        "batchProcessing": "Node.js cron jobs with Bull Queue",
+        "dataWarehouse": "ClickHouse with materialized views"
+      }
+    },
+    "integrationLayer": {
+      "messagingPattern": "hybrid",
+      "messageQueue": "Redis Bull Queue for job processing",
+      "eventStreaming": "Apache Kafka for real-time events",
+      "apiGateway": "AWS API Gateway with custom authorizers",
+      "serviceDiscovery": "Kubernetes service discovery with Consul",
+      "circuitBreaker": "Hystrix pattern implementation in Node.js"
+    }
+  },
+  "nonFunctionalArchitecture": {
+    "performance": {
+      "loadBalancing": {
+        "technology": "AWS Application Load Balancer",
+        "algorithm": "least_connections",
+        "healthChecks": "HTTP health endpoints with 30s intervals"
+      },
+      "caching": {
+        "cdn": "CloudFlare with global edge locations",
+        "applicationCache": "Redis with intelligent cache warming",
+        "databaseCache": "PostgreSQL query plan cache + connection pooling",
+        "strategy": "Multi-layer caching with cache invalidation events"
+      },
+      "optimization": {
+        "frontend": [
+          "Code splitting with dynamic imports",
+          "Image optimization with Next.js Image component",
+          "Bundle analysis and tree shaking",
+          "Service worker for offline capability",
+          "Lazy loading for non-critical components"
+        ],
+        "backend": [
+          "Database connection pooling with PgBouncer",
+          "Query optimization with database indexing",
+          "Response compression with gzip/brotli", 
+          "Async processing for heavy operations",
+          "API response caching with intelligent invalidation"
+        ],
+        "database": [
+          "Index optimization based on query patterns",
+          "Read replicas for analytics queries",
+          "Partitioning for time-series data",
+          "Materialized views for complex aggregations",
+          "Query plan analysis and optimization"
+        ]
+      }
+    },
+    "scalability": {
+      "horizontalScaling": {
+        "autoScaling": "Kubernetes HPA based on CPU/memory and custom metrics",
+        "containerOrchestration": "AWS EKS with managed node groups",
+        "loadDistribution": "Round-robin with session affinity for stateful services"
+      },
+      "verticalScaling": {
+        "resourceManagement": "Kubernetes resource requests and limits",
+        "limits": "CPU: 500m-2000m, Memory: 512Mi-4Gi per service"
+      },
+      "dataScaling": {
+        "partitioning": "PostgreSQL table partitioning by date for analytics",
+        "sharding": "MongoDB sharding by user_id for campaign data",
+        "replication": "PostgreSQL read replicas with automatic failover"
+      }
+    },
+    "reliability": {
+      "faultTolerance": {
+        "redundancy": "Multi-AZ deployment with active-passive setup",
+        "failover": "Automatic failover with 30-second RTO",
+        "recovery": "Automated backup restoration with 4-hour RPO"
+      },
+      "monitoring": {
+        "healthChecks": "Kubernetes liveness/readiness probes with custom endpoints",
+        "metrics": "Prometheus with Grafana dashboards and custom business metrics",
+        "logging": "Structured logging with Winston + ELK Stack (Elasticsearch, Logstash, Kibana)",
+        "tracing": "Jaeger distributed tracing with OpenTelemetry",
+        "alerting": "PagerDuty integration with Prometheus AlertManager"
+      },
+      "backup": {
+        "strategy": "Automated daily backups with point-in-time recovery",
+        "frequency": "Full backup daily, incremental every 6 hours",
+        "retention": "Daily: 30 days, Weekly: 12 weeks, Monthly: 12 months",
+        "testing": "Monthly disaster recovery drills with RTO/RPO validation"
+      }
+    },
+    "security": {
+      "authentication": {
+        "mechanism": "JWT with RS256 signing and refresh token rotation",
+        "tokenManagement": "Short-lived access tokens (15min) with refresh tokens",
+        "sessionManagement": "Stateless JWT with Redis blacklist for revoked tokens",
+        "multiFactorAuth": "TOTP with backup codes using Speakeasy library"
+      },
+      "authorization": {
+        "model": "RBAC",
+        "implementation": "Casbin policy engine with PostgreSQL adapter",
+        "policyEngine": "Custom policy engine with dynamic permissions"
+      },
+      "dataProtection": {
+        "encryptionAtRest": "AES-256 encryption for sensitive data, AWS KMS for keys",
+        "encryptionInTransit": "TLS 1.3 for all communications",
+        "keyManagement": "AWS KMS with automatic key rotation",
+        "dataClassification": "PII encryption, payment data tokenization"
+      },
+      "networkSecurity": {
+        "firewall": "AWS Security Groups with principle of least privilege",
+        "vpn": "Private subnets with NAT Gateway for outbound traffic",
+        "ddosProtection": "CloudFlare DDoS protection with rate limiting",
+        "waf": "CloudFlare WAF with custom rules for API protection"
+      },
+      "compliance": [
+        "SOC 2 Type II",
+        "GDPR (EU users)",
+        "CCPA (California users)",
+        "PCI DSS Level 1 (via Stripe)",
+        "ISO 27001 security controls"
+      ]
+    }
+  },
+  "infrastructure": {
+    "cloudProvider": {
+      "primary": "AWS",
+      "regions": ["us-east-1 (primary)", "eu-west-1 (GDPR compliance)"],
+      "services": [
+        {
+          "name": "Amazon EKS",
+          "purpose": "Kubernetes cluster management",
+          "configuration": "Managed control plane with self-managed workers"
+        },
+        {
+          "name": "Amazon RDS",
+          "purpose": "Managed PostgreSQL with Multi-AZ",
+          "configuration": "db.r6g.large with automated backups"
+        },
+        {
+          "name": "Amazon ElastiCache",
+          "purpose": "Managed Redis cluster",
+          "configuration": "cache.r6g.large with cluster mode enabled"
+        },
+        {
+          "name": "AWS S3",
+          "purpose": "Object storage for media and backups",
+          "configuration": "Standard IA with lifecycle policies"
+        },
+        {
+          "name": "AWS CloudWatch",
+          "purpose": "Monitoring and logging",
+          "configuration": "Custom metrics with automated scaling triggers"
+        },
+        {
+          "name": "AWS Lambda",
+          "purpose": "Serverless functions for event processing",
+          "configuration": "Node.js 20 runtime with reserved concurrency"
+        }
+      ]
+    },
+    "containerization": {
+      "technology": "Docker",
+      "orchestration": "Kubernetes",
+      "registry": "Amazon ECR with vulnerability scanning",
+      "networking": "Kubernetes CNI with Calico for network policies"
+    },
+    "cicd": {
+      "versionControl": "GitHub with branch protection rules",
+      "ciTool": "GitHub Actions with self-hosted runners",
+      "cdTool": "ArgoCD for GitOps deployment",
+      "pipeline": "Multi-stage pipeline: test → build → security scan → deploy",
+      "testing": "Unit tests, integration tests, security scans, performance tests",
+      "deployment": "Blue-green deployment with automated rollback"
+    },
+    "networking": {
+      "topology": "3-tier architecture: public, private, data subnets",
+      "dns": "Route 53 with health checks and failover routing",
+      "cdn": "CloudFlare with global edge locations",
+      "apiGateway": "AWS API Gateway with custom domains and rate limiting"
+    }
+  },
+  "developmentArchitecture": {
+    "developmentMethodology": "agile",
+    "codeOrganization": {
+      "structure": "monorepo",
+      "modularity": "Domain-driven design with clear service boundaries",
+      "dependencyManagement": "npm workspaces with exact version pinning",
+      "codeStandards": "ESLint + Prettier with Airbnb config, SonarQube quality gates"
+    },
+    "testing": {
+      "strategy": "Test pyramid with 70% unit, 20% integration, 10% e2e",
+      "unitTesting": "Vitest with 90% coverage requirement",
+      "integrationTesting": "Supertest for API testing with test containers",
+      "endToEndTesting": "Playwright for critical user journeys",
+      "performanceTesting": "Artillery.js for load testing",
+      "securityTesting": "OWASP ZAP integration in CI/CD",
+      "coverage": "90% unit test coverage, 80% integration coverage"
+    },
+    "qualityAssurance": {
+      "codeReview": "Required PR reviews with automated checks",
+      "staticAnalysis": "SonarQube with quality gates",
+      "linting": "ESLint with custom rules for security and performance",
+      "formatting": "Prettier with consistent configuration",
+      "documentation": "TypeDoc for API docs, ADRs for architecture decisions"
+    }
+  },
+  "technicalDebt": {
+    "knownDebt": [
+      {
+        "area": "Database Query Optimization",
+        "description": "Some analytics queries not fully optimized, causing slow dashboard loads",
+        "impact": "medium",
+        "effort": "medium", 
+        "timeline": "Q2 2024"
+      },
+      {
+        "area": "Frontend Bundle Size",
+        "description": "Initial bundle size larger than optimal due to early development speed",
+        "impact": "low",
+        "effort": "low",
+        "timeline": "Q1 2024"
+      },
+      {
+        "area": "Error Handling Consistency",
+        "description": "Inconsistent error handling patterns across microservices",
+        "impact": "medium",
+        "effort": "medium",
+        "timeline": "Q2 2024"
+      }
+    ],
+    "migrations": [
+      {
+        "from": "Monolithic analytics processing",
+        "to": "Event-driven streaming analytics",
+        "reason": "Real-time performance requirements and scalability",
+        "strategy": "Gradual migration with dual-write pattern",
+        "timeline": "Q3 2024",
+        "risks": ["Data consistency during migration", "Increased system complexity"]
+      },
+      {
+        "from": "Single-region deployment",
+        "to": "Multi-region with GDPR compliance",
+        "reason": "European market expansion and regulatory requirements",
+        "strategy": "Blue-green deployment to EU region",
+        "timeline": "Q4 2024",
+        "risks": ["Data sovereignty compliance", "Cross-region latency", "Operational complexity"]
+      }
+    ]
+  },
+  "architecturalDecisions": [
+    {
+      "id": "ADR-001",
+      "title": "Microservices Architecture over Monolith",
+      "status": "accepted",
+      "context": "Need to scale different parts of system independently, enable team autonomy, and support rapid feature development",
+      "decision": "Adopt microservices architecture with domain-driven design boundaries",
+      "consequences": "Increased operational complexity but better scalability, team autonomy, and technology diversity",
+      "alternatives": ["Modular monolith", "Service-oriented architecture"],
+      "date": "2024-01-15",
+      "author": "Architecture Team"
+    },
+    {
+      "id": "ADR-002", 
+      "title": "Event-Driven Architecture for Real-time Features",
+      "status": "accepted",
+      "context": "Users expect real-time updates for campaign performance and AI generation progress",
+      "decision": "Implement event-driven architecture using Kafka for service communication",
+      "consequences": "Better real-time capabilities and loose coupling but increased system complexity",
+      "alternatives": ["Request-response only", "WebSocket connections", "Polling mechanisms"],
+      "date": "2024-01-20",
+      "author": "Backend Lead"
+    },
+    {
+      "id": "ADR-003",
+      "title": "TypeScript for Full-Stack Development",
+      "status": "accepted", 
+      "context": "Need type safety across frontend and backend, better developer experience, and reduced runtime errors",
+      "decision": "Use TypeScript for all JavaScript/Node.js development",
+      "consequences": "Better code quality and developer experience but increased build complexity",
+      "alternatives": ["JavaScript only", "Flow for type checking"],
+      "date": "2024-01-10",
+      "author": "Development Team"
+    },
+    {
+      "id": "ADR-004",
+      "title": "Multi-Database Strategy for Different Data Patterns",
+      "status": "accepted",
+      "context": "Different data access patterns: transactional (CRUD), time-series (analytics), vector (AI), caching",
+      "decision": "Use PostgreSQL for transactional data, ClickHouse for analytics, Pinecone for vectors, Redis for caching",
+      "consequences": "Optimal performance for each use case but increased operational overhead",
+      "alternatives": ["Single PostgreSQL database", "MongoDB as primary database"],
+      "date": "2024-02-01",
+      "author": "Data Architecture Team"
+    },
+    {
+      "id": "ADR-005",
+      "title": "Kubernetes for Container Orchestration",
+      "status": "accepted",
+      "context": "Need auto-scaling, service discovery, rolling deployments, and multi-region capability",
+      "decision": "Use Amazon EKS for managed Kubernetes with ArgoCD for GitOps deployment",
+      "consequences": "Excellent scalability and deployment capabilities but learning curve and operational complexity",
+      "alternatives": ["AWS ECS", "Docker Swarm", "AWS Lambda only"],
+      "date": "2024-02-10",
+      "author": "Platform Team"
+    }
+  ]
+}

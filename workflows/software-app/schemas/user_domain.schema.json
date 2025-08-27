@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.waypoint.dev/user_domain.schema.json",
+  "title": "User Domain Schema",
+  "description": "Captures comprehensive user research data needed to understand users before building software solutions",
+  "type": "object",
+  "properties": {
+    "userPersonas": {
+      "type": "array",
+      "description": "Primary user personas representing distinct user groups",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": "string"},
+          "description": {"type": "string"},
+          "demographics": {
+            "type": "object",
+            "properties": {
+              "ageRange": {"type": "string"},
+              "profession": {"type": "string"},
+              "technicalProficiency": {"enum": ["beginner", "intermediate", "advanced", "expert"]},
+              "primaryDevices": {"type": "array", "items": {"type": "string"}},
+              "accessibilityNeeds": {"type": "array", "items": {"type": "string"}}
+            }
+          },
+          "context": {
+            "type": "object",
+            "properties": {
+              "environment": {"type": "string", "description": "Where they typically use the software"},
+              "timeConstraints": {"type": "string", "description": "How much time they typically have"},
+              "frequency": {"enum": ["daily", "weekly", "monthly", "occasionally", "rarely"]},
+              "typicalWorkflow": {"type": "string", "description": "Their current process without the software"}
+            }
+          }
+        },
+        "required": ["id", "name", "description"]
+      }
+    },
+    "painPoints": {
+      "type": "array",
+      "description": "Specific problems users face that the software should solve",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "title": {"type": "string"},
+          "description": {"type": "string"},
+          "severity": {"enum": ["critical", "high", "medium", "low"]},
+          "frequency": {"enum": ["always", "often", "sometimes", "rarely"]},
+          "currentWorkarounds": {"type": "array", "items": {"type": "string"}},
+          "affectedPersonas": {"type": "array", "items": {"type": "string"}},
+          "emotionalImpact": {"type": "string", "description": "How this pain point makes users feel"},
+          "businessImpact": {"type": "string", "description": "How this affects their work or goals"}
+        },
+        "required": ["id", "title", "description", "severity", "affectedPersonas"]
+      }
+    },
+    "userGoals": {
+      "type": "array",
+      "description": "What users are ultimately trying to achieve",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "title": {"type": "string"},
+          "description": {"type": "string"},
+          "priority": {"enum": ["critical", "high", "medium", "low"]},
+          "category": {"enum": ["functional", "emotional", "social", "aspirational"]},
+          "successCriteria": {"type": "array", "items": {"type": "string"}},
+          "currentSolutionGaps": {"type": "array", "items": {"type": "string"}},
+          "affectedPersonas": {"type": "array", "items": {"type": "string"}},
+          "timeframe": {"enum": ["immediate", "short-term", "long-term"]},
+          "dependencies": {"type": "array", "items": {"type": "string"}}
+        },
+        "required": ["id", "title", "description", "priority", "category", "affectedPersonas"]
+      }
+    },
+    "userObjectives": {
+      "type": "array",
+      "description": "Specific, measurable outcomes users want to achieve",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "title": {"type": "string"},
+          "description": {"type": "string"},
+          "relatedGoals": {"type": "array", "items": {"type": "string"}},
+          "measurableOutcomes": {"type": "array", "items": {"type": "string"}},
+          "currentBaseline": {"type": "string", "description": "Their current performance without the software"},
+          "targetImprovement": {"type": "string", "description": "Expected improvement with the software"},
+          "blockers": {"type": "array", "items": {"type": "string"}},
+          "affectedPersonas": {"type": "array", "items": {"type": "string"}}
+        },
+        "required": ["id", "title", "description", "affectedPersonas"]
+      }
+    },
+    "userJobs": {
+      "type": "array",
+      "description": "Jobs-to-be-done framework: functional, emotional, and social jobs users hire the software to do",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "jobStatement": {"type": "string", "description": "When I [situation], I want to [motivation], so I can [expected outcome]"},
+          "jobType": {"enum": ["functional", "emotional", "social"]},
+          "importance": {"enum": ["critical", "high", "medium", "low"]},
+          "satisfaction": {"enum": ["very_satisfied", "satisfied", "neutral", "dissatisfied", "very_dissatisfied"]},
+          "opportunityScore": {"type": "number", "minimum": 0, "maximum": 20},
+          "currentSolutions": {"type": "array", "items": {"type": "string"}},
+          "desiredOutcome": {"type": "string"},
+          "affectedPersonas": {"type": "array", "items": {"type": "string"}}
+        },
+        "required": ["id", "jobStatement", "jobType", "importance", "affectedPersonas"]
+      }
+    },
+    "userBehaviors": {
+      "type": "array",
+      "description": "Observable patterns in how users currently work and make decisions",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "behaviorPattern": {"type": "string"},
+          "triggers": {"type": "array", "items": {"type": "string"}},
+          "motivations": {"type": "array", "items": {"type": "string"}},
+          "barriers": {"type": "array", "items": {"type": "string"}},
+          "frequency": {"enum": ["always", "often", "sometimes", "rarely"]},
+          "affectedPersonas": {"type": "array", "items": {"type": "string"}},
+          "implications": {"type": "string", "description": "What this means for software design"}
+        },
+        "required": ["id", "behaviorPattern", "affectedPersonas"]
+      }
+    },
+    "mentalModels": {
+      "type": "array",
+      "description": "How users conceptually understand their domain and expect systems to work",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "concept": {"type": "string"},
+          "userUnderstanding": {"type": "string", "description": "How users think about this concept"},
+          "commonMisconceptions": {"type": "array", "items": {"type": "string"}},
+          "analogies": {"type": "array", "items": {"type": "string"}},
+          "vocabulary": {"type": "array", "items": {"type": "string"}, "description": "Terms users use"},
+          "affectedPersonas": {"type": "array", "items": {"type": "string"}},
+          "designImplications": {"type": "string"}
+        },
+        "required": ["id", "concept", "userUnderstanding", "affectedPersonas"]
+      }
+    },
+    "researchMethods": {
+      "type": "object",
+      "description": "Research methods used to gather this user data",
+      "properties": {
+        "interviews": {"type": "number", "description": "Number of user interviews conducted"},
+        "surveys": {"type": "number", "description": "Number of survey responses"},
+        "observations": {"type": "number", "description": "Hours of user observation"},
+        "usabilityTests": {"type": "number", "description": "Number of usability tests"},
+        "analytics": {"type": "boolean", "description": "Whether analytics data was used"},
+        "competitorAnalysis": {"type": "boolean", "description": "Whether competitor analysis was conducted"},
+        "dateRange": {"type": "string", "description": "When this research was conducted"},
+        "confidence": {"enum": ["high", "medium", "low"], "description": "Confidence level in this data"}
+      }
+    }
+  },
+  "required": ["userPersonas", "painPoints", "userGoals"]
+}

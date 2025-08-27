@@ -1,0 +1,114 @@
+{
+  "inputs": {
+    "brand_guidelines": {
+      "fileType": "md"
+    },
+    "company_context": {
+      "fileType": "md"
+    },
+    "offering_details": {
+      "fileType": "md"
+    },
+    "marketing_budget": {
+      "fileType": "json"
+    }
+  },
+  "artifacts": {
+    "ad_creative": {
+      "fileType": "json"
+    },
+    "advertising_strategy": {
+      "fileType":  "json"
+    },
+    "selected_channels": {
+      "fileType": "json",
+      "ensemble_source": "advertising_strategy"
+    },
+    "targeting_parameters": {
+      "fileType": "json",
+      "ensemble_result": "advertising_strategy"
+    },
+    "campaign_goal": {
+      "fileType": "json",
+      "ensemble_result": "advertising_strategy"
+    },
+    "budget_breakdown": {
+      "fileType": "json",
+      "ensemble_result": "advertising_strategy"
+    },
+    "schedule": {
+      "fileType": "json",
+      "ensemble_result": "advertising_strategy"
+    },
+    "analytics_tracking_plan": {
+      "fileType": "json",
+      "ensemble_result": "advertising_strategy"
+    }
+  },
+  "dependencies": [
+    {
+      "from": "company_context.md",
+      "to": "advertising_strategy.json"
+    },
+    {
+      "from": "offering_details.md",
+      "to": "advertising_strategy.json"
+    },
+    {
+      "from": "marketing_budget.json",
+      "to": "advertising_strategy.json"
+    },
+    {
+      "from": "brand_guidelines.md",
+      "to": "advertising_strategy.json"
+    },
+    {
+      "from": "channel_catalog.json",
+      "to": "advertising_strategy.json"
+    },
+    {
+      "from": "campaign_catalog.json",
+      "to": "advertising_strategy.json"
+    },
+    {
+      "from": "advertising_strategy.json",
+      "to": "selected_channels.json"
+    },
+    {
+      "from": "advertising_strategy.json",
+      "to": "targeting_parameters.json"
+    },
+    {
+      "from": "advertising_strategy.json",
+      "to": "goal.json"
+    },
+    {
+      "from": "advertising_strategy.json",
+      "to": "budget_breakdown.json"
+    },
+    {
+      "from": "advertising_strategy.json",
+      "to": "schedule.json"
+    },
+    {
+      "from": "advertising_strategy.json",
+      "to": "analytics_tracking_plan.json"
+    },
+    {
+      "from": "offering_details.json",
+      "to": "ad_creative.json"
+    },
+    {
+      "from": "goal.json",
+      "to": "ad_creative.json"
+    },
+    {
+      "from": "schedule.json",
+      "to": "ad_creative.json"
+    },
+    {
+      "from": "selected_channels.json",
+      "to": "ad_creative.json"
+    }
+  ]
+}

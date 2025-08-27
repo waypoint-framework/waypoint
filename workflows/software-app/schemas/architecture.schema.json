@@ -1,0 +1,473 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.waypoint.dev/architecture.schema.json",
+  "title": "Software Architecture Schema",
+  "description": "Comprehensive schema for documenting software architecture decisions including tech stack, patterns, and infrastructure for both functional and non-functional requirements",
+  "type": "object",
+  "properties": {
+    "architectureOverview": {
+      "type": "object",
+      "description": "High-level architectural approach and philosophy",
+      "properties": {
+        "architecturalStyle": {
+          "enum": ["monolithic", "microservices", "serverless", "event_driven", "layered", "hexagonal", "clean_architecture", "service_oriented", "component_based"],
+          "description": "Primary architectural pattern"
+        },
+        "designPrinciples": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Core design principles guiding architectural decisions"
+        },
+        "qualityAttributes": {
+          "type": "array",
+          "items": {"enum": ["performance", "scalability", "reliability", "security", "maintainability", "usability", "testability", "availability", "interoperability"]},
+          "description": "Priority quality attributes driving architecture"
+        },
+        "constraints": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Technical, business, or regulatory constraints affecting architecture"
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Key assumptions made during architectural design"
+        }
+      },
+      "required": ["architecturalStyle", "designPrinciples", "qualityAttributes"]
+    },
+    "systemContext": {
+      "type": "object",
+      "description": "System boundaries and external dependencies",
+      "properties": {
+        "systemBoundary": {"type": "string", "description": "What is inside vs outside the system"},
+        "users": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {"type": "string"},
+              "description": {"type": "string"},
+              "interactionMethods": {"type": "array", "items": {"type": "string"}}
+            }
+          }
+        },
+        "externalSystems": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "type": {"enum": ["api", "database", "message_queue", "file_system", "third_party_service", "legacy_system"]},
+              "purpose": {"type": "string"},
+              "interface": {"type": "string"},
+              "reliability": {"enum": ["high", "medium", "low"]},
+              "dataFlow": {"enum": ["inbound", "outbound", "bidirectional"]}
+            }
+          }
+        }
+      }
+    },
+    "functionalArchitecture": {
+      "type": "object",
+      "description": "Architecture supporting functional requirements",
+      "properties": {
+        "applicationLayer": {
+          "type": "object",
+          "properties": {
+            "frontend": {
+              "type": "object",
+              "properties": {
+                "framework": {"type": "string", "description": "Primary frontend framework"},
+                "language": {"type": "string", "description": "Programming language"},
+                "stateManagement": {"type": "string", "description": "State management approach"},
+                "styling": {"type": "string", "description": "CSS framework or approach"},
+                "buildTool": {"type": "string", "description": "Build and bundling tool"},
+                "testingFramework": {"type": "string", "description": "Frontend testing tools"},
+                "components": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {"type": "string"},
+                      "purpose": {"type": "string"},
+                      "technology": {"type": "string"},
+                      "dependencies": {"type": "array", "items": {"type": "string"}}
+                    }
+                  }
+                }
+              }
+            },
+            "backend": {
+              "type": "object",
+              "properties": {
+                "framework": {"type": "string", "description": "Backend framework"},
+                "language": {"type": "string", "description": "Programming language"},
+                "runtime": {"type": "string", "description": "Runtime environment"},
+                "apiStyle": {"enum": ["REST", "GraphQL", "gRPC", "WebSocket", "hybrid"], "description": "API architectural style"},
+                "authentication": {"type": "string", "description": "Authentication mechanism"},
+                "authorization": {"type": "string", "description": "Authorization approach"},
+                "services": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {"type": "string"},
+                      "purpose": {"type": "string"},
+                      "technology": {"type": "string"},
+                      "endpoints": {"type": "array", "items": {"type": "string"}},
+                      "dependencies": {"type": "array", "items": {"type": "string"}}
+                    }
+                  }
+                }
+              }
+            },
+            "mobile": {
+              "type": "object",
+              "properties": {
+                "platform": {"enum": ["native_ios", "native_android", "react_native", "flutter", "xamarin", "ionic", "pwa"]},
+                "language": {"type": "string"},
+                "framework": {"type": "string"},
+                "stateManagement": {"type": "string"},
+                "nativeModules": {"type": "array", "items": {"type": "string"}}
+              }
+            }
+          }
+        },
+        "dataLayer": {
+          "type": "object",
+          "properties": {
+            "primaryDatabase": {
+              "type": "object",
+              "properties": {
+                "type": {"enum": ["relational", "document", "key_value", "graph", "time_series", "search"]},
+                "technology": {"type": "string"},
+                "version": {"type": "string"},
+                "purpose": {"type": "string"},
+                "schema": {"type": "string", "description": "Schema management approach"}
+              }
+            },
+            "additionalDatabases": {
+              "type": "array",
+              "items": {"$ref": "#/properties/functionalArchitecture/properties/dataLayer/properties/primaryDatabase"}
+            },
+            "caching": {
+              "type": "object",
+              "properties": {
+                "technology": {"type": "string"},
+                "strategy": {"enum": ["cache_aside", "write_through", "write_behind", "refresh_ahead"]},
+                "layers": {"type": "array", "items": {"type": "string"}},
+                "ttl": {"type": "string", "description": "Time-to-live policies"}
+              }
+            },
+            "dataProcessing": {
+              "type": "object",
+              "properties": {
+                "etl": {"type": "string", "description": "ETL/ELT tools and processes"},
+                "streaming": {"type": "string", "description": "Real-time data processing"},
+                "batchProcessing": {"type": "string", "description": "Batch processing framework"},
+                "dataWarehouse": {"type": "string", "description": "Data warehouse solution"}
+              }
+            }
+          }
+        },
+        "integrationLayer": {
+          "type": "object",
+          "properties": {
+            "messagingPattern": {"enum": ["synchronous", "asynchronous", "hybrid"], "description": "Primary messaging pattern"},
+            "messageQueue": {"type": "string", "description": "Message queue technology"},
+            "eventStreaming": {"type": "string", "description": "Event streaming platform"},
+            "apiGateway": {"type": "string", "description": "API gateway solution"},
+            "serviceDiscovery": {"type": "string", "description": "Service discovery mechanism"},
+            "circuitBreaker": {"type": "string", "description": "Circuit breaker implementation"}
+          }
+        }
+      }
+    },
+    "nonFunctionalArchitecture": {
+      "type": "object",
+      "description": "Architecture supporting non-functional requirements",
+      "properties": {
+        "performance": {
+          "type": "object",
+          "properties": {
+            "loadBalancing": {
+              "type": "object",
+              "properties": {
+                "technology": {"type": "string"},
+                "algorithm": {"enum": ["round_robin", "least_connections", "weighted", "ip_hash", "geographic"]},
+                "healthChecks": {"type": "string"}
+              }
+            },
+            "caching": {
+              "type": "object",
+              "properties": {
+                "cdn": {"type": "string", "description": "Content delivery network"},
+                "applicationCache": {"type": "string"},
+                "databaseCache": {"type": "string"},
+                "strategy": {"type": "string"}
+              }
+            },
+            "optimization": {
+              "type": "object",
+              "properties": {
+                "frontend": {"type": "array", "items": {"type": "string"}, "description": "Frontend optimization techniques"},
+                "backend": {"type": "array", "items": {"type": "string"}, "description": "Backend optimization techniques"},
+                "database": {"type": "array", "items": {"type": "string"}, "description": "Database optimization techniques"}
+              }
+            }
+          }
+        },
+        "scalability": {
+          "type": "object",
+          "properties": {
+            "horizontalScaling": {
+              "type": "object",
+              "properties": {
+                "autoScaling": {"type": "string", "description": "Auto-scaling configuration"},
+                "containerOrchestration": {"type": "string", "description": "Container orchestration platform"},
+                "loadDistribution": {"type": "string"}
+              }
+            },
+            "verticalScaling": {
+              "type": "object",
+              "properties": {
+                "resourceManagement": {"type": "string"},
+                "limits": {"type": "string"}
+              }
+            },
+            "dataScaling": {
+              "type": "object",
+              "properties": {
+                "partitioning": {"type": "string", "description": "Data partitioning strategy"},
+                "sharding": {"type": "string", "description": "Database sharding approach"},
+                "replication": {"type": "string", "description": "Data replication strategy"}
+              }
+            }
+          }
+        },
+        "reliability": {
+          "type": "object",
+          "properties": {
+            "faultTolerance": {
+              "type": "object",
+              "properties": {
+                "redundancy": {"type": "string", "description": "Redundancy strategy"},
+                "failover": {"type": "string", "description": "Failover mechanisms"},
+                "recovery": {"type": "string", "description": "Disaster recovery approach"}
+              }
+            },
+            "monitoring": {
+              "type": "object",
+              "properties": {
+                "healthChecks": {"type": "string"},
+                "metrics": {"type": "string", "description": "Metrics collection system"},
+                "logging": {"type": "string", "description": "Logging framework"},
+                "tracing": {"type": "string", "description": "Distributed tracing"},
+                "alerting": {"type": "string", "description": "Alerting system"}
+              }
+            },
+            "backup": {
+              "type": "object",
+              "properties": {
+                "strategy": {"type": "string"},
+                "frequency": {"type": "string"},
+                "retention": {"type": "string"},
+                "testing": {"type": "string", "description": "Backup testing procedures"}
+              }
+            }
+          }
+        },
+        "security": {
+          "type": "object",
+          "properties": {
+            "authentication": {
+              "type": "object",
+              "properties": {
+                "mechanism": {"type": "string"},
+                "tokenManagement": {"type": "string"},
+                "sessionManagement": {"type": "string"},
+                "multiFactorAuth": {"type": "string"}
+              }
+            },
+            "authorization": {
+              "type": "object",
+              "properties": {
+                "model": {"enum": ["RBAC", "ABAC", "ACL", "custom"], "description": "Authorization model"},
+                "implementation": {"type": "string"},
+                "policyEngine": {"type": "string"}
+              }
+            },
+            "dataProtection": {
+              "type": "object",
+              "properties": {
+                "encryptionAtRest": {"type": "string"},
+                "encryptionInTransit": {"type": "string"},
+                "keyManagement": {"type": "string"},
+                "dataClassification": {"type": "string"}
+              }
+            },
+            "networkSecurity": {
+              "type": "object",
+              "properties": {
+                "firewall": {"type": "string"},
+                "vpn": {"type": "string"},
+                "ddosProtection": {"type": "string"},
+                "waf": {"type": "string", "description": "Web Application Firewall"}
+              }
+            },
+            "compliance": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "Compliance frameworks and standards"
+            }
+          }
+        }
+      }
+    },
+    "infrastructure": {
+      "type": "object",
+      "description": "Infrastructure and deployment architecture",
+      "properties": {
+        "cloudProvider": {
+          "type": "object",
+          "properties": {
+            "primary": {"enum": ["AWS", "Azure", "GCP", "hybrid", "multi_cloud", "on_premise"]},
+            "regions": {"type": "array", "items": {"type": "string"}},
+            "services": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {"type": "string"},
+                  "purpose": {"type": "string"},
+                  "configuration": {"type": "string"}
+                }
+              }
+            }
+          }
+        },
+        "containerization": {
+          "type": "object",
+          "properties": {
+            "technology": {"enum": ["Docker", "Podman", "containerd", "none"]},
+            "orchestration": {"enum": ["Kubernetes", "Docker Swarm", "ECS", "AKS", "GKE", "none"]},
+            "registry": {"type": "string", "description": "Container registry"},
+            "networking": {"type": "string", "description": "Container networking"}
+          }
+        },
+        "cicd": {
+          "type": "object",
+          "properties": {
+            "versionControl": {"type": "string"},
+            "ciTool": {"type": "string", "description": "Continuous Integration tool"},
+            "cdTool": {"type": "string", "description": "Continuous Deployment tool"},
+            "pipeline": {"type": "string", "description": "Pipeline configuration"},
+            "testing": {"type": "string", "description": "Automated testing in pipeline"},
+            "deployment": {"type": "string", "description": "Deployment strategy"}
+          }
+        },
+        "networking": {
+          "type": "object",
+          "properties": {
+            "topology": {"type": "string", "description": "Network topology"},
+            "dns": {"type": "string", "description": "DNS management"},
+            "cdn": {"type": "string", "description": "Content delivery network"},
+            "apiGateway": {"type": "string"}
+          }
+        }
+      }
+    },
+    "developmentArchitecture": {
+      "type": "object",
+      "description": "Development practices and tooling",
+      "properties": {
+        "developmentMethodology": {"enum": ["agile", "waterfall", "devops", "lean", "kanban"], "description": "Development approach"},
+        "codeOrganization": {
+          "type": "object",
+          "properties": {
+            "structure": {"enum": ["monorepo", "multi_repo", "hybrid"], "description": "Code repository structure"},
+            "modularity": {"type": "string", "description": "Code modularity approach"},
+            "dependencyManagement": {"type": "string"},
+            "codeStandards": {"type": "string"}
+          }
+        },
+        "testing": {
+          "type": "object",
+          "properties": {
+            "strategy": {"type": "string", "description": "Overall testing strategy"},
+            "unitTesting": {"type": "string"},
+            "integrationTesting": {"type": "string"},
+            "endToEndTesting": {"type": "string"},
+            "performanceTesting": {"type": "string"},
+            "securityTesting": {"type": "string"},
+            "coverage": {"type": "string", "description": "Code coverage requirements"}
+          }
+        },
+        "qualityAssurance": {
+          "type": "object",
+          "properties": {
+            "codeReview": {"type": "string", "description": "Code review process"},
+            "staticAnalysis": {"type": "string"},
+            "linting": {"type": "string"},
+            "formatting": {"type": "string"},
+            "documentation": {"type": "string"}
+          }
+        }
+      }
+    },
+    "technicalDebt": {
+      "type": "object",
+      "description": "Technical debt and migration considerations",
+      "properties": {
+        "knownDebt": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "area": {"type": "string"},
+              "description": {"type": "string"},
+              "impact": {"enum": ["low", "medium", "high", "critical"]},
+              "effort": {"enum": ["low", "medium", "high"]},
+              "timeline": {"type": "string"}
+            }
+          }
+        },
+        "migrations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "from": {"type": "string"},
+              "to": {"type": "string"},
+              "reason": {"type": "string"},
+              "strategy": {"type": "string"},
+              "timeline": {"type": "string"},
+              "risks": {"type": "array", "items": {"type": "string"}}
+            }
+          }
+        }
+      }
+    },
+    "architecturalDecisions": {
+      "type": "array",
+      "description": "Architecture Decision Records (ADRs)",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "title": {"type": "string"},
+          "status": {"enum": ["proposed", "accepted", "deprecated", "superseded"]},
+          "context": {"type": "string", "description": "The architectural decision context"},
+          "decision": {"type": "string", "description": "The architectural decision"},
+          "consequences": {"type": "string", "description": "Decision consequences"},
+          "alternatives": {"type": "array", "items": {"type": "string"}},
+          "date": {"type": "string", "format": "date"},
+          "author": {"type": "string"}
+        },
+        "required": ["id", "title", "status", "context", "decision", "consequences"]
+      }
+    }
+  },
+  "required": ["architectureOverview", "functionalArchitecture", "nonFunctionalArchitecture", "infrastructure"]
+}

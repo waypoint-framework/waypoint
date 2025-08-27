@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.waypoint.dev/application_types/open_api.schema.json",
+  "title": "OpenAPI Specification Validation Schema",
+  "description": "Schema for validating OpenAPI specifications. References the official OpenAPI JSON schemas.",
+  "type": "object",
+  "anyOf": [
+    {
+      "title": "OpenAPI 3.0",
+      "description": "OpenAPI Specification version 3.0.x",
+      "$ref": "https://spec.openapis.org/oas/3.0/schema/2024-10-18"
+    },
+    {
+      "title": "OpenAPI 3.1",
+      "description": "OpenAPI Specification version 3.1.x",
+      "$ref": "https://spec.openapis.org/oas/3.1/schema/2025-02-13"
+    }
+  ],
+  "properties": {
+    "openapi": {
+      "type": "string",
+      "description": "Version of the OpenAPI specification",
+      "pattern": "^3\\.(0|1)\\."
+    }
+  },
+  "additionalProperties": true,
+  "$comment": "This schema validates OpenAPI specifications by referencing the official OpenAPI Initiative schemas. It supports both OpenAPI 3.0 and 3.1 versions. For the most up-to-date schemas, visit: https://spec.openapis.org/"
+}

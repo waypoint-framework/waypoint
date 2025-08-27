@@ -1,0 +1,102 @@
+# Test Data Set Design and Quality Assurance Strategy
+
+You are a QA architect and test engineer tasked with creating comprehensive test data sets that validate all user experiences, interface interactions, and system architecture. Your goal is to design thorough testing coverage that ensures quality and reliability.
+
+## Context: Foundation Documents
+
+Here are the foundational documents that inform this test design:
+
+### User Experience Design
+```json
+{{user_experience}}
+```
+
+### User Interface Flows
+```json
+{{user_interface_flows}}
+```
+
+### Application Interface Specification
+{{#if site_map}}
+### Site Map
+```json
+{{site_map}}
+```
+{{/if}}
+{{#if open_api}}
+### OpenAPI Specification
+```json
+{{open_api}}
+```
+{{/if}}
+{{#if cli_spec}}
+### CLI Specification
+```json
+{{cli_spec}}
+```
+{{/if}}
+
+### Software Architecture
+```json
+{{architecture}}
+```
+
+## Instructions
+
+Create a detailed test data set JSON object that defines:
+
+1. **Test Scenarios**: Comprehensive test cases for every user journey and system interaction
+2. **Preconditions**: Required system state and data setup before each test
+3. **Test Actions**: Single, specific actions to be tested (one per test case)
+4. **Postconditions**: Expected system state and outcomes after test execution
+5. **Validation Criteria**: Multiple validation types (functional, performance, security, accessibility)
+6. **Error Scenarios**: Edge cases, failure modes, and error recovery testing
+7. **Performance Expectations**: Load, stress, and performance benchmarks
+8. **Test Metadata**: Test categorization, priorities, and execution requirements
+
+## Key Principles
+
+- **Single Action Per Test**: Each test should validate exactly one user action or system behavior
+- **Complete Coverage**: Test every user journey, interface interaction, and system component
+- **Real-World Scenarios**: Use realistic data and user contexts
+- **Performance-Aware**: Include performance validation in every relevant test
+- **Security-Focused**: Validate security controls and data protection
+- **Accessibility-Inclusive**: Ensure tests cover accessibility requirements
+- **Maintainable**: Design tests that are easy to update as the system evolves
+
+## Test Design Requirements
+
+Ensure test data sets comprehensively cover:
+- Every user scenario from the user experience design
+- All interface interactions from the user interface flows
+- API endpoints and data flows from application specifications
+- Architecture components and integration points
+- Performance, security, and reliability requirements
+- Error conditions and edge cases
+
+## Test Coverage Framework
+
+Design test cases that validate:
+- **Functional Testing**: Core features work as designed
+- **Integration Testing**: Components work together correctly
+- **Performance Testing**: System meets speed and load requirements
+- **Security Testing**: Authentication, authorization, and data protection
+- **Accessibility Testing**: Interface works for all users
+- **Usability Testing**: User experience meets design expectations
+- **Regression Testing**: Changes don't break existing functionality
+
+## Test Data Strategy
+
+For each test case, provide:
+- **Realistic Test Data**: Data that represents actual user scenarios
+- **Boundary Conditions**: Edge cases and limit testing
+- **Error Conditions**: Invalid inputs and failure scenarios
+- **Performance Data**: Load testing data and benchmarks
+- **Security Test Cases**: Authentication and authorization testing
+- **Accessibility Scenarios**: Screen reader and keyboard navigation testing
+
+## Output Format
+
+Generate a JSON object that strictly adheres to the test_data_set schema. Ensure test cases can be directly implemented by QA engineers and automated testing frameworks.
+
+Generate a comprehensive test data set specification as a valid JSON object.

@@ -1,0 +1,237 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.waypoint.dev/business_domain.schema.json",
+  "title": "Business Domain Schema",
+  "description": "Captures business strategy, goals, and metrics tied to user needs - the bridge between user understanding and technical implementation",
+  "type": "object",
+  "properties": {
+    "productGoals": {
+      "type": "array",
+      "description": "Strategic product goals directly tied to identified user needs",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "title": {"type": "string"},
+          "description": {"type": "string"},
+          "userNeedsAddressed": {"type": "array", "items": {"type": "string"}, "description": "User pain points or goals this addresses"},
+          "businessRationale": {"type": "string", "description": "Why this goal matters to the business"},
+          "priority": {"enum": ["critical", "high", "medium", "low"]},
+          "timeframe": {"enum": ["immediate", "short-term", "medium-term", "long-term"]},
+          "successMetrics": {"type": "array", "items": {"type": "string"}},
+          "dependencies": {"type": "array", "items": {"type": "string"}},
+          "risks": {"type": "array", "items": {"type": "string"}},
+          "stakeholders": {"type": "array", "items": {"type": "string"}}
+        },
+        "required": ["id", "title", "description", "userNeedsAddressed", "priority"]
+      }
+    },
+    "businessObjectives": {
+      "type": "array",
+      "description": "High-level business objectives this software supports",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "objective": {"type": "string"},
+          "category": {"enum": ["revenue", "cost_reduction", "market_expansion", "customer_satisfaction", "operational_efficiency", "competitive_advantage", "compliance", "innovation"]},
+          "measurableOutcome": {"type": "string"},
+          "baseline": {"type": "string", "description": "Current state measurement"},
+          "target": {"type": "string", "description": "Desired future state"},
+          "timeline": {"type": "string"},
+          "owner": {"type": "string", "description": "Business stakeholder responsible"},
+          "relatedProductGoals": {"type": "array", "items": {"type": "string"}}
+        },
+        "required": ["id", "objective", "category", "measurableOutcome"]
+      }
+    },
+    "okrs": {
+      "type": "array",
+      "description": "Objectives and Key Results framework for measuring progress",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "objective": {"type": "string", "description": "Qualitative, aspirational objective"},
+          "quarter": {"type": "string", "description": "Time period (e.g., Q1 2024)"},
+          "keyResults": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {"type": "string"},
+                "result": {"type": "string", "description": "Quantitative, measurable result"},
+                "baseline": {"type": "number"},
+                "target": {"type": "number"},
+                "unit": {"type": "string", "description": "Unit of measurement"},
+                "trackingMethod": {"type": "string", "description": "How this will be measured"},
+                "owner": {"type": "string"}
+              },
+              "required": ["id", "result", "target", "unit"]
+            }
+          },
+          "relatedBusinessObjectives": {"type": "array", "items": {"type": "string"}},
+          "confidence": {"enum": ["high", "medium", "low"], "description": "Confidence in achieving this OKR"}
+        },
+        "required": ["id", "objective", "keyResults"]
+      }
+    },
+    "valueProposition": {
+      "type": "object",
+      "description": "Clear value proposition based on user research",
+      "properties": {
+        "primaryValue": {"type": "string", "description": "Main value delivered to users"},
+        "differentiators": {"type": "array", "items": {"type": "string"}, "description": "What makes this unique"},
+        "targetSegments": {"type": "array", "items": {"type": "string"}, "description": "Primary user segments"},
+        "alternatives": {"type": "array", "items": {"type": "string"}, "description": "What users currently use instead"},
+        "competitiveAdvantage": {"type": "string", "description": "Why users would choose this over alternatives"}
+      },
+      "required": ["primaryValue", "targetSegments"]
+    },
+    "monetizationStrategy": {
+      "type": "object",
+      "description": "How the product will generate revenue",
+      "properties": {
+        "revenueModel": {"enum": ["subscription", "one_time_purchase", "freemium", "usage_based", "advertising", "marketplace", "enterprise_license", "api_usage", "consulting", "free"]},
+        "pricingStrategy": {"enum": ["cost_plus", "value_based", "competition_based", "penetration", "skimming", "dynamic"]},
+        "pricingTiers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "price": {"type": "number"},
+              "currency": {"type": "string"},
+              "billingCycle": {"enum": ["monthly", "quarterly", "annually", "one_time", "usage_based"]},
+              "features": {"type": "array", "items": {"type": "string"}},
+              "targetUsers": {"type": "array", "items": {"type": "string"}},
+              "limitations": {"type": "array", "items": {"type": "string"}}
+            },
+            "required": ["name", "price", "currency", "features"]
+          }
+        },
+        "paymentModels": {"type": "array", "items": {"enum": ["credit_card", "bank_transfer", "paypal", "stripe", "invoice", "purchase_order"]}},
+        "revenueProjections": {
+          "type": "object",
+          "properties": {
+            "year1": {"type": "number"},
+            "year2": {"type": "number"},
+            "year3": {"type": "number"},
+            "assumptions": {"type": "array", "items": {"type": "string"}}
+          }
+        }
+      },
+      "required": ["revenueModel", "pricingStrategy"]
+    },
+    "kpis": {
+      "type": "array",
+      "description": "Key Performance Indicators specifically for measuring UX and product success",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": "string"},
+          "description": {"type": "string"},
+          "category": {"enum": ["user_experience", "business_performance", "product_health", "technical_performance"]},
+          "metric": {"type": "string", "description": "What exactly is being measured"},
+          "calculation": {"type": "string", "description": "How to calculate this metric"},
+          "target": {"type": "string", "description": "Target value or range"},
+          "frequency": {"enum": ["real_time", "daily", "weekly", "monthly", "quarterly"]},
+          "dataSource": {"type": "string", "description": "Where the data comes from"},
+          "owner": {"type": "string", "description": "Who is responsible for this KPI"},
+          "relatedUserGoals": {"type": "array", "items": {"type": "string"}},
+          "benchmarks": {"type": "array", "items": {"type": "string"}, "description": "Industry or competitor benchmarks"}
+        },
+        "required": ["id", "name", "category", "metric", "target", "frequency"]
+      }
+    },
+    "userAcquisition": {
+      "type": "object",
+      "description": "Strategy for acquiring and retaining users",
+      "properties": {
+        "channels": {
+          "type": "array",
+          "items": {"enum": ["organic_search", "paid_search", "social_media", "content_marketing", "referral", "direct", "email", "partnerships", "events", "pr", "app_store"]},
+          "description": "Marketing channels to acquire users"
+        },
+        "acquisitionFunnel": {
+          "type": "object",
+          "properties": {
+            "awareness": {"type": "string", "description": "How users become aware"},
+            "consideration": {"type": "string", "description": "How users evaluate the product"},
+            "trial": {"type": "string", "description": "How users try the product"},
+            "purchase": {"type": "string", "description": "How users become paying customers"},
+            "retention": {"type": "string", "description": "How to keep users engaged"}
+          }
+        },
+        "conversionGoals": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "stage": {"type": "string"},
+              "metric": {"type": "string"},
+              "currentRate": {"type": "number"},
+              "targetRate": {"type": "number"}
+            }
+          }
+        }
+      }
+    },
+    "competitiveAnalysis": {
+      "type": "array",
+      "description": "Analysis of competitors and market positioning",
+      "items": {
+        "type": "object",
+        "properties": {
+          "competitor": {"type": "string"},
+          "type": {"enum": ["direct", "indirect", "substitute"]},
+          "strengths": {"type": "array", "items": {"type": "string"}},
+          "weaknesses": {"type": "array", "items": {"type": "string"}},
+          "marketShare": {"type": "string"},
+          "pricingModel": {"type": "string"},
+          "userFeedback": {"type": "array", "items": {"type": "string"}},
+          "differentiationOpportunity": {"type": "string"}
+        },
+        "required": ["competitor", "type", "strengths", "weaknesses"]
+      }
+    },
+    "riskAssessment": {
+      "type": "array",
+      "description": "Business risks and mitigation strategies",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "risk": {"type": "string"},
+          "category": {"enum": ["market", "technical", "financial", "operational", "regulatory", "competitive"]},
+          "probability": {"enum": ["low", "medium", "high"]},
+          "impact": {"enum": ["low", "medium", "high"]},
+          "mitigation": {"type": "string", "description": "How to mitigate this risk"},
+          "contingency": {"type": "string", "description": "Backup plan if risk occurs"},
+          "owner": {"type": "string", "description": "Who is responsible for monitoring this risk"}
+        },
+        "required": ["id", "risk", "category", "probability", "impact", "mitigation"]
+      }
+    },
+    "stakeholders": {
+      "type": "array",
+      "description": "Key business stakeholders and their interests",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "role": {"type": "string"},
+          "department": {"type": "string"},
+          "influence": {"enum": ["high", "medium", "low"]},
+          "interest": {"enum": ["high", "medium", "low"]},
+          "primaryConcerns": {"type": "array", "items": {"type": "string"}},
+          "successCriteria": {"type": "array", "items": {"type": "string"}},
+          "communicationPreference": {"type": "string"}
+        },
+        "required": ["name", "role", "influence", "interest"]
+      }
+    }
+  },
+  "required": ["productGoals", "businessObjectives", "valueProposition", "kpis"]
+}

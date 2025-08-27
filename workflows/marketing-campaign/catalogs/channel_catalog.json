@@ -1,0 +1,268 @@
+{
+    "Facebook": {
+    "ad_types": [
+        {
+        "type": "Image Ad",
+        "name": "Image Ad",
+        "specifications": {
+            "dimensions": "1200x628 px",
+            "character_limit": 125,
+            "file_size_limit": "30 MB",
+            "formats": ["JPG", "PNG"]
+        },
+        "bidding_strategy": [
+            "Cost per Click (CPC)",
+            "Cost per Mille (CPM)",
+            "Cost per Action (CPA)"
+        ],
+        "payment_process": "Prepaid or monthly invoicing"
+        },
+        {
+        "type": "Video Ad",
+        "name": "Video Ad",
+        "specifications": {
+            "dimensions": "1080x1080 px",
+            "character_limit": 125,
+            "video_length_limit": "15 seconds",
+            "file_size_limit": "4 GB",
+            "formats": ["MP4", "MOV"]
+        },
+        "bidding_strategy": [
+            "Cost per Mille (CPM)",
+            "Cost per View (CPV)",
+            "Cost per Action (CPA)"
+        ],
+        "payment_process": "Prepaid or monthly invoicing"
+        },
+        {
+        "type": "Carousel Ad",
+        "name": "Carousel Ad",
+        "specifications": {
+            "image_dimensions": "1080x1080 px",
+            "character_limit_per_card": 40,
+            "max_cards": 10,
+            "file_size_limit": "30 MB",
+            "formats": ["JPG", "PNG"]
+        },
+        "bidding_strategy": [
+            "Cost per Click (CPC)",
+            "Cost per Mille (CPM)",
+            "Cost per Action (CPA)"
+        ],
+        "payment_process": "Prepaid or monthly invoicing"
+        }
+    ]
+    },
+    "Instagram": {
+    "ad_types": [
+        {
+        "type": "Image Ad",
+        "name": "Photo Ad",
+        "specifications": {
+            "dimensions": "1080x1080 px",
+            "character_limit": 2200,
+            "file_size_limit": "30 MB",
+            "formats": ["JPG", "PNG"]
+        },
+        "bidding_strategy": [
+            "Cost per Click (CPC)",
+            "Cost per Mille (CPM)",
+            "Cost per Engagement (CPE)"
+        ],
+        "payment_process": "Prepaid or monthly invoicing"
+        },
+        {
+        "type": "Video Ad",
+        "name": "Story Ad",
+        "specifications": {
+            "dimensions": "1080x1920 px",
+            "character_limit": 125,
+            "video_length_limit": "15 seconds",
+            "file_size_limit": "4 GB",
+            "formats": ["MP4", "MOV"]
+        },
+        "bidding_strategy": [
+            "Cost per Mille (CPM)",
+            "Cost per View (CPV)",
+            "Cost per Action (CPA)"
+        ],
+        "payment_process": "Prepaid or monthly invoicing"
+        },
+        {
+        "type": "Video Ad",
+        "name": "Reel Ad",
+        "specifications": {
+            "dimensions": "1080x1920 px",
+            "character_limit": 125,
+            "video_length_limit": "30 seconds",
+            "file_size_limit": "4 GB",
+            "formats": ["MP4", "MOV"]
+        },
+        "bidding_strategy": [
+            "Cost per Mille (CPM)",
+            "Cost per View (CPV)",
+            "Cost per Action (CPA)"
+        ],
+        "payment_process": "Prepaid or monthly invoicing"
+        }
+    ]
+    },
+    "Google": {
+    "ad_types": [
+        {
+        "type": "Text Ad",
+        "name": "Search Ad",
+        "specifications": {
+            "headline_character_limit": 30,
+            "description_character_limit": 90,
+            "number_of_headlines": 3,
+            "number_of_descriptions": 2
+        },
+        "bidding_strategy": [
+            "Cost per Click (CPC)",
+            "Cost per Conversion (CPC)",
+            "Maximize Clicks"
+        ],
+        "payment_process": "Post-click invoicing or prepaid"
+        },
+        {
+        "type": "Image Ad",
+        "name": "Display Ad",
+        "specifications": {
+            "dimensions": [
+            "300x250 px",
+            "728x90 px",
+            "160x600 px",
+            "300x600 px",
+            "970x250 px"
+            ],
+            "file_size_limit": "150 KB",
+            "formats": ["JPG", "PNG", "GIF"]
+        },
+        "bidding_strategy": [
+            "Cost per Mille (CPM)",
+            "Cost per Click (CPC)",
+            "Cost per Action (CPA)"
+        ],
+        "payment_process": "Post-click invoicing or prepaid"
+        },
+        {
+        "type": "Video Ad",
+        "name": "Video Ad",
+        "specifications": {
+            "dimensions": "1920x1080 px",
+            "video_length_limit": "15 seconds",
+            "file_size_limit": "4 GB",
+            "formats": ["MP4", "MOV"]
+        },
+        "bidding_strategy": [
+            "Cost per View (CPV)",
+            "Cost per Action (CPA)",
+            "Cost per Mille (CPM)"
+        ],
+        "payment_process": "Post-click invoicing or prepaid"
+        }
+    ]
+    },
+    "LinkedIn": {
+    "ad_types": [
+        {
+        "type": "Image Ad",
+        "name": "Sponsored Content",
+        "specifications": {
+            "dimensions": "1200x627 px",
+            "character_limit": 150,
+            "file_size_limit": "30 MB",
+            "formats": ["JPG", "PNG"]
+        },
+        "bidding_strategy": [
+            "Cost per Click (CPC)",
+            "Cost per Mille (CPM)",
+            "Cost per Lead (CPL)"
+        ],
+        "payment_process": "Prepaid or monthly invoicing"
+        },
+        {
+        "type": "Text Ad",
+        "name": "Message Ad",
+        "specifications": {
+            "character_limit": 500,
+            "file_size_limit": "30 MB",
+            "formats": ["Text"]
+        },
+        "bidding_strategy": [
+            "Cost per Send",
+            "Cost per Open (CPO)"
+        ],
+        "payment_process": "Prepaid or monthly invoicing"
+        },
+        {
+        "type": "Image Ad",
+        "name": "Dynamic Ad",
+        "specifications": {
+            "dimensions": "300x250 px",
+            "file_size_limit": "150 KB",
+            "formats": ["JPG", "PNG"]
+        },
+        "bidding_strategy": [
+            "Cost per Click (CPC)",
+            "Cost per Mille (CPM)"
+        ],
+        "payment_process": "Prepaid or monthly invoicing"
+        }
+    ]
+    },
+    "Twitter": {
+    "ad_types": [
+        {
+        "type": "Text Ad",
+        "name": "Promoted Tweet",
+        "specifications": {
+            "character_limit": 280,
+            "file_size_limit": "5 MB for images, 15 MB for video",
+            "formats": ["JPG", "PNG", "MP4", "MOV"]
+        },
+        "bidding_strategy": [
+            "Cost per Engagement (CPE)",
+            "Cost per Click (CPC)",
+            "Cost per Mille (CPM)"
+        ],
+        "payment_process": "Prepaid or monthly invoicing"
+        },
+        {
+        "type": "Video Ad",
+        "name": "Promoted Video",
+        "specifications": {
+            "dimensions": "1920x1080 px",
+            "video_length_limit": "2 minutes 20 seconds",
+            "file_size_limit": "1 GB",
+            "formats": ["MP4", "MOV"]
+        },
+        "bidding_strategy": [
+            "Cost per View (CPV)",
+            "Cost per Action (CPA)",
+            "Cost per Mille (CPM)"
+        ],
+        "payment_process": "Prepaid or monthly invoicing"
+        },
+        {
+        "type": "Carousel Ad",
+        "name": "Carousel Ad",
+        "specifications": {
+            "image_dimensions": "1080x1080 px",
+            "character_limit_per_card": 40,
+            "max_cards": 6,
+            "file_size_limit": "30 MB",
+            "formats": ["JPG", "PNG"]
+        },
+        "bidding_strategy": [
+            "Cost per Click (CPC)",
+            "Cost per Mille (CPM)",
+            "Cost per Action (CPA)"
+        ],
+        "payment_process": "Prepaid or monthly invoicing"
+        }
+    ]
+    }
+  }
+  

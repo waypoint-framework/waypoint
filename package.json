@@ -1,0 +1,50 @@
+{
+  "scripts": {
+    "start": "node dist/main.js",
+    "ts-start": "ts-node src/main.ts",
+    "clean": "rimraf dist",
+    "dev": "nodemon",
+    "test": "jest --coverage --runInBand --detectOpenHandles",
+    "lint": "eslint '{src,tests}/**/*.{ts,tsx}'",
+    "format": "prettier --write '{src,tests}/**/*.{ts,tsx}'",
+    "build": "tsc && tsc-alias"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.11",
+    "@types/toposort": "^2.0.7",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@typescript-eslint/parser": "^6.18.1",
+    "eslint": "^8.56.0",
+    "jest": "^29.7.0",
+    "rimraf": "^5.0.5",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "@types/winston": "^2.4.4",
+    "bullmq": "^5.21.2",
+    "dotenv": "^16.4.5",
+    "fs-extra": "^11.2.0",
+    "handlebars": "^4.7.8",
+    "isomorphic-git": "^1.27.1",
+    "langchain": "^0.3.2",
+    "path": "^0.12.7",
+    "toposort": "^2.0.2",
+    "winston": "^3.15.0"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/__tests__/**/*.ts",
+      "**/?(*.)+(spec|test).ts"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json",
+      "node"
+    ]
+  }
+}

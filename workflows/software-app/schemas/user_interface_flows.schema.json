@@ -1,0 +1,248 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.waypoint.dev/user_interface_flows.schema.json",
+  "title": "User Interface Flows Schema",
+  "description": "Technical, interface-specific user journeys that describe exact interactions with UI elements, APIs, or command-line interfaces",
+  "type": "object",
+  "properties": {
+    "interfaceType": {
+      "enum": ["web_ui", "mobile_ui", "desktop_ui", "cli", "api", "voice_ui", "chatbot", "ar_vr", "touch_screen", "embedded_display"],
+      "description": "Type of interface these flows describe"
+    },
+    "flows": {
+      "type": "array",
+      "description": "Technical user interface flows",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": "string"},
+          "description": {"type": "string"},
+          "userExperienceScenario": {"type": "string", "description": "Reference to corresponding user experience scenario"},
+          "interfaceContext": {
+            "type": "object",
+            "description": "Technical context for this interface flow",
+            "properties": {
+              "platform": {"type": "string", "description": "Specific platform (iOS, Android, Chrome, etc.)"},
+              "deviceType": {"type": "string", "description": "Device type (phone, tablet, desktop, etc.)"},
+              "screenSize": {"type": "string", "description": "Screen size or resolution constraints"},
+              "inputMethods": {"type": "array", "items": {"type": "string"}, "description": "Available input methods"},
+              "connectionState": {"enum": ["online", "offline", "limited"], "description": "Network connectivity state"},
+              "userState": {"type": "string", "description": "User authentication/authorization state"}
+            }
+          },
+          "entryPoint": {
+            "type": "object",
+            "description": "How users enter this flow",
+            "properties": {
+              "trigger": {"type": "string", "description": "What triggers this flow"},
+              "location": {"type": "string", "description": "Where in the interface this starts"},
+              "prerequisites": {"type": "array", "items": {"type": "string"}, "description": "Required state or conditions"},
+              "deepLink": {"type": "string", "description": "Direct URL or deep link if applicable"}
+            },
+            "required": ["trigger", "location"]
+          },
+          "steps": {
+            "type": "array",
+            "description": "Detailed technical interaction steps",
+            "items": {
+              "type": "object",
+              "properties": {
+                "stepNumber": {"type": "integer"},
+                "action": {"type": "string", "description": "Specific user action (click, tap, type, swipe, etc.)"},
+                "target": {
+                  "type": "object",
+                  "description": "UI element or interface component being interacted with",
+                  "properties": {
+                    "elementType": {"enum": ["button", "link", "input", "dropdown", "checkbox", "radio", "slider", "toggle", "menu", "tab", "card", "modal", "tooltip", "notification", "icon", "image", "video", "form", "table", "list", "grid", "chart", "map", "command", "endpoint"]},
+                    "identifier": {"type": "string", "description": "CSS selector, ID, xpath, or other identifier"},
+                    "label": {"type": "string", "description": "Visible text or aria-label"},
+                    "location": {"type": "string", "description": "Where on screen/interface"},
+                    "state": {"type": "string", "description": "Expected state of element (enabled, visible, etc.)"}
+                  },
+                  "required": ["elementType", "identifier"]
+                },
+                "input": {
+                  "type": "object",
+                  "description": "Data or input provided by user",
+                  "properties": {
+                    "inputType": {"enum": ["text", "number", "email", "password", "date", "file", "selection", "gesture", "voice", "biometric"]},
+                    "value": {"type": "string", "description": "Specific value or pattern"},
+                    "validation": {"type": "string", "description": "Expected validation rules"},
+                    "format": {"type": "string", "description": "Required format or constraints"}
+                  }
+                },
+                "systemResponse": {
+                  "type": "object",
+                  "description": "How the system responds to the user action",
+                  "properties": {
+                    "immediateResponse": {"type": "string", "description": "Instant visual/audio feedback"},
+                    "loadingState": {"type": "string", "description": "Loading indicators or progress"},
+                    "successResponse": {"type": "string", "description": "Response when action succeeds"},
+                    "errorResponse": {"type": "string", "description": "Response when action fails"},
+                    "dataChanges": {"type": "string", "description": "How data or state changes"},
+                    "navigationChanges": {"type": "string", "description": "URL changes, page transitions, etc."}
+                  }
+                },
+                "accessibilityActions": {
+                  "type": "array",
+                  "description": "Alternative ways to perform this action for accessibility",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "method": {"enum": ["keyboard", "screen_reader", "voice", "switch", "eye_tracking"]},
+                      "instruction": {"type": "string", "description": "How to perform action with this method"},
+                      "keySequence": {"type": "string", "description": "Key combination if applicable"}
+                    }
+                  }
+                },
+                "timing": {
+                  "type": "object",
+                  "description": "Timing constraints for this step",
+                  "properties": {
+                    "timeout": {"type": "string", "description": "Maximum time for response"},
+                    "debounce": {"type": "string", "description": "Debounce delay for repeated actions"},
+                    "animation": {"type": "string", "description": "Animation duration"}
+                  }
+                },
+                "conditions": {
+                  "type": "array",
+                  "description": "Conditional logic that affects this step",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "condition": {"type": "string", "description": "Boolean condition"},
+                      "trueAction": {"type": "string", "description": "What happens if condition is true"},
+                      "falseAction": {"type": "string", "description": "What happens if condition is false"}
+                    }
+                  }
+                },
+                "variants": {
+                  "type": "array",
+                  "description": "Different ways this step might appear",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "variantName": {"type": "string"},
+                      "condition": {"type": "string", "description": "When this variant appears"},
+                      "differences": {"type": "string", "description": "How this variant differs"}
+                    }
+                  }
+                }
+              },
+              "required": ["stepNumber", "action", "target", "systemResponse"]
+            }
+          },
+          "exitPoints": {
+            "type": "array",
+            "description": "Ways users can exit or complete this flow",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": {"enum": ["success", "cancel", "error", "timeout", "navigation"]},
+                "trigger": {"type": "string", "description": "What triggers this exit"},
+                "destination": {"type": "string", "description": "Where user goes next"},
+                "dataState": {"type": "string", "description": "State of data when exiting"},
+                "message": {"type": "string", "description": "Message shown to user if applicable"}
+              },
+              "required": ["type", "trigger", "destination"]
+            }
+          },
+          "errorHandling": {
+            "type": "array",
+            "description": "How errors are handled in this flow",
+            "items": {
+              "type": "object",
+              "properties": {
+                "errorType": {"type": "string", "description": "Type of error"},
+                "trigger": {"type": "string", "description": "What causes this error"},
+                "detection": {"type": "string", "description": "How error is detected"},
+                "userMessage": {"type": "string", "description": "Message shown to user"},
+                "recoveryAction": {"type": "string", "description": "How user can recover"},
+                "systemAction": {"type": "string", "description": "What system does automatically"},
+                "fallbackFlow": {"type": "string", "description": "Alternative flow if available"}
+              },
+              "required": ["errorType", "trigger", "userMessage"]
+            }
+          },
+          "stateManagement": {
+            "type": "object",
+            "description": "How state is managed throughout the flow",
+            "properties": {
+              "persistedData": {"type": "array", "items": {"type": "string"}, "description": "Data that persists between sessions"},
+              "sessionData": {"type": "array", "items": {"type": "string"}, "description": "Data that persists within session"},
+              "temporaryData": {"type": "array", "items": {"type": "string"}, "description": "Data that's temporary to this flow"},
+              "caching": {"type": "string", "description": "Caching strategy for performance"},
+              "synchronization": {"type": "string", "description": "How data stays in sync"}
+            }
+          },
+          "performance": {
+            "type": "object",
+            "description": "Performance characteristics of this flow",
+            "properties": {
+              "loadTime": {"type": "string", "description": "Expected initial load time"},
+              "responseTime": {"type": "string", "description": "Expected response time per action"},
+              "dataUsage": {"type": "string", "description": "Network data usage"},
+              "batterUsage": {"type": "string", "description": "Battery impact (mobile)"},
+              "optimizations": {"type": "array", "items": {"type": "string"}, "description": "Performance optimizations applied"}
+            }
+          },
+          "testing": {
+            "type": "object",
+            "description": "Testing considerations for this flow",
+            "properties": {
+              "automationIds": {"type": "array", "items": {"type": "string"}, "description": "Test automation identifiers"},
+              "keyScenarios": {"type": "array", "items": {"type": "string"}, "description": "Key test scenarios"},
+              "edgeCases": {"type": "array", "items": {"type": "string"}, "description": "Edge cases to test"},
+              "browserCompatibility": {"type": "array", "items": {"type": "string"}, "description": "Browser/device compatibility requirements"}
+            }
+          },
+          "analytics": {
+            "type": "array",
+            "description": "Analytics events to track in this flow",
+            "items": {
+              "type": "object",
+              "properties": {
+                "eventName": {"type": "string"},
+                "trigger": {"type": "string", "description": "What triggers this event"},
+                "properties": {"type": "array", "items": {"type": "string"}, "description": "Properties to capture"},
+                "purpose": {"type": "string", "description": "Why this event is tracked"}
+              }
+            }
+          }
+        },
+        "required": ["id", "name", "description", "entryPoint", "steps", "exitPoints"]
+      }
+    },
+    "sharedComponents": {
+      "type": "array",
+      "description": "Reusable interface components used across flows",
+      "items": {
+        "type": "object",
+        "properties": {
+          "componentId": {"type": "string"},
+          "componentType": {"type": "string"},
+          "description": {"type": "string"},
+          "behavior": {"type": "string", "description": "How this component behaves"},
+          "props": {"type": "array", "items": {"type": "string"}, "description": "Configurable properties"},
+          "states": {"type": "array", "items": {"type": "string"}, "description": "Possible states"},
+          "events": {"type": "array", "items": {"type": "string"}, "description": "Events this component emits"}
+        },
+        "required": ["componentId", "componentType", "description", "behavior"]
+      }
+    },
+    "designSystem": {
+      "type": "object",
+      "description": "Design system constraints and patterns",
+      "properties": {
+        "colorPalette": {"type": "array", "items": {"type": "string"}},
+        "typography": {"type": "array", "items": {"type": "string"}},
+        "spacing": {"type": "array", "items": {"type": "string"}},
+        "breakpoints": {"type": "array", "items": {"type": "string"}},
+        "interactionPatterns": {"type": "array", "items": {"type": "string"}},
+        "animationGuidelines": {"type": "string"}
+      }
+    }
+  },
+  "required": ["interfaceType", "flows"]
+}

@@ -1,0 +1,222 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.waypoint.dev/application_type.schema.json",
+  "title": "Application Type Schema",
+  "description": "Defines the type of software application and its user-facing non-functional requirements",
+  "type": "object",
+  "properties": {
+    "softwareType": {
+      "enum": [
+        "web_application",
+        "mobile_application",
+        "desktop_application",
+        "cli_tool",
+        "api_service",
+        "sdk_library",
+        "microservice",
+        "batch_processor",
+        "real_time_system",
+        "embedded_system",
+        "browser_extension",
+        "progressive_web_app",
+        "hybrid_mobile_app",
+        "electron_app",
+        "serverless_function",
+        "data_pipeline",
+        "ml_model_service",
+        "chatbot",
+        "game",
+        "developer_tool"
+      ],
+      "description": "Primary classification of the software application"
+    },
+    "platforms": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "web_browser",
+          "ios",
+          "android",
+          "windows",
+          "macos",
+          "linux",
+          "chrome_extension",
+          "firefox_extension",
+          "safari_extension",
+          "aws_lambda",
+          "azure_functions",
+          "google_cloud_functions",
+          "docker",
+          "kubernetes",
+          "raspberry_pi",
+          "arduino",
+          "terminal",
+          "command_line"
+        ]
+      },
+      "description": "Target platforms where the application will run"
+    },
+    "deploymentModel": {
+      "enum": ["cloud", "on_premise", "hybrid", "edge", "mobile_app_store", "self_hosted", "saas", "desktop_installer"],
+      "description": "How the application will be deployed and distributed"
+    },
+    "userFacingRequirements": {
+      "type": "object",
+      "description": "Non-functional requirements that directly impact user experience",
+      "properties": {
+        "performance": {
+          "type": "object",
+          "properties": {
+            "responseTime": {
+              "type": "object",
+              "properties": {
+                "target": {"type": "string", "description": "Target response time (e.g., '< 200ms')"},
+                "maximum": {"type": "string", "description": "Maximum acceptable response time"},
+                "percentile": {"type": "string", "description": "Percentile requirement (e.g., '95th percentile')"}
+              }
+            },
+            "throughput": {
+              "type": "object",
+              "properties": {
+                "target": {"type": "string", "description": "Target throughput (e.g., '1000 requests/second')"},
+                "peak": {"type": "string", "description": "Peak load requirement"}
+              }
+            },
+            "loadTime": {
+              "type": "object",
+              "properties": {
+                "initial": {"type": "string", "description": "Initial load time requirement"},
+                "subsequent": {"type": "string", "description": "Subsequent page/screen load time"}
+              }
+            },
+            "concurrentUsers": {"type": "string", "description": "Maximum concurrent users supported"}
+          }
+        },
+        "availability": {
+          "type": "object",
+          "properties": {
+            "uptime": {"type": "string", "description": "Required uptime (e.g., '99.9%')"},
+            "maintenanceWindows": {"type": "string", "description": "Acceptable maintenance downtime"},
+            "recoveryTime": {"type": "string", "description": "Maximum recovery time from failures"},
+            "backupFrequency": {"type": "string", "description": "How often data should be backed up"}
+          }
+        },
+        "usability": {
+          "type": "object",
+          "properties": {
+            "learnability": {"type": "string", "description": "Time for new users to become productive"},
+            "efficiency": {"type": "string", "description": "Task completion time for experienced users"},
+            "memorability": {"type": "string", "description": "How easily users remember the interface"},
+            "errorRecovery": {"type": "string", "description": "How users can recover from errors"},
+            "satisfaction": {"type": "string", "description": "User satisfaction metrics"}
+          }
+        },
+        "accessibility": {
+          "type": "object",
+          "properties": {
+            "wcagLevel": {"enum": ["A", "AA", "AAA"], "description": "WCAG compliance level"},
+            "screenReader": {"type": "boolean", "description": "Screen reader compatibility"},
+            "keyboardNavigation": {"type": "boolean", "description": "Full keyboard navigation support"},
+            "colorContrast": {"type": "string", "description": "Color contrast requirements"},
+            "fontSizing": {"type": "boolean", "description": "Adjustable font sizing"},
+            "languages": {"type": "array", "items": {"type": "string"}, "description": "Supported languages"},
+            "rightToLeft": {"type": "boolean", "description": "RTL language support"}
+          }
+        },
+        "security": {
+          "type": "object",
+          "properties": {
+            "authentication": {"type": "array", "items": {"enum": ["password", "mfa", "sso", "oauth", "biometric", "certificate"]}},
+            "authorization": {"type": "string", "description": "Authorization model (RBAC, ABAC, etc.)"},
+            "dataEncryption": {"type": "string", "description": "Encryption requirements for data at rest and in transit"},
+            "sessionSecurity": {"type": "string", "description": "Session management security requirements"},
+            "auditLogging": {"type": "boolean", "description": "Audit trail requirements"},
+            "complianceStandards": {"type": "array", "items": {"type": "string"}, "description": "Regulatory compliance requirements"}
+          }
+        },
+        "compatibility": {
+          "type": "object",
+          "properties": {
+            "browserSupport": {"type": "array", "items": {"type": "string"}, "description": "Supported browsers and versions"},
+            "deviceSupport": {"type": "array", "items": {"type": "string"}, "description": "Supported devices"},
+            "osVersions": {"type": "array", "items": {"type": "string"}, "description": "Supported OS versions"},
+            "backwardCompatibility": {"type": "string", "description": "Backward compatibility requirements"},
+            "integrations": {"type": "array", "items": {"type": "string"}, "description": "Third-party systems to integrate with"}
+          }
+        },
+        "scalability": {
+          "type": "object",
+          "properties": {
+            "userGrowth": {"type": "string", "description": "Expected user growth pattern"},
+            "dataGrowth": {"type": "string", "description": "Expected data volume growth"},
+            "horizontalScaling": {"type": "boolean", "description": "Horizontal scaling support"},
+            "verticalScaling": {"type": "boolean", "description": "Vertical scaling support"},
+            "autoScaling": {"type": "boolean", "description": "Automatic scaling capabilities"}
+          }
+        },
+        "reliability": {
+          "type": "object",
+          "properties": {
+            "errorRate": {"type": "string", "description": "Maximum acceptable error rate"},
+            "faultTolerance": {"type": "string", "description": "Fault tolerance requirements"},
+            "gracefulDegradation": {"type": "string", "description": "How system degrades under load"},
+            "dataIntegrity": {"type": "string", "description": "Data consistency and integrity requirements"}
+          }
+        }
+      }
+    },
+    "technicalConstraints": {
+      "type": "object",
+      "description": "Technical limitations and requirements",
+      "properties": {
+        "budgetConstraints": {"type": "string", "description": "Budget limitations affecting technical decisions"},
+        "timeConstraints": {"type": "string", "description": "Development timeline constraints"},
+        "teamSkills": {"type": "array", "items": {"type": "string"}, "description": "Available team skills and expertise"},
+        "existingInfrastructure": {"type": "string", "description": "Existing systems that must be integrated with"},
+        "regulatoryRequirements": {"type": "array", "items": {"type": "string"}, "description": "Legal and regulatory requirements"},
+        "vendorRestrictions": {"type": "array", "items": {"type": "string"}, "description": "Vendor or technology restrictions"}
+      }
+    },
+    "userInteractionModel": {
+      "type": "object",
+      "description": "How users interact with the application",
+      "properties": {
+        "inputMethods": {"type": "array", "items": {"enum": ["keyboard", "mouse", "touch", "voice", "gesture", "camera", "gps", "sensors"]}},
+        "outputMethods": {"type": "array", "items": {"enum": ["visual", "audio", "haptic", "print", "email", "notifications"]}},
+        "interactionPatterns": {"type": "array", "items": {"enum": ["gui", "cli", "api", "conversational", "gesture_based", "voice_controlled"]}},
+        "sessionModel": {"enum": ["stateless", "stateful", "hybrid"], "description": "How user sessions are managed"},
+        "offlineCapability": {"type": "boolean", "description": "Whether the app works offline"},
+        "realTimeFeatures": {"type": "boolean", "description": "Real-time features like live updates"}
+      }
+    },
+    "dataRequirements": {
+      "type": "object",
+      "description": "Data handling and storage requirements",
+      "properties": {
+        "dataTypes": {"type": "array", "items": {"enum": ["structured", "unstructured", "media", "documents", "time_series", "geospatial", "graph"]}},
+        "dataVolume": {"type": "string", "description": "Expected data volume"},
+        "dataRetention": {"type": "string", "description": "Data retention requirements"},
+        "dataPrivacy": {"type": "string", "description": "Data privacy and protection requirements"},
+        "dataLocation": {"type": "string", "description": "Data residency requirements"},
+        "backupStrategy": {"type": "string", "description": "Data backup and recovery strategy"}
+      }
+    },
+    "integrationRequirements": {
+      "type": "array",
+      "description": "External systems and services to integrate with",
+      "items": {
+        "type": "object",
+        "properties": {
+          "systemName": {"type": "string"},
+          "integrationType": {"enum": ["api", "webhook", "file_transfer", "database", "message_queue", "event_stream"]},
+          "dataFlow": {"enum": ["bidirectional", "inbound", "outbound"]},
+          "frequency": {"enum": ["real_time", "batch", "on_demand"]},
+          "criticality": {"enum": ["critical", "important", "nice_to_have"]},
+          "authentication": {"type": "string", "description": "Authentication method for integration"}
+        },
+        "required": ["systemName", "integrationType", "dataFlow"]
+      }
+    }
+  },
+  "required": ["softwareType", "platforms", "deploymentModel", "userFacingRequirements"]
+}
