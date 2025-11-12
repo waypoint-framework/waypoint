@@ -1,13 +1,13 @@
 ---
-import '../styles/global.css';
+import '../styles/tailwind.css';
 
 const {
-  title = 'AI-Executed Projects',
+  title = 'Waypoint',
   description = 'Build your next project that builds itself with AI-executed workflows.'
 } = Astro.props;
 ---
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bg-slate-950">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -16,13 +16,49 @@ const {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
   </head>
-  <body>
-    <main class="page-shell">
-      <slot />
-    </main>
+  <body class="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(30,64,175,0.45),_transparent_55%)]">
+    <div class="flex min-h-screen flex-col">
+      <header class="sticky top-0 z-50 border-b border-white/10 bg-slate-950/75 backdrop-blur">
+        <div class="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5">
+          <div class="flex items-center gap-3">
+            <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-900/90 text-lg font-semibold text-sky-300 ring-1 ring-sky-500/40">
+              W
+            </span>
+            <div>
+              <p class="font-heading text-lg font-semibold tracking-tight text-slate-100">Waypoint</p>
+              <p class="text-sm font-medium text-slate-400">AI-executed project orchestration</p>
+            </div>
+          </div>
+          <nav class="hidden items-center gap-8 text-sm font-medium text-slate-300 md:flex">
+            <a class="transition hover:text-white" href="#concept">Concept</a>
+            <a class="transition hover:text-white" href="#capabilities">Capabilities</a>
+            <a class="transition hover:text-white" href="#get-started">Get Started</a>
+          </nav>
+          <a
+            href="#get-started"
+            class="hidden rounded-full bg-sky-500 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-sky-500/30 transition hover:bg-sky-400 md:inline-flex"
+          >
+            Launch a workflow
+          </a>
+        </div>
+      </header>
+      <main class="flex-1">
+        <slot />
+      </main>
+      <footer class="border-t border-white/5 bg-slate-950/80">
+        <div class="mx-auto flex w-full max-w-6xl flex-col gap-6 px-6 py-12 text-sm text-slate-400 md:flex-row md:items-center md:justify-between">
+          <p>&copy; {new Date().getFullYear()} Waypoint. Designed for AI-driven execution loops.</p>
+          <div class="flex items-center gap-4 text-slate-500">
+            <a class="transition hover:text-sky-300" href="#concept">How it works</a>
+            <a class="transition hover:text-sky-300" href="#capabilities">Capabilities</a>
+            <a class="transition hover:text-sky-300" href="#get-started">Get started</a>
+          </div>
+        </div>
+      </footer>
+    </div>
   </body>
 </html>
