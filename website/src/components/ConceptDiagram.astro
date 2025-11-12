@@ -1,0 +1,284 @@
+<figure class="concept-diagram" aria-labelledby="concept-title concept-caption">
+  <svg
+    id="concept-diagram"
+    class="diagram-svg"
+    viewBox="0 0 960 360"
+    role="img"
+    aria-labelledby="concept-title"
+  >
+    <title id="concept-title">Workflows define waypoints, which generate artifacts that comprise projects.</title>
+    <defs>
+      <linearGradient id="node-shine" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="rgba(255,255,255,0.35)" />
+        <stop offset="35%" stop-color="rgba(255,255,255,0.08)" />
+        <stop offset="100%" stop-color="rgba(255,255,255,0)" />
+      </linearGradient>
+      <filter id="glow-green" x="-30%" y="-30%" width="160%" height="160%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
+        <feMerge>
+          <feMergeNode in="blur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+      <filter id="glow-cyan" x="-30%" y="-30%" width="160%" height="160%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
+        <feMerge>
+          <feMergeNode in="blur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+      <filter id="glow-purple" x="-30%" y="-30%" width="160%" height="160%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
+        <feMerge>
+          <feMergeNode in="blur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+      <filter id="glow-gold" x="-30%" y="-30%" width="160%" height="160%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
+        <feMerge>
+          <feMergeNode in="blur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+      <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#06d6a0" />
+      </marker>
+      <marker id="arrow-cyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#3abeff" />
+      </marker>
+      <marker id="arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#c77dff" />
+      </marker>
+      <marker id="arrow-gold" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#ffd166" />
+      </marker>
+      <style>
+        :root {
+          color-scheme: dark;
+        }
+
+        #concept-diagram {
+          background: transparent;
+          font-family: 'Inter', 'DM Sans', system-ui, sans-serif;
+        }
+
+        #concept-diagram .node-rect {
+          rx: 24px;
+          ry: 24px;
+          stroke-width: 1.6px;
+          fill: rgba(255, 255, 255, 0.04);
+        }
+
+        #concept-diagram .node-label {
+          font-size: 24px;
+          font-weight: 600;
+          letter-spacing: 0.02em;
+          fill: #e6e7eb;
+        }
+
+        #concept-diagram .node-projects .node-label {
+          font-weight: 700;
+          fill: #0b0c10;
+        }
+
+        #concept-diagram .node-glass {
+          fill: url(#node-shine);
+          opacity: 0.7;
+        }
+
+        #concept-diagram .edge-path {
+          fill: none;
+          stroke-width: 1.4px;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+          stroke-dasharray: 6 14;
+          animation: pulse 6s linear infinite;
+        }
+
+        #concept-diagram .edge-label {
+          font-size: 14px;
+          letter-spacing: 0.16em;
+          text-transform: lowercase;
+          fill: rgba(230, 231, 235, 0.8);
+        }
+
+        #concept-diagram .edge-group {
+          transition: filter 0.4s ease, opacity 0.4s ease;
+        }
+
+        #concept-diagram .edge-group.is-muted {
+          opacity: 0.3;
+        }
+
+        #concept-diagram .edge-group.is-active {
+          filter: url(#glow-gold);
+          opacity: 1;
+        }
+
+        #concept-diagram .node {
+          transition: transform 0.4s ease, filter 0.4s ease;
+        }
+
+        #concept-diagram .node.is-active {
+          transform: translateY(-6px);
+        }
+
+        #concept-diagram .node-workflows .node-rect {
+          stroke: #06d6a0;
+          filter: url(#glow-green);
+        }
+
+        #concept-diagram .node-waypoints .node-rect {
+          stroke: #3abeff;
+          filter: url(#glow-cyan);
+        }
+
+        #concept-diagram .node-artifacts .node-rect {
+          stroke: #c77dff;
+          filter: url(#glow-purple);
+        }
+
+        #concept-diagram .node-projects .node-rect {
+          stroke: #ffd166;
+          filter: url(#glow-gold);
+        }
+
+        #concept-diagram .edge-define .edge-path {
+          stroke: #06d6a0;
+          filter: url(#glow-green);
+        }
+
+        #concept-diagram .edge-generate .edge-path {
+          stroke: #3abeff;
+          filter: url(#glow-cyan);
+        }
+
+        #concept-diagram .edge-comprise .edge-path {
+          stroke: #c77dff;
+          filter: url(#glow-purple);
+        }
+
+        #concept-diagram .edge-deliver .edge-path {
+          stroke: #ffd166;
+          filter: url(#glow-gold);
+        }
+
+        #concept-diagram .edge-define .edge-path {
+          marker-end: url(#arrow-green);
+        }
+
+        #concept-diagram .edge-generate .edge-path {
+          marker-end: url(#arrow-cyan);
+        }
+
+        #concept-diagram .edge-comprise .edge-path {
+          marker-end: url(#arrow-purple);
+        }
+
+        #concept-diagram .edge-deliver .edge-path {
+          marker-end: url(#arrow-gold);
+        }
+
+        @keyframes pulse {
+          from {
+            stroke-dashoffset: 0;
+          }
+          to {
+            stroke-dashoffset: -200;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          #concept-diagram .edge-path {
+            animation: none;
+          }
+        }
+      </style>
+    </defs>
+
+    <g class="node node-workflows" data-node="workflows" transform="translate(120 110)">
+      <rect class="node-rect" width="180" height="120" />
+      <rect class="node-glass" width="180" height="120" />
+      <text class="node-label" x="90" y="70" text-anchor="middle">Workflows</text>
+    </g>
+
+    <g class="node node-waypoints" data-node="waypoints" transform="translate(360 110)">
+      <rect class="node-rect" width="180" height="120" />
+      <rect class="node-glass" width="180" height="120" />
+      <text class="node-label" x="90" y="70" text-anchor="middle">Waypoints</text>
+    </g>
+
+    <g class="node node-artifacts" data-node="artifacts" transform="translate(600 110)">
+      <rect class="node-rect" width="180" height="120" />
+      <rect class="node-glass" width="180" height="120" />
+      <text class="node-label" x="90" y="70" text-anchor="middle">Artifacts</text>
+    </g>
+
+    <g class="node node-projects" data-node="projects" transform="translate(840 110)">
+      <rect class="node-rect" width="180" height="120" />
+      <rect class="node-glass" width="180" height="120" />
+      <text class="node-label" x="90" y="70" text-anchor="middle">Projects</text>
+    </g>
+
+    <g class="edge-group edge-define" data-edge="define" data-from="workflows" data-to="waypoints">
+      <path class="edge-path" d="M300 170 C 340 150, 380 150, 420 170" />
+      <text class="edge-label" x="360" y="140" text-anchor="middle">define</text>
+    </g>
+
+    <g class="edge-group edge-generate" data-edge="generate" data-from="waypoints" data-to="artifacts">
+      <path class="edge-path" d="M540 200 C 580 220, 620 220, 660 200" />
+      <text class="edge-label" x="600" y="240" text-anchor="middle">generate</text>
+    </g>
+
+    <g class="edge-group edge-comprise" data-edge="comprise" data-from="artifacts" data-to="projects">
+      <path class="edge-path" d="M780 170 C 820 150, 860 150, 900 170" />
+      <text class="edge-label" x="840" y="140" text-anchor="middle">comprise</text>
+    </g>
+
+    <g class="edge-group edge-deliver" data-edge="deliver" data-from="workflows" data-to="projects">
+      <path class="edge-path" d="M300 230 C 420 300, 780 300, 900 210" />
+      <text class="edge-label" x="620" y="310" text-anchor="middle">deliver</text>
+    </g>
+  </svg>
+  <figcaption id="concept-caption" class="diagram-caption">
+    Hover any node to trace how work flows across waypoints and artifacts into completed projects.
+  </figcaption>
+</figure>
+<script type="module">
+  const activate = (target) => {
+    const diagram = document.getElementById('concept-diagram');
+    if (!diagram) return;
+    const nodes = diagram.querySelectorAll('.node');
+    nodes.forEach((node) => node.classList.remove('is-active'));
+    const edges = diagram.querySelectorAll('.edge-group');
+    edges.forEach((edge) => edge.classList.remove('is-active', 'is-muted'));
+
+    if (!target) return;
+
+    const nodeName = target.getAttribute('data-node');
+    target.classList.add('is-active');
+    edges.forEach((edge) => {
+      const from = edge.getAttribute('data-from');
+      if (from === nodeName) {
+        edge.classList.add('is-active');
+      } else {
+        edge.classList.add('is-muted');
+      }
+    });
+  };
+
+  const diagram = document.getElementById('concept-diagram');
+  if (diagram) {
+    const nodes = diagram.querySelectorAll('.node');
+    nodes.forEach((node) => {
+      node.addEventListener('mouseenter', () => activate(node));
+      node.addEventListener('focus', () => activate(node));
+      node.addEventListener('mouseleave', () => activate(null));
+      node.addEventListener('blur', () => activate(null));
+      node.setAttribute('tabindex', '0');
+    });
+
+    document.addEventListener('astro:after-swap', () => activate(null));
+  }
+</script>

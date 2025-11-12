@@ -1,0 +1,22 @@
+---
+import { clsx } from 'clsx';
+
+const {
+  title,
+  accent,
+  copy,
+  label
+}: {
+  title: string;
+  accent: 'gold' | 'green' | 'purple' | 'cyan';
+  copy: string[];
+  label?: string;
+} = Astro.props;
+---
+<section class={clsx('glass-card section-card')} data-accent={accent}>
+  {label && <span class="accent-label">{label}</span>}
+  <h3>{title}</h3>
+  {copy.map((paragraph) => (
+    <p>{paragraph}</p>
+  ))}
+</section>

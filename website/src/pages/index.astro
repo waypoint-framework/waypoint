@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ConceptDiagram from '../components/ConceptDiagram.astro';
+import SectionCard from '../components/SectionCard.astro';
+---
+<BaseLayout>
+  <section class="hero">
+    <div class="hero-copy">
+      <h1 class="hero-title">ai-executed projects of every shape and size</h1>
+      <p class="hero-subtitle">
+        Launch workflows, shepherd artifacts, and deliver cohesive AI-led projects without ever leaving your glass cockpit.
+      </p>
+      <div class="hero-cta">
+        <a class="button primary" href="#get-started">Start your first AI-executed project</a>
+        <a class="button secondary" href="#concept">See how it works</a>
+      </div>
+    </div>
+    <div class="glass-card hero-diagram" aria-hidden="true">
+      <div class="diagram-embellishment">
+        <div class="orbit orbit--gold"></div>
+        <div class="orbit orbit--cyan"></div>
+        <div class="orbit orbit--purple"></div>
+      </div>
+      <div class="hero-diagram__copy">
+        <span class="accent">adaptive glass console</span>
+        <h2>Project orchestration that reflects your intent.</h2>
+        <p>
+          Every adjustment runs through automated validation and regeneration, so revisions ripple through your entire delivery stack.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="concept" class="concept-section">
+    <div class="section-container">
+      <h2 class="diagram-title">The living map of your AI execution loop</h2>
+      <p class="diagram-caption">
+        Workflows orchestrate waypoints. Waypoints spin up artifacts. Artifacts crystalize into projects. Every edit keeps the entire loop in sync.
+      </p>
+    </div>
+    <div class="concept-diagram-wrapper glass-card">
+      <ConceptDiagram />
+    </div>
+  </section>
+
+  <section class="sections-grid">
+    <SectionCard
+      accent="gold"
+      label="Projects"
+      title="peacefully progress your projects"
+      copy={[
+        'Any ai tool could get you started, but they fall short before they can follow through.',
+        'Our projects auto-validate and regenerate on every edit to reproduce a fully cohesive revision.'
+      ]}
+    />
+    <SectionCard
+      accent="green"
+      label="Workflows"
+      title="open-source workflows"
+      copy={[
+        "Creators don't just develop their projects, they develop their workflows.",
+        'We let the wisdom of the crowd continually improve the how so you can focus on the what.'
+      ]}
+    />
+    <SectionCard
+      accent="purple"
+      label="Artifacts"
+      title="document-based artifacts"
+      copy={[
+        'All your project deliverables are captured in data.',
+        'Easily view and edit any part of your project, and let AI propagate related changes for you.'
+      ]}
+    />
+    <SectionCard
+      accent="cyan"
+      label="Waypoints"
+      title="waypoints guide your content"
+      copy={[
+        'Waypoints are AI agents with a singular goal: produce one project deliverable as a data artifact.',
+        'They have clear data contracts, and hold each other accountable during project revision.'
+      ]}
+    />
+  </section>
+
+  <section id="get-started" class="cta-section glass-card">
+    <h2>Build your next project that builds itself.</h2>
+    <p>Start your AI-executed workflow today.</p>
+    <div class="hero-cta">
+      <a class="button primary" href="#">Start your first AI-executed project</a>
+      <a class="button secondary" href="#concept">See how it works</a>
+    </div>
+  </section>
+</BaseLayout>
