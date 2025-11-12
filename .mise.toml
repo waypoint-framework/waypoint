@@ -1,0 +1,22 @@
+[tools]
+node = "20"
+
+[tasks."astro:install"]
+description = "Install the Astro website dependencies"
+run = "npm install"
+dir = "website"
+
+[tasks."astro:dev"]
+description = "Run the Astro development server"
+run = "npm run dev"
+dir = "website"
+
+[tasks."astro:build"]
+description = "Build the Astro site into the docs folder"
+run = "npm run build"
+dir = "website"
+
+[tasks."astro:preview"]
+description = "Preview the built Astro site"
+run = "npm run preview"
+dir = "website"
