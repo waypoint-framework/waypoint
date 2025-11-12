@@ -1,93 +1,165 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ConceptDiagram from '../components/ConceptDiagram.astro';
-import SectionCard from '../components/SectionCard.astro';
+
+const features = [
+  {
+    label: 'Projects',
+    title: 'Peacefully progress your projects',
+    paragraphs: [
+      'Any AI tool can get you started, but they fall short before they can follow through.',
+      'Waypoint auto-validates and regenerates on every edit so each revision emerges as a cohesive project update.'
+    ]
+  },
+  {
+    label: 'Workflows',
+    title: 'Open-source workflows',
+    paragraphs: [
+      "Creators don’t just develop their projects, they refine their workflows.",
+      'Tap into a shared network of best practices so you can focus on intent instead of infrastructure.'
+    ]
+  },
+  {
+    label: 'Artifacts',
+    title: 'Document-based artifacts',
+    paragraphs: [
+      'Every deliverable is captured as structured data.',
+      'View or edit any slice of a project and let AI propagate related changes for you.'
+    ]
+  },
+  {
+    label: 'Waypoints',
+    title: 'Waypoints guide your content',
+    paragraphs: [
+      'Waypoints are single-purpose AI agents that own one deliverable at a time.',
+      'They negotiate clear data contracts to keep each other accountable during revision.'
+    ]
+  }
+];
 ---
+
 <BaseLayout>
-  <section class="hero">
-    <div class="hero-copy">
-      <h1 class="hero-title">ai-executed projects of every shape and size</h1>
-      <p class="hero-subtitle">
-        Launch workflows, shepherd artifacts, and deliver cohesive AI-led projects without ever leaving your glass cockpit.
-      </p>
-      <div class="hero-cta">
-        <a class="button primary" href="#get-started">Start your first AI-executed project</a>
-        <a class="button secondary" href="#concept">See how it works</a>
-      </div>
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 -z-10">
+      <div class="pointer-events-none absolute inset-y-0 left-1/2 h-full w-[120vw] -translate-x-1/2 rounded-full bg-gradient-to-br from-sky-500/20 via-indigo-500/10 to-transparent blur-3xl" />
     </div>
-    <div class="glass-card hero-diagram" aria-hidden="true">
-      <div class="diagram-embellishment">
-        <div class="orbit orbit--gold"></div>
-        <div class="orbit orbit--cyan"></div>
-        <div class="orbit orbit--purple"></div>
+    <div class="mx-auto flex min-h-[70vh] w-full max-w-6xl flex-col gap-12 px-6 py-24 md:flex-row md:items-center">
+      <div class="max-w-2xl space-y-8">
+        <div class="inline-flex items-center gap-3 rounded-full border border-sky-500/40 bg-slate-900/60 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-sky-300">
+          <span class="h-2 w-2 rounded-full bg-sky-400" />
+          AI executed, human directed
+        </div>
+        <h1 class="font-heading text-4xl font-semibold leading-tight text-slate-100 md:text-6xl">
+          AI-executed projects of every shape and size
+        </h1>
+        <p class="max-w-xl text-lg text-slate-300 md:text-xl">
+          Launch workflows, shepherd artifacts, and deliver cohesive AI-led projects without ever leaving your AstroWind cockpit.
+          Every revision ripples through the system automatically.
+        </p>
+        <div class="flex flex-col gap-4 sm:flex-row">
+          <a
+            href="#get-started"
+            class="inline-flex items-center justify-center rounded-full bg-sky-500 px-8 py-3 text-base font-semibold text-white shadow-lg shadow-sky-500/30 transition hover:bg-sky-400"
+          >
+            Start your first AI-executed project
+          </a>
+          <a
+            href="#concept"
+            class="inline-flex items-center justify-center rounded-full border border-white/20 px-8 py-3 text-base font-semibold text-slate-100 transition hover:border-sky-400 hover:text-sky-200"
+          >
+            See how it works
+          </a>
+        </div>
       </div>
-      <div class="hero-diagram__copy">
-        <span class="accent">adaptive glass console</span>
-        <h2>Project orchestration that reflects your intent.</h2>
-        <p>
-          Every adjustment runs through automated validation and regeneration, so revisions ripple through your entire delivery stack.
+      <div class="mx-auto w-full max-w-md rounded-3xl border border-white/10 bg-white/5 p-8 shadow-xl shadow-sky-500/20 backdrop-blur">
+        <div class="mb-6 text-sm font-semibold uppercase tracking-[0.35em] text-sky-300">Adaptive glass console</div>
+        <h2 class="mb-4 text-2xl font-semibold text-white">Project orchestration that reflects your intent.</h2>
+        <p class="text-slate-300">
+          Every adjustment runs through automated validation and regeneration, so revisions stay synchronized across your entire delivery stack.
         </p>
       </div>
     </div>
   </section>
 
-  <section id="concept" class="concept-section">
-    <div class="section-container">
-      <h2 class="diagram-title">The living map of your AI execution loop</h2>
-      <p class="diagram-caption">
-        Workflows orchestrate waypoints. Waypoints spin up artifacts. Artifacts crystalize into projects. Every edit keeps the entire loop in sync.
+  <section id="concept" class="border-y border-white/5 bg-slate-950/70">
+    <div class="mx-auto grid w-full max-w-6xl gap-12 px-6 py-24 lg:grid-cols-[1.1fr_minmax(0,_1fr)] lg:items-center">
+      <div class="space-y-6">
+        <div class="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-1 text-xs font-semibold uppercase tracking-[0.32em] text-sky-200">
+          Concept
+        </div>
+        <h2 class="font-heading text-3xl font-semibold text-white md:text-4xl">
+          The living map of your AI execution loop
+        </h2>
+        <p class="text-lg text-slate-300">
+          Workflows orchestrate waypoints. Waypoints spin up artifacts. Artifacts crystallize into projects. Every edit keeps the entire loop in sync.
+        </p>
+        <div class="rounded-3xl border border-white/10 bg-slate-900/60 p-6 text-sm text-slate-300 shadow-inner shadow-sky-500/10">
+          <p>
+            Automations guard the integrity of your deliverables. When you request a change, dependent artifacts re-evaluate instantly so your releases never fall out of alignment.
+          </p>
+        </div>
+      </div>
+      <div class="gradient-border rounded-[2.5rem]">
+        <div class="card-surface rounded-[2.4rem] p-8">
+          <ConceptDiagram />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="capabilities" class="bg-slate-950/80">
+    <div class="mx-auto w-full max-w-6xl px-6 py-24">
+      <div class="mx-auto mb-16 max-w-3xl text-center">
+        <div class="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-1 text-xs font-semibold uppercase tracking-[0.32em] text-sky-200">
+          Capabilities
+        </div>
+        <h2 class="mt-6 font-heading text-3xl font-semibold text-white md:text-4xl">
+          Everything under the diagram, now in perfect formation
+        </h2>
+        <p class="mt-4 text-lg text-slate-300">
+          The Waypoint stack breaks complex delivery into accountable loops. These four pillars keep your workflows calm, coordinated, and ready for scale.
+        </p>
+      </div>
+      <div class="grid gap-8 md:grid-cols-2">
+        {features.map(({ label, title, paragraphs }) => (
+          <article class="gradient-border rounded-[2.2rem]">
+            <div class="card-surface rounded-[2rem] p-8 text-left">
+              <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-sky-400/40 bg-sky-400/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.28em] text-sky-200">
+                {label}
+              </div>
+              <h3 class="font-heading text-2xl font-semibold text-white">{title}</h3>
+              <div class="mt-4 space-y-3 text-base text-slate-300">
+                {paragraphs.map((paragraph) => (
+                  <p>{paragraph}</p>
+                ))}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="get-started" class="border-t border-white/5 bg-slate-900/70">
+    <div class="mx-auto flex w-full max-w-4xl flex-col gap-8 px-6 py-20 text-center">
+      <h2 class="font-heading text-3xl font-semibold text-white md:text-4xl">Build your next project that builds itself.</h2>
+      <p class="text-lg text-slate-300">
+        Spin up a workflow, connect your artifacts, and let AI keep every deliverable synchronized without sacrificing control.
       </p>
-    </div>
-    <div class="concept-diagram-wrapper glass-card">
-      <ConceptDiagram />
-    </div>
-  </section>
-
-  <section class="sections-grid">
-    <SectionCard
-      accent="gold"
-      label="Projects"
-      title="peacefully progress your projects"
-      copy={[
-        'Any ai tool could get you started, but they fall short before they can follow through.',
-        'Our projects auto-validate and regenerate on every edit to reproduce a fully cohesive revision.'
-      ]}
-    />
-    <SectionCard
-      accent="green"
-      label="Workflows"
-      title="open-source workflows"
-      copy={[
-        "Creators don't just develop their projects, they develop their workflows.",
-        'We let the wisdom of the crowd continually improve the how so you can focus on the what.'
-      ]}
-    />
-    <SectionCard
-      accent="purple"
-      label="Artifacts"
-      title="document-based artifacts"
-      copy={[
-        'All your project deliverables are captured in data.',
-        'Easily view and edit any part of your project, and let AI propagate related changes for you.'
-      ]}
-    />
-    <SectionCard
-      accent="cyan"
-      label="Waypoints"
-      title="waypoints guide your content"
-      copy={[
-        'Waypoints are AI agents with a singular goal: produce one project deliverable as a data artifact.',
-        'They have clear data contracts, and hold each other accountable during project revision.'
-      ]}
-    />
-  </section>
-
-  <section id="get-started" class="cta-section glass-card">
-    <h2>Build your next project that builds itself.</h2>
-    <p>Start your AI-executed workflow today.</p>
-    <div class="hero-cta">
-      <a class="button primary" href="#">Start your first AI-executed project</a>
-      <a class="button secondary" href="#concept">See how it works</a>
+      <div class="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+        <a
+          href="#"
+          class="inline-flex w-full items-center justify-center rounded-full bg-sky-500 px-10 py-3 text-base font-semibold text-white shadow-lg shadow-sky-500/30 transition hover:bg-sky-400 sm:w-auto"
+        >
+          Start your first AI-executed project
+        </a>
+        <a
+          href="#concept"
+          class="inline-flex w-full items-center justify-center rounded-full border border-white/15 px-10 py-3 text-base font-semibold text-slate-100 transition hover:border-sky-400 hover:text-sky-200 sm:w-auto"
+        >
+          See how it works
+        </a>
+      </div>
     </div>
   </section>
 </BaseLayout>
