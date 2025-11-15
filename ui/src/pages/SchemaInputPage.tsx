@@ -40,8 +40,8 @@ const SchemaInputPage = () => {
   };
 
   return (
-    <Container maxWidth="md" sx={{ py: 4 }}>
-      <Paper elevation={3} sx={{ p: 4 }}>
+    <Container maxWidth={false} sx={{ py: 4, px: { xs: 2, sm: 3, md: 4, lg: 6, xl: 8 } }}>
+      <Paper elevation={3} sx={{ p: 4, maxWidth: '1400px', mx: 'auto' }}>
         <Typography variant="h4" component="h1" gutterBottom align="center">
           JSON Schema Form Generator
         </Typography>

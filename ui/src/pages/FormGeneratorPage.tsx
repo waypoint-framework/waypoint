@@ -40,14 +40,33 @@ const FormGeneratorPage = () => {
       // Clean up the schema to remove problematic references
       const cleanedSchema = cleanSchema(parsedSchema);
       
-      setSchema(cleanedSchema);
+      console.log('Original schema:', parsedSchema);
+      console.log('Cleaned schema:', cleanedSchema);
+      
+      // If the cleaned schema is still problematic, create a minimal working version
+      let finalSchema = cleanedSchema;
+      try {
+        // Test if the schema can be processed by creating a simple test
+        if (cleanedSchema.type === 'object' && cleanedSchema.properties) {
+          // This should work
+          finalSchema = cleanedSchema;
+        } else {
+          // Create a minimal working schema from the properties
+          finalSchema = createMinimalSchema(parsedSchema);
+        }
+      } catch (err) {
+        console.warn('Schema cleaning failed, using minimal schema:', err);
+        finalSchema = createMinimalSchema(parsedSchema);
+      }
+      
+      setSchema(finalSchema);
       
       // Generate a basic UI schema if none exists
-      if (!cleanedSchema.uischema) {
-        const generatedUISchema = generateUISchema(cleanedSchema);
+      if (!finalSchema.uischema) {
+        const generatedUISchema = generateUISchema(finalSchema);
         setUischema(generatedUISchema);
       } else {
-        setUischema(cleanedSchema.uischema);
+        setUischema(finalSchema.uischema);
       }
       
       setLoading(false);
@@ -71,12 +90,21 @@ const FormGeneratorPage = () => {
       '$schema',
       '$id',
       '$ref',
+      '$defs',
       'definitions',
       'dependencies',
       'allOf',
       'anyOf',
       'oneOf',
-      'not'
+      'not',
+      'if',
+      'then',
+      'else',
+      'patternProperties',
+      'additionalProperties',
+      'additionalItems',
+      'unevaluatedProperties',
+      'unevaluatedItems'
     ];
 
     // Recursively clean the schema
@@ -90,7 +118,27 @@ const FormGeneratorPage = () => {
         
         for (const [key, value] of Object.entries(obj)) {
           if (!propertiesToRemove.includes(key)) {
-            cleaned[key] = cleanObject(value);
+            // Special handling for properties to ensure they're clean
+            if (key === 'properties' && typeof value === 'object') {
+              cleaned[key] = cleanObject(value);
+            } else if (key === 'items' && typeof value === 'object') {
+              cleaned[key] = cleanObject(value);
+            } else if (key === 'required' && Array.isArray(value)) {
+              // Keep required arrays as they are
+              cleaned[key] = value;
+            } else if (key === 'type' || key === 'title' || key === 'description' || key === 'format') {
+              // Keep basic schema properties
+              cleaned[key] = value;
+            } else if (key === 'minimum' || key === 'maximum' || key === 'minLength' || key === 'maxLength') {
+              // Keep basic validation properties
+              cleaned[key] = value;
+            } else if (key === 'enum' || key === 'const') {
+              // Keep enum and const values
+              cleaned[key] = value;
+            } else {
+              // Clean other properties recursively
+              cleaned[key] = cleanObject(value);
+            }
           }
         }
         
@@ -101,6 +149,47 @@ const FormGeneratorPage = () => {
     };
 
     return cleanObject(cleaned);
+  };
+
+  // Create a minimal working schema from complex schemas
+  const createMinimalSchema = (originalSchema: any): any => {
+    const minimal: any = {
+      type: 'object',
+      title: originalSchema.title || 'Generated Form',
+      description: originalSchema.description || 'Form generated from your schema'
+    };
+
+    if (originalSchema.properties && typeof originalSchema.properties === 'object') {
+      minimal.properties = {};
+      
+      Object.keys(originalSchema.properties).forEach(key => {
+        const prop = originalSchema.properties[key];
+        if (prop && typeof prop === 'object') {
+          minimal.properties[key] = {
+            type: prop.type || 'string',
+            title: prop.title || key.charAt(0).toUpperCase() + key.slice(1).replace(/_/g, ' '),
+            description: prop.description || ''
+          };
+          
+          // Add basic validation if available
+          if (prop.minimum !== undefined) minimal.properties[key].minimum = prop.minimum;
+          if (prop.maximum !== undefined) minimal.properties[key].maximum = prop.maximum;
+          if (prop.minLength !== undefined) minimal.properties[key].minLength = prop.minLength;
+          if (prop.maxLength !== undefined) minimal.properties[key].maxLength = prop.maxLength;
+          if (prop.enum) minimal.properties[key].enum = prop.enum;
+          if (prop.format) minimal.properties[key].format = prop.format;
+        }
+      });
+    }
+
+    // Add required fields if specified
+    if (originalSchema.required && Array.isArray(originalSchema.required)) {
+      minimal.required = originalSchema.required.filter((field: string) => 
+        minimal.properties && minimal.properties[field]
+      );
+    }
+
+    return minimal;
   };
 
   const generateUISchema = (schemaObj: any) => {
@@ -151,7 +240,7 @@ const FormGeneratorPage = () => {
 
   if (loading) {
     return (
-      <Container maxWidth="md" sx={{ py: 4, textAlign: 'center' }}>
+      <Container maxWidth={false} sx={{ py: 4, px: { xs: 2, sm: 3, md: 4, lg: 6, xl: 8 }, textAlign: 'center' }}>
         <CircularProgress size={60} />
         <Typography variant="h6" sx={{ mt: 2 }}>
           Loading form...
@@ -162,7 +251,7 @@ const FormGeneratorPage = () => {
 
   if (error) {
     return (
-      <Container maxWidth="md" sx={{ py: 4 }}>
+      <Container maxWidth={false} sx={{ py: 4, px: { xs: 2, sm: 3, md: 4, lg: 6, xl: 8 } }}>
         <Alert severity="error" sx={{ mb: 2 }}>
           {error}
         </Alert>
@@ -174,8 +263,8 @@ const FormGeneratorPage = () => {
   }
 
   return (
-    <Container maxWidth="lg" sx={{ py: 4 }}>
-      <Paper elevation={3} sx={{ p: 4 }}>
+    <Container maxWidth={false} sx={{ py: 4, px: { xs: 2, sm: 3, md: 4, lg: 6, xl: 8 } }}>
+      <Paper elevation={3} sx={{ p: 4, maxWidth: '1600px', mx: 'auto' }}>
         <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
           <Typography variant="h4" component="h1">
             Dynamic Form
@@ -208,12 +297,6 @@ const FormGeneratorPage = () => {
                 renderers={materialRenderers}
                 cells={materialCells}
                 onChange={({ data }) => handleDataChange(data)}
-                validationMode="ValidateAndShow"
-                ajv={{ 
-                  allErrors: true,
-                  verbose: false,
-                  strict: false
-                }}
               />
             </ErrorBoundary>
           )}
