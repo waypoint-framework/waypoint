@@ -118,12 +118,6 @@ const defaultTheme = {
   <section id="concept" class="border-y border-white/5 bg-slate-950/70">
     <div class="grid w-full gap-10 px-4 py-24 sm:px-6 lg:grid-cols-[minmax(0,_0.9fr)_minmax(0,_1.5fr)] lg:items-start lg:gap-12 lg:px-10 xl:px-16 2xl:px-24">
       <div class="space-y-12">
-        <div class="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-1 text-xs font-semibold uppercase tracking-[0.32em] text-sky-200">
-          Concept
-        </div>
-        <h2 class="font-heading text-3xl font-semibold text-white md:text-4xl">
-          The living map of your AI execution loop
-        </h2>
         <div class="feature-stack flex flex-col gap-10">
           {features.map(({ label, title, paragraphs }) => {
             const theme = featureThemes[label] ?? defaultTheme;
@@ -151,7 +145,7 @@ const defaultTheme = {
                       title
                     )}
                   </h3>
-                  {subheading && <p class="mt-4 text-lg font-semibold text-slate-100/90">{subheading}</p>}
+                  {subheading && <p class="mt-6 text-lg font-semibold text-slate-100/90">{subheading}</p>}
                   <div class="mt-6 space-y-4 text-lg text-slate-200/85">
                     {restParagraphs.map((paragraph) => (
                       <p>{paragraph}</p>
