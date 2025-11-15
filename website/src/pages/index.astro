@@ -30,9 +30,9 @@ const features = [ // titles are intentionally lowercase
   },
   {
     label: 'Waypoints',
-    title: 'waypoints for your content',
+    title: 'content guided by waypoints',
     paragraphs: [
-      'Waypoints are single-purpose AI agents that own one deliverable at a time.',
+      'Waypoints are ai agents which solely generate one artifact.',
       'They negotiate clear data contracts to keep each other accountable during revision.'
     ]
   }
@@ -115,7 +115,7 @@ const defaultTheme = {
   </section>
 
   <section id="concept" class="border-y border-white/5 bg-slate-950/70">
-    <div class="grid w-full gap-10 px-4 py-24 sm:px-6 lg:grid-cols-[minmax(0,_0.9fr)_minmax(0,_1.5fr)] lg:items-start lg:gap-12 lg:px-10 xl:px-16 2xl:px-24">
+    <div class="grid w-full gap-10 px-4 py-24 sm:px-6 lg:grid-cols-[minmax(0,_1.1fr)_minmax(0,_1.4fr)] lg:items-start lg:gap-14 lg:px-10 xl:px-16 2xl:px-24">
       <div class="space-y-12">
         <div class="feature-stack flex flex-col gap-10">
           {features.map(({ label, title, paragraphs }) => {
@@ -128,9 +128,9 @@ const defaultTheme = {
             const after = highlightIndex >= 0 ? title.slice(highlightIndex + highlightLength) : '';
             const [subheading, ...restParagraphs] = paragraphs;
             return (
-                <article class="rounded-[2.4rem] border border-white/10 bg-[rgba(255,255,255,0.01)] backdrop-blur-xl">
+              <article class="w-full rounded-[2.4rem] border border-white/10 bg-[rgba(255,255,255,0.01)] backdrop-blur-xl">
                 <div
-                  class="rounded-[2.2rem] border px-8 py-12 text-left transition-opacity duration-500 lg:min-h-[60vh] lg:py-16"
+                  class="flex flex-col rounded-[2.2rem] border px-10 py-14 text-left transition-opacity duration-500 lg:min-h-[60vh] lg:py-20"
                   style={`background: ${theme.panel}; box-shadow: ${theme.shadow}; border-color: rgba(255,255,255,0.24); backdrop-filter: blur(32px);`}
                 >
                   <h3 class="font-heading text-3xl font-semibold leading-tight text-white md:text-4xl">
@@ -144,8 +144,8 @@ const defaultTheme = {
                       title
                     )}
                   </h3>
-                  {subheading && <p class="mt-6 text-lg font-semibold text-slate-100/90">{subheading}</p>}
-                  <div class="mt-6 space-y-4 text-lg text-slate-200/85">
+                  {subheading && <p class="mt-8 text-xl font-semibold text-slate-100/90">{subheading}</p>}
+                  <div class="mt-8 space-y-5 text-lg text-slate-200/85">
                     {restParagraphs.map((paragraph) => (
                       <p>{paragraph}</p>
                     ))}
