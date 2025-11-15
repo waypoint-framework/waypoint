@@ -39,23 +39,27 @@ const features = [
 
 const featureThemes = {
   Projects: {
-    panel: 'linear-gradient(135deg, rgba(255,209,102,0.15) 0%, rgba(255,138,92,0.12) 45%, rgba(34,18,12,0.92) 100%)',
-    shadow: '0 40px 90px -45px rgba(255,209,102,0.5)',
+    panel:
+      'radial-gradient(circle at 18% 22%, rgba(255,213,134,0.35), transparent 45%), radial-gradient(circle at 82% 8%, rgba(255,150,75,0.2), transparent 40%), linear-gradient(160deg, rgba(41,18,7,0.95) 0%, rgba(23,10,3,0.92) 100%)',
+    shadow: '0 55px 120px -65px rgba(255,215,130,0.5)',
     heading: 'text-amber-200'
   },
   Workflows: {
-    panel: 'linear-gradient(140deg, rgba(34,197,160,0.2) 0%, rgba(14,165,233,0.12) 40%, rgba(7,28,41,0.92) 100%)',
-    shadow: '0 40px 90px -45px rgba(14,165,233,0.45)',
+    panel:
+      'radial-gradient(circle at 15% 18%, rgba(71,202,195,0.3), transparent 50%), radial-gradient(circle at 85% 12%, rgba(90,163,255,0.2), transparent 45%), linear-gradient(160deg, rgba(5,22,38,0.94) 0%, rgba(2,7,16,0.92) 100%)',
+    shadow: '0 55px 120px -70px rgba(21,169,233,0.4)',
     heading: 'text-emerald-200'
   },
   Artifacts: {
-    panel: 'linear-gradient(150deg, rgba(217,70,239,0.2) 0%, rgba(147,51,234,0.12) 40%, rgba(30,12,45,0.92) 100%)',
-    shadow: '0 40px 90px -45px rgba(217,70,239,0.45)',
+    panel:
+      'radial-gradient(circle at 28% 32%, rgba(215,154,255,0.32), transparent 50%), radial-gradient(circle at 78% 15%, rgba(170,105,237,0.2), transparent 45%), linear-gradient(160deg, rgba(26,9,32,0.95) 0%, rgba(14,5,20,0.92) 100%)',
+    shadow: '0 55px 120px -70px rgba(217,70,239,0.4)',
     heading: 'text-fuchsia-200'
   },
   Waypoints: {
-    panel: 'linear-gradient(150deg, rgba(14,165,233,0.18) 0%, rgba(59,130,246,0.12) 40%, rgba(9,23,48,0.92) 100%)',
-    shadow: '0 40px 90px -45px rgba(59,130,246,0.35)',
+    panel:
+      'radial-gradient(circle at 20% 28%, rgba(146,204,255,0.35), transparent 50%), radial-gradient(circle at 80% 16%, rgba(78,166,255,0.22), transparent 45%), linear-gradient(160deg, rgba(6,24,49,0.94) 0%, rgba(3,10,24,0.92) 100%)',
+    shadow: '0 55px 120px -70px rgba(59,130,246,0.4)',
     heading: 'text-sky-200'
   }
 };
@@ -111,7 +115,7 @@ const defaultTheme = {
   </section>
 
   <section id="concept" class="border-y border-white/5 bg-slate-950/70">
-    <div class="grid w-full gap-12 px-6 py-24 lg:grid-cols-[minmax(0,_0.9fr)_minmax(0,_1.5fr)] lg:items-start xl:px-16">
+    <div class="grid w-full gap-10 px-4 py-24 sm:px-6 lg:grid-cols-[minmax(0,_0.9fr)_minmax(0,_1.5fr)] lg:items-start lg:gap-12 lg:px-10 xl:px-16 2xl:px-24">
       <div class="space-y-12">
         <div class="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-1 text-xs font-semibold uppercase tracking-[0.32em] text-sky-200">
           Concept
@@ -128,16 +132,15 @@ const defaultTheme = {
             const before = highlightIndex >= 0 ? title.slice(0, highlightIndex) : '';
             const highlighted = highlightIndex >= 0 ? title.slice(highlightIndex, highlightIndex + highlightLength) : '';
             const after = highlightIndex >= 0 ? title.slice(highlightIndex + highlightLength) : '';
+            const [subheading, ...restParagraphs] = paragraphs;
             return (
-              <article
-                class="rounded-[2.4rem]"
-                style="border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.02); backdrop-filter: blur(18px);"
-              >
+              <article class="rounded-[2.4rem] border border-white/10 bg-[rgba(255,255,255,0.01)] backdrop-blur-xl">
                 <div
                   class="rounded-[2.2rem] border px-8 py-12 text-left transition-opacity duration-500 lg:min-h-[60vh] lg:py-16"
-                  style={`background: ${theme.panel}; box-shadow: ${theme.shadow}; border-color: rgba(255,255,255,0.28); backdrop-filter: blur(26px);`}
+                  style={`background: ${theme.panel}; box-shadow: ${theme.shadow}; border-color: rgba(255,255,255,0.24); backdrop-filter: blur(32px);`}
                 >
-                  <h3 class="font-heading text-3xl font-semibold text-white md:text-4xl leading-tight">
+                  <p class="text-xs font-semibold uppercase tracking-[0.4em] text-slate-200/60">{label}</p>
+                  <h3 class="mt-4 font-heading text-3xl font-semibold leading-tight text-white md:text-4xl">
                     {highlightIndex >= 0 ? (
                       <>
                         {before}
@@ -148,8 +151,9 @@ const defaultTheme = {
                       title
                     )}
                   </h3>
-                  <div class="mt-6 space-y-4 text-lg text-slate-300">
-                    {paragraphs.map((paragraph) => (
+                  {subheading && <p class="mt-3 text-base text-slate-200/85">{subheading}</p>}
+                  <div class="mt-6 space-y-4 text-lg text-slate-200/85">
+                    {restParagraphs.map((paragraph) => (
                       <p>{paragraph}</p>
                     ))}
                   </div>
@@ -160,12 +164,7 @@ const defaultTheme = {
         </div>
       </div>
       <div class="w-full lg:sticky lg:top-24">
-        <div
-          class="rounded-[2.6rem] border px-8 py-10"
-          style="border-color: rgba(255,255,255,0.2); background: linear-gradient(140deg, rgba(8,12,28,0.95) 0%, rgba(27,9,34,0.9) 55%, rgba(6,22,35,0.95) 100%); backdrop-filter: blur(26px); box-shadow: 0 50px 90px -50px rgba(15,23,42,0.8);"
-        >
-          <ConceptDiagram />
-        </div>
+        <ConceptDiagram />
       </div>
     </div>
   </section>
