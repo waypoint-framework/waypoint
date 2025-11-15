@@ -29,13 +29,42 @@ const features = [
   },
   {
     label: 'Waypoints',
-    title: 'Waypoints guide your content',
+    title: 'Waypoints for your content',
     paragraphs: [
       'Waypoints are single-purpose AI agents that own one deliverable at a time.',
       'They negotiate clear data contracts to keep each other accountable during revision.'
     ]
   }
 ];
+
+const featureThemes = {
+  Projects: {
+    panel: 'linear-gradient(135deg, rgba(255,209,102,0.15) 0%, rgba(255,138,92,0.12) 45%, rgba(34,18,12,0.92) 100%)',
+    shadow: '0 40px 90px -45px rgba(255,209,102,0.5)',
+    heading: 'text-amber-200'
+  },
+  Workflows: {
+    panel: 'linear-gradient(140deg, rgba(34,197,160,0.2) 0%, rgba(14,165,233,0.12) 40%, rgba(7,28,41,0.92) 100%)',
+    shadow: '0 40px 90px -45px rgba(14,165,233,0.45)',
+    heading: 'text-emerald-200'
+  },
+  Artifacts: {
+    panel: 'linear-gradient(150deg, rgba(217,70,239,0.2) 0%, rgba(147,51,234,0.12) 40%, rgba(30,12,45,0.92) 100%)',
+    shadow: '0 40px 90px -45px rgba(217,70,239,0.45)',
+    heading: 'text-fuchsia-200'
+  },
+  Waypoints: {
+    panel: 'linear-gradient(150deg, rgba(14,165,233,0.18) 0%, rgba(59,130,246,0.12) 40%, rgba(9,23,48,0.92) 100%)',
+    shadow: '0 40px 90px -45px rgba(59,130,246,0.35)',
+    heading: 'text-sky-200'
+  }
+};
+
+const defaultTheme = {
+  panel: 'linear-gradient(140deg, rgba(15,23,42,0.92), rgba(2,6,23,0.82))',
+  shadow: '0 30px 60px -40px rgba(15, 118, 110, 0.4)',
+  heading: 'text-white'
+};
 ---
 
 <BaseLayout>
@@ -53,8 +82,8 @@ const features = [
           AI-executed projects of every shape and size
         </h1>
         <p class="max-w-xl text-lg text-slate-300 md:text-xl">
-          Launch workflows, shepherd artifacts, and deliver cohesive AI-led projects without ever leaving your AstroWind cockpit.
-          Every revision ripples through the system automatically.
+          Cohesive AI-driven projects that can take care of themselves. 
+          Every revision ripples through the system automatically to uphold the integrity of your project. 
         </p>
         <div class="flex flex-col gap-4 sm:flex-row">
           <a
@@ -82,60 +111,61 @@ const features = [
   </section>
 
   <section id="concept" class="border-y border-white/5 bg-slate-950/70">
-    <div class="mx-auto grid w-full max-w-6xl gap-12 px-6 py-24 lg:grid-cols-[1.1fr_minmax(0,_1fr)] lg:items-center">
-      <div class="space-y-6">
+    <div class="grid w-full gap-12 px-6 py-24 lg:grid-cols-[minmax(0,_0.9fr)_minmax(0,_1.5fr)] lg:items-start xl:px-16">
+      <div class="space-y-12">
         <div class="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-1 text-xs font-semibold uppercase tracking-[0.32em] text-sky-200">
           Concept
         </div>
         <h2 class="font-heading text-3xl font-semibold text-white md:text-4xl">
           The living map of your AI execution loop
         </h2>
-        <p class="text-lg text-slate-300">
-          Workflows orchestrate waypoints. Waypoints spin up artifacts. Artifacts crystallize into projects. Every edit keeps the entire loop in sync.
-        </p>
-        <div class="rounded-3xl border border-white/10 bg-slate-900/60 p-6 text-sm text-slate-300 shadow-inner shadow-sky-500/10">
-          <p>
-            Automations guard the integrity of your deliverables. When you request a change, dependent artifacts re-evaluate instantly so your releases never fall out of alignment.
-          </p>
+        <div class="feature-stack flex flex-col gap-10">
+          {features.map(({ label, title, paragraphs }) => {
+            const theme = featureThemes[label] ?? defaultTheme;
+            const highlightMatch = title.match(new RegExp(label, 'i'));
+            const highlightIndex = highlightMatch?.index ?? -1;
+            const highlightLength = highlightMatch?.[0].length ?? 0;
+            const before = highlightIndex >= 0 ? title.slice(0, highlightIndex) : '';
+            const highlighted = highlightIndex >= 0 ? title.slice(highlightIndex, highlightIndex + highlightLength) : '';
+            const after = highlightIndex >= 0 ? title.slice(highlightIndex + highlightLength) : '';
+            return (
+              <article
+                class="rounded-[2.4rem]"
+                style="border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.02); backdrop-filter: blur(18px);"
+              >
+                <div
+                  class="rounded-[2.2rem] border px-8 py-12 text-left transition-opacity duration-500 lg:min-h-[60vh] lg:py-16"
+                  style={`background: ${theme.panel}; box-shadow: ${theme.shadow}; border-color: rgba(255,255,255,0.28); backdrop-filter: blur(26px);`}
+                >
+                  <h3 class="font-heading text-3xl font-semibold text-white md:text-4xl leading-tight">
+                    {highlightIndex >= 0 ? (
+                      <>
+                        {before}
+                        <span class={`${theme.heading}`}>{highlighted}</span>
+                        {after}
+                      </>
+                    ) : (
+                      title
+                    )}
+                  </h3>
+                  <div class="mt-6 space-y-4 text-lg text-slate-300">
+                    {paragraphs.map((paragraph) => (
+                      <p>{paragraph}</p>
+                    ))}
+                  </div>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </div>
-      <div class="gradient-border rounded-[2.5rem]">
-        <div class="card-surface rounded-[2.4rem] p-8">
+      <div class="w-full lg:sticky lg:top-24">
+        <div
+          class="rounded-[2.6rem] border px-8 py-10"
+          style="border-color: rgba(255,255,255,0.2); background: linear-gradient(140deg, rgba(8,12,28,0.95) 0%, rgba(27,9,34,0.9) 55%, rgba(6,22,35,0.95) 100%); backdrop-filter: blur(26px); box-shadow: 0 50px 90px -50px rgba(15,23,42,0.8);"
+        >
           <ConceptDiagram />
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="capabilities" class="bg-slate-950/80">
-    <div class="mx-auto w-full max-w-6xl px-6 py-24">
-      <div class="mx-auto mb-16 max-w-3xl text-center">
-        <div class="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-1 text-xs font-semibold uppercase tracking-[0.32em] text-sky-200">
-          Capabilities
-        </div>
-        <h2 class="mt-6 font-heading text-3xl font-semibold text-white md:text-4xl">
-          Everything under the diagram, now in perfect formation
-        </h2>
-        <p class="mt-4 text-lg text-slate-300">
-          The Waypoint stack breaks complex delivery into accountable loops. These four pillars keep your workflows calm, coordinated, and ready for scale.
-        </p>
-      </div>
-      <div class="grid gap-8 md:grid-cols-2">
-        {features.map(({ label, title, paragraphs }) => (
-          <article class="gradient-border rounded-[2.2rem]">
-            <div class="card-surface rounded-[2rem] p-8 text-left">
-              <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-sky-400/40 bg-sky-400/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.28em] text-sky-200">
-                {label}
-              </div>
-              <h3 class="font-heading text-2xl font-semibold text-white">{title}</h3>
-              <div class="mt-4 space-y-3 text-base text-slate-300">
-                {paragraphs.map((paragraph) => (
-                  <p>{paragraph}</p>
-                ))}
-              </div>
-            </div>
-          </article>
-        ))}
       </div>
     </div>
   </section>
