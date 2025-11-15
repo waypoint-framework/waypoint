@@ -130,7 +130,7 @@ const defaultTheme = {
             return (
               <article class="w-full rounded-[2.4rem] border border-white/10 bg-[rgba(255,255,255,0.01)] backdrop-blur-xl">
                 <div
-                  class="flex flex-col rounded-[2.2rem] border px-10 py-14 text-left transition-opacity duration-500 lg:min-h-[60vh] lg:py-20"
+                  class="flex h-[32rem] flex-col spacing gap-16 rounded-[2.2rem] border px-10 py-14 text-left transition-opacity duration-500 lg:h-[36rem] lg:py-20"
                   style={`background: ${theme.panel}; box-shadow: ${theme.shadow}; border-color: rgba(255,255,255,0.24); backdrop-filter: blur(32px);`}
                 >
                   <h3 class="font-heading text-3xl font-semibold leading-tight text-white md:text-4xl">
@@ -144,8 +144,8 @@ const defaultTheme = {
                       title
                     )}
                   </h3>
-                  {subheading && <p class="mt-8 text-xl font-semibold text-slate-100/90">{subheading}</p>}
-                  <div class="mt-8 space-y-5 text-lg text-slate-200/85">
+                  {subheading && <p class="text-xl font-semibold text-slate-100/90">{subheading}</p>}
+                  <div class="space-y-5 text-lg text-slate-200/85">
                     {restParagraphs.map((paragraph) => (
                       <p>{paragraph}</p>
                     ))}
