@@ -5,6 +5,8 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
   output: 'static',
   outDir: '../docs',
+  site: 'https://waypoint-framework.github.io/waypoint',
+  base: '/waypoint/',
   build: {
     format: 'file'
   },
