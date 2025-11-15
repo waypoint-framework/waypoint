@@ -144,13 +144,11 @@ const defaultTheme = {
           </ul>
         </div>
       </div>
+      <div id="workflow-data" data-workflows={JSON.stringify(workflowOptions)} class="hidden" aria-hidden="true" />
     </div>
-    <script type="application/json" id="workflow-options-data">
-      {JSON.stringify(workflowOptions)}
-    </script>
     <script type="module">
-      const workflowDataEl = document.getElementById('workflow-options-data');
-      const options = workflowDataEl ? JSON.parse(workflowDataEl.textContent ?? '[]') : [];
+      const workflowDataEl = document.getElementById('workflow-data');
+      const options = workflowDataEl ? JSON.parse(workflowDataEl.dataset.workflows ?? '[]') : [];
       const mainLink = document.getElementById('workflow-cta-primary');
       const toggleBtn = document.getElementById('workflow-cta-toggle');
       const menu = document.getElementById('workflow-cta-menu');
