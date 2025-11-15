@@ -98,10 +98,10 @@ const defaultTheme = {
     </div>
   </section>
 
-  <section id="concept" class="border-y border-white/5 bg-slate-950/70">
-    <div class="grid w-full gap-10 px-4 py-24 sm:px-6 lg:grid-cols-[minmax(0,_1.1fr)_minmax(0,_1.4fr)] lg:items-start lg:gap-14 lg:px-10 xl:px-16 2xl:px-24">
+  <section id="concept" class="border-y border-white/5 bg-slate-950/70 px-4 sm:px-6">
+    <div class="grid w-full gap-12 py-24 lg:grid-cols-[minmax(0,_1.05fr)_minmax(0,_1.35fr)] lg:items-start xl:gap-20">
       <div class="space-y-12">
-        <div class="feature-stack flex flex-col gap-10">
+        <div class="feature-stack flex flex-col gap-10 pr-4 xl:pr-10">
           {features.map(({ label, title, paragraphs }) => {
             const theme = featureThemes[label] ?? defaultTheme;
             const highlightMatch = title.match(new RegExp(label, 'i'));
